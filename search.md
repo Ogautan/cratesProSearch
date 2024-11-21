@@ -3,7 +3,7 @@
 ## 配置
 需要在.env文件中配置一下环境变量
 OPENAI_API_KEY，openai的api key.
-TABLE_NAME, 表名,设置为program即可
+TABLE_NAME, 表名,设置为programs即可
 OPEN_AI_CHAT_URL=https://api.xty.app/v1/chat/completions，也可更改。
 OPEN_AI_EMBEDDING_URL=https://api.xty.app/v1/embeddings，也可更配。
 

@@ -43,9 +43,8 @@ fn gen_search_sql(table_name: &str, sort_by: SearchSortCriteria) -> String {
         //TODO: 实现综合排序
         SearchSortCriteria::Comprehensive => {
             format!(
-                "SELECT {0}.id, {0}.name, {0}.description, ts_rank({0}.tsv, to_tsquery($1)) AS rank, crate_downloads.downloads
+                "SELECT {0}.id, {0}.name, {0}.description, ts_rank({0}.tsv, to_tsquery($1)) AS rank,{0}.downloads
                 FROM {0}
-                JOIN crate_downloads ON {0}.id = crate_downloads.crate_id
                 WHERE {0}.tsv @@ to_tsquery($1)
                 ORDER BY rank DESC",
                 table_name
@@ -53,9 +52,8 @@ fn gen_search_sql(table_name: &str, sort_by: SearchSortCriteria) -> String {
         }
         SearchSortCriteria::Relavance => {
             format!(
-                "SELECT {0}.id, {0}.name, {0}.description, ts_rank({0}.tsv, to_tsquery($1)) AS rank, crate_downloads.downloads
+                "SELECT {0}.id, {0}.name, {0}.description, ts_rank({0}.tsv, to_tsquery($1)) AS rank,{0}.downloads
                 FROM {0}
-                JOIN crate_downloads ON {0}.id = crate_downloads.crate_id
                 WHERE {0}.tsv @@ to_tsquery($1)
                 ORDER BY rank DESC",
                 table_name
@@ -63,9 +61,8 @@ fn gen_search_sql(table_name: &str, sort_by: SearchSortCriteria) -> String {
         }
         SearchSortCriteria::Downloads => {
             format!(
-                "SELECT {0}.id, {0}.name, {0}.description, ts_rank({0}.tsv, to_tsquery($1)) AS rank, crate_downloads.downloads
+                "SELECT {0}.id, {0}.name, {0}.description, ts_rank({0}.tsv, to_tsquery($1)) AS rank, {0}.downloads
                 FROM {0}
-                JOIN crate_downloads ON {0}.id = crate_downloads.crate_id
                 WHERE {0}.tsv @@ to_tsquery($1)
                 ORDER BY downloads DESC",
                 table_name
@@ -85,9 +82,8 @@ async fn search_crate_without_ai(
     let direct_rows = client
         .query(
             &format!(
-                "SELECT {0}.id, {0}.name, {0}.description, crate_downloads.downloads
+                "SELECT {0}.id, {0}.name, {0}.description, {0}.downloads
                 FROM {0}
-                JOIN crate_downloads ON {0}.id = crate_downloads.crate_id
                 WHERE {0}.name = $1",
                 table_name
             ),
