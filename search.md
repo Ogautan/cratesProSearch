@@ -5,10 +5,10 @@
 OPENAI_API_KEY，openai的api key.
 TABLE_NAME, 表名,设置为programs即可
 OPEN_AI_CHAT_URL=https://api.xty.app/v1/chat/completions，也可更改。
-OPEN_AI_EMBEDDING_URL=https://api.xty.app/v1/embeddings，也可更配。
+OPEN_AI_EMBEDDING_URL=https://api.xty.app/v1/embeddings，也可更改。
 
 ## search_prepare
-提供结构体SearchPrepare,功能是修改数据库的表，以适合搜索。其函数的功能在search_prepare.rs的注释中。
+提供结构体SearchPrepare,功能是增加数据库的表中的属性embedding和tsv，以适合搜索。其函数的功能在search_prepare.rs的注释中。
 
 ## search
 提供结构体SearchModule, 功能是搜索，提供search_crate方法。
@@ -24,7 +24,7 @@ OPEN_AI_EMBEDDING_URL=https://api.xty.app/v1/embeddings，也可更配。
 
     pub async fn chat(&mut self, user_message: &str) -> Result<String, Box<dyn std::error::Error>> 
 
-处理用户消息并返回 AI 回答，开启RAG辅助.(先不用)
+处理用户消息并返回 AI 回答，开启RAG辅助.(不能在数据库中没有嵌入的内容时候使用)
 
     pub async fn chat_with_embedding(
         &mut self,
@@ -32,7 +32,7 @@ OPEN_AI_EMBEDDING_URL=https://api.xty.app/v1/embeddings，也可更配。
     ) -> Result<String, Box<dyn std::error::Error>> 
 
 ## embedding （先不用）
-提供若干文本嵌入函数。
+提供若干文本嵌入函数。先不使用，以减少复杂度
 
 对一个文本进行文本嵌入，返回f32的向量
 
@@ -50,4 +50,56 @@ OPEN_AI_EMBEDDING_URL=https://api.xty.app/v1/embeddings，也可更配。
     pub async fn update_all_crate_embeddings(
         client: &PgClient,
     ) -> Result<(), Box<dyn std::error::Error>> 
+## 如何使用
+示例代码在main.rs中。首先引入环境变量，连接数据库，
+```
+dotenv().ok();
+let (client, connection) = tokio_postgres::connect(
+    "host=localhost user=cratespro password=cratespro dbname=cratesproSearch",
+    NoTls,
+)
+.await?;
+tokio::spawn(async move {
+    if let Err(e) = connection.await {
+        eprintln!("connection error: {}", e);
+    }
+});
 
+```
+
+然后使用searchPrepare模块为搜索做准备.这里注意set_embedding_column需要调用openai的远程api进行embedding，很耗时，所以建议如果不用嵌入模块，不要使用。
+```
+  let pre_search = search_prepare::SearchPrepare::new(&client).await;
+
+    let table_exists = pre_search.crates_table_exists().await?;
+    if !table_exists {
+        return Err("crates table not exists".into());
+    }
+    pre_search.add_tsv_column().await?;
+    pre_search.add_embedding_column().await?;
+    pre_search.set_tsv_column().await?;
+    pre_search.set_embedding_column().await?;
+    pre_search.create_tsv_index().await?;
+    pre_search.create_embedding_index().await?;
+    let ok = pre_search.check_ok().await;
+    if !ok {
+        return Err("check failed".into());
+    }
+```
+
+如何使用searchModule如下,这里sortby建议选择SearchSortCriteria::Relavance，其他的排序标准还未实现。
+```
+let mut question = String::new();
+io::stdin().read_line(&mut question).unwrap();
+let question = question.trim();
+let search_module = search::SearchModule::new(&client).await;
+let res = search_module
+    .search_crate(question, search::SearchSortCriteria::Relavance)
+    .await?;
+```
+ai_chat功能如下:
+```
+let mut ai_chat = ai::AIChat::new(&client);
+let res = ai_chat.chat(question).await?;
+println!("{}", res);
+```
