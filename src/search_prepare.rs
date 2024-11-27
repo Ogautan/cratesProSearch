@@ -16,6 +16,30 @@ impl<'a> SearchPrepare<'a> {
         }
     }
     //检查crates表是否存在
+
+    pub async fn prepare_tsv(&self) -> Result<(), Box<dyn std::error::Error>> {
+        let table_exists = self.crates_table_exists().await?;
+        if !table_exists {
+            return Err("crates table not exists".into());
+        }
+        self.add_tsv_column().await?;
+        self.set_tsv_column().await?;
+        self.create_tsv_index().await?;
+        Ok(())
+    }
+
+    pub async fn prepare_embedding(&self) -> Result<(), Box<dyn std::error::Error>> {
+        let table_exists = self.crates_table_exists().await?;
+        if !table_exists {
+            return Err("crates table not exists".into());
+        }
+        self.add_pgvector_extension().await?;
+        self.add_embedding_column().await?;
+        self.set_embedding_column().await?;
+        self.create_embedding_index().await?;
+        Ok(())
+    }
+
     pub async fn crates_table_exists(&self) -> Result<bool, Box<dyn std::error::Error>> {
         let query = format!(
             "SELECT EXISTS (
@@ -166,5 +190,12 @@ impl<'a> SearchPrepare<'a> {
         }
 
         true
+    }
+
+    // 功能八：为crates表添加pgvector扩展
+    pub async fn add_pgvector_extension(&self) -> Result<(), Box<dyn std::error::Error>> {
+        let query = "CREATE EXTENSION IF NOT EXISTS vector";
+        self.pg_client.execute(query, &[]).await?;
+        Ok(())
     }
 }

@@ -28,7 +28,7 @@ async fn get_texts_embedding(texts: &[&str]) -> Result<Vec<Vec<f32>>, Box<dyn st
     let open_ai_embedding_url =
         env::var("OPEN_AI_EMBEDDING_URL").expect("OPEN_AI_EMBEDDING_URL not set");
 
-    let url = "https://api.xty.app/v1/embeddings";
+    // let url = "https://api.xty.app/v1/embeddings";
     let request_body = json!({
         "input": texts,
         "model": "text-embedding-3-small"

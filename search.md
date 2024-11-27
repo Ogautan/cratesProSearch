@@ -67,24 +67,10 @@ tokio::spawn(async move {
 
 ```
 
-然后使用searchPrepare模块为搜索做准备.这里注意set_embedding_column需要调用openai的远程api进行embedding，很耗时，所以建议如果不用嵌入模块，不要使用。
+然后使用searchPrepare模块为搜索做准备。下面是不含embedding的准备方法。
 ```
   let pre_search = search_prepare::SearchPrepare::new(&client).await;
-
-    let table_exists = pre_search.crates_table_exists().await?;
-    if !table_exists {
-        return Err("crates table not exists".into());
-    }
-    pre_search.add_tsv_column().await?;
-    pre_search.add_embedding_column().await?;
-    pre_search.set_tsv_column().await?;
-    pre_search.set_embedding_column().await?;
-    pre_search.create_tsv_index().await?;
-    pre_search.create_embedding_index().await?;
-    let ok = pre_search.check_ok().await;
-    if !ok {
-        return Err("check failed".into());
-    }
+    pre_search.prepare_tsv().await?;
 ```
 
 如何使用searchModule如下,这里sortby建议选择SearchSortCriteria::Relavance，其他的排序标准还未实现。
