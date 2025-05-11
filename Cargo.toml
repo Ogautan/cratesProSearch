@@ -12,6 +12,7 @@ tokio-postgres = "0.7"
 dotenv = "0.15"
 pgvector = { version = "0.4", features = ["postgres"] }
 prettytable = "0.10"  # 用于生成格式化表格
+urlencoding = "2.1.0"
 
 [[bin]]
 name = "test_rewrite_query"

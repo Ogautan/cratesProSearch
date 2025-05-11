@@ -1,0 +1,156 @@
+[
+  {
+    "query": "http client",
+    "description": "HTTP客户端库",
+    "method": "LLM增强搜索",
+    "precision_at_1": 1.0,
+    "precision_at_3": 1.0,
+    "precision_at_5": 1.0,
+    "precision_at_10": 1.0,
+    "recall": 17.0,
+    "latency_ms": 8708.0
+  },
+  {
+    "query": "http client",
+    "description": "HTTP客户端库",
+    "method": "传统搜索",
+    "precision_at_1": 1.0,
+    "precision_at_3": 0.6666666666666666,
+    "precision_at_5": 0.6,
+    "precision_at_10": 0.7,
+    "recall": 17.0,
+    "latency_ms": 71.0
+  },
+  {
+    "query": "json serde",
+    "description": "JSON序列化库",
+    "method": "LLM增强搜索",
+    "precision_at_1": 1.0,
+    "precision_at_3": 1.0,
+    "precision_at_5": 1.0,
+    "precision_at_10": 0.8,
+    "recall": 14.0,
+    "latency_ms": 5884.0
+  },
+  {
+    "query": "json serde",
+    "description": "JSON序列化库",
+    "method": "传统搜索",
+    "precision_at_1": 0.0,
+    "precision_at_3": 0.0,
+    "precision_at_5": 0.0,
+    "precision_at_10": 0.0,
+    "recall": 0.0,
+    "latency_ms": 392.0
+  },
+  {
+    "query": "如何解析JSON数据",
+    "description": "中文自然语言查询",
+    "method": "LLM增强搜索",
+    "precision_at_1": 1.0,
+    "precision_at_3": 1.0,
+    "precision_at_5": 0.8,
+    "precision_at_10": 0.8,
+    "recall": 13.0,
+    "latency_ms": 9883.0
+  },
+  {
+    "query": "如何解析JSON数据",
+    "description": "中文自然语言查询",
+    "method": "传统搜索",
+    "precision_at_1": 0.0,
+    "precision_at_3": 0.0,
+    "precision_at_5": 0.0,
+    "precision_at_10": 0.0,
+    "recall": 0.0,
+    "latency_ms": 344.0
+  },
+  {
+    "query": "database orm",
+    "description": "数据库ORM",
+    "method": "LLM增强搜索",
+    "precision_at_1": 1.0,
+    "precision_at_3": 0.6666666666666666,
+    "precision_at_5": 0.6,
+    "precision_at_10": 0.7,
+    "recall": 11.0,
+    "latency_ms": 6170.0
+  },
+  {
+    "query": "database orm",
+    "description": "数据库ORM",
+    "method": "传统搜索",
+    "precision_at_1": 0.0,
+    "precision_at_3": 0.0,
+    "precision_at_5": 0.0,
+    "precision_at_10": 0.0,
+    "recall": 0.0,
+    "latency_ms": 98.0
+  },
+  {
+    "query": "command line arguments parser",
+    "description": "命令行参数解析",
+    "method": "LLM增强搜索",
+    "precision_at_1": 1.0,
+    "precision_at_3": 1.0,
+    "precision_at_5": 1.0,
+    "precision_at_10": 0.6,
+    "recall": 13.0,
+    "latency_ms": 9651.0
+  },
+  {
+    "query": "command line arguments parser",
+    "description": "命令行参数解析",
+    "method": "传统搜索",
+    "precision_at_1": 0.0,
+    "precision_at_3": 0.0,
+    "precision_at_5": 0.0,
+    "precision_at_10": 0.0,
+    "recall": 1.0,
+    "latency_ms": 191.0
+  },
+  {
+    "query": "need a web server framework",
+    "description": "Web框架自然语言",
+    "method": "LLM增强搜索",
+    "precision_at_1": 1.0,
+    "precision_at_3": 0.6666666666666666,
+    "precision_at_5": 0.6,
+    "precision_at_10": 0.8,
+    "recall": 16.0,
+    "latency_ms": 11091.0
+  },
+  {
+    "query": "need a web server framework",
+    "description": "Web框架自然语言",
+    "method": "传统搜索",
+    "precision_at_1": 1.0,
+    "precision_at_3": 0.6666666666666666,
+    "precision_at_5": 0.8,
+    "precision_at_10": 0.6,
+    "recall": 14.0,
+    "latency_ms": 213.0
+  },
+  {
+    "query": "我需要一个好用的日志库",
+    "description": "中文日志库查询",
+    "method": "LLM增强搜索",
+    "precision_at_1": 1.0,
+    "precision_at_3": 1.0,
+    "precision_at_5": 0.8,
+    "precision_at_10": 0.9,
+    "recall": 17.0,
+    "latency_ms": 5210.0
+  },
+  {
+    "query": "我需要一个好用的日志库",
+    "description": "中文日志库查询",
+    "method": "传统搜索",
+    "precision_at_1": 0.0,
+    "precision_at_3": 0.0,
+    "precision_at_5": 0.0,
+    "precision_at_10": 0.0,
+    "recall": 0.0,
+    "latency_ms": 183.0
+  }
+]

@@ -1,50 +1,21 @@
-use cratespro_search::search::{
-    RecommendCrate, SearchModule, SearchSortCriteria, TraditionalSearchModule,
-};
+use cratespro_search::search::{RecommendCrate, SearchModule, SearchSortCriteria};
 use dotenv::dotenv;
 use prettytable::{format, Cell, Row, Table};
 use reqwest::Client;
 use serde::{Deserialize, Serialize};
-use std::collections::{HashMap, HashSet};
+use std::collections::HashMap;
 use std::env;
 use std::fs::File;
-use std::io::{BufReader, Write};
-use std::path::Path;
+use std::io::Write;
 use std::sync::Arc;
-use std::time::{Duration, Instant};
+use std::time::Instant;
 use tokio_postgres::NoTls;
 
-#[derive(Debug, Deserialize, Serialize)]
-struct TestCase {
-    query: String,
-    description: String,
-    relevant_packages: Vec<String>,
-}
-
-#[derive(Debug, Serialize)]
-struct ComparisonResult {
-    query: String,
-    description: String,
-    method: String,
-    precision_at_1: f64,
-    precision_at_3: f64,
-    precision_at_5: f64,
-    precision_at_10: f64,
-    recall: f64,
-    latency_ms: f64,
-}
-
+// LLM相关的数据结构
 #[derive(Debug, Deserialize, Serialize)]
 struct LLMMessage {
     role: String,
     content: String,
-}
-
-#[derive(Debug, Deserialize, Serialize)]
-struct LLMRequest {
-    model: String,
-    messages: Vec<LLMMessage>,
-    temperature: f32,
 }
 
 #[derive(Debug, Deserialize, Serialize)]
@@ -55,6 +26,13 @@ struct LLMResponseChoice {
 #[derive(Debug, Deserialize, Serialize)]
 struct LLMResponse {
     choices: Vec<LLMResponseChoice>,
+}
+
+#[derive(Debug, Deserialize, Serialize)]
+struct LLMRequest {
+    model: String,
+    messages: Vec<LLMMessage>,
+    temperature: f32,
 }
 
 #[derive(Debug, Deserialize, Serialize)]
@@ -70,12 +48,56 @@ struct LLMJudgmentResponse {
     judgments: Vec<RelevanceJudgment>,
 }
 
+// crates.io API响应结构
+#[derive(Debug, Deserialize)]
+struct CratesIoCrate {
+    id: String,
+    name: String,
+    description: Option<String>,
+    downloads: i64,
+    #[serde(rename = "max_version")]
+    version: String,
+}
+
+#[derive(Debug, Deserialize)]
+struct CratesIoResponse {
+    crates: Vec<CratesIoCrate>,
+    meta: CratesIoMeta,
+}
+
+#[derive(Debug, Deserialize)]
+struct CratesIoMeta {
+    total: i64,
+}
+
+// 测试用例
+#[derive(Debug, Deserialize, Serialize)]
+struct TestCase {
+    query: String,
+    description: String,
+}
+
+// 实验结果
+#[derive(Debug, Serialize)]
+struct ComparisonResult {
+    query: String,
+    description: String,
+    method: String,
+    precision_at_1: f64,
+    precision_at_3: f64,
+    precision_at_5: f64,
+    precision_at_10: f64,
+    precision_at_20: f64,
+    relevant_count: i32,
+    latency_ms: f64,
+}
+
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
     // 加载环境变量
     dotenv().ok();
 
-    println!("🔍 开始搜索方法对比实验 (使用LLM进行相关性判断)");
+    println!("🔍 开始LLM辅助搜索与crates.io搜索对比实验");
 
     // 确保OpenAI API密钥已配置
     let api_key = env::var("OPENAI_API_KEY").expect("需要设置OPENAI_API_KEY环境变量");
@@ -91,32 +113,61 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         }
     });
 
-    // 创建不同的搜索模块
+    // 创建LLM辅助搜索模块
     let llm_search = SearchModule::new(&pg_client).await;
-    let traditional_search = TraditionalSearchModule::new(&pg_client).await;
-
-    // 加载测试用例
-    let test_cases = load_test_cases();
-    println!("📋 已加载 {} 个测试用例", test_cases.len());
 
     // 创建HTTP客户端
     let http_client = Arc::new(Client::new());
 
-    // 创建缓存以避免重复LLM调用
+    // 缓存以避免重复LLM调用
     let mut relevance_cache = HashMap::new();
+
+    // 定义测试用例
+    let test_cases = vec![
+        TestCase {
+            query: "http client".to_string(),
+            description: "HTTP客户端库".to_string(),
+        },
+        TestCase {
+            query: "json".to_string(),
+            description: "JSON处理库".to_string(),
+        },
+        TestCase {
+            query: "async runtime".to_string(),
+            description: "异步运行时".to_string(),
+        },
+        TestCase {
+            query: "cli".to_string(),
+            description: "命令行工具".to_string(),
+        },
+        TestCase {
+            query: "orm".to_string(),
+            description: "对象关系映射".to_string(),
+        },
+        TestCase {
+            query: "web framework".to_string(),
+            description: "Web框架".to_string(),
+        },
+        TestCase {
+            query: "logging".to_string(),
+            description: "日志库".to_string(),
+        },
+    ];
+
+    println!("📋 准备了 {} 个测试用例", test_cases.len());
 
     // 存储比较结果
     let mut results = Vec::new();
 
-    // 执行测试
+    // 对每个用例进行测试
     for test_case in &test_cases {
         println!(
             "\n📝 测试用例: {} - \"{}\"",
             test_case.description, test_case.query
         );
 
-        // LLM增强搜索
-        println!("\n  🧠 LLM增强搜索:");
+        // LLM辅助搜索
+        println!("\n  🧠 LLM辅助搜索:");
         let llm_start = Instant::now();
         let llm_results = match llm_search
             .search_crate(&test_case.query, SearchSortCriteria::Comprehensive)
@@ -131,7 +182,6 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         let llm_duration = llm_start.elapsed();
 
         // 使用LLM评估相关性
-        let llm_eval_start = Instant::now();
         println!("  🔍 使用LLM评估搜索结果相关性...");
         let llm_relevance = evaluate_with_llm(
             &http_client,
@@ -141,89 +191,87 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
             &mut relevance_cache,
         )
         .await?;
-        let llm_eval_duration = llm_eval_start.elapsed();
 
         // 使用LLM相关性判断计算指标
         let llm_metrics = calculate_metrics_from_llm_judgments(&llm_results, &llm_relevance);
 
+        println!("    ⏱️ 搜索耗时: {:.2?}", llm_duration);
         println!(
-            "    ⏱️ 搜索耗时: {:.2?}, 相关性评估耗时: {:.2?}",
-            llm_duration, llm_eval_duration
-        );
-        println!(
-            "    P@1: {:.2}, P@3: {:.2}, P@5: {:.2}, P@10: {:.2}, 相关结果: {}",
-            llm_metrics.0, llm_metrics.1, llm_metrics.2, llm_metrics.3, llm_metrics.4
+            "    P@1: {:.2}, P@3: {:.2}, P@5: {:.2}, P@10: {:.2}, P@20: {:.2}, 相关结果: {}",
+            llm_metrics.0, llm_metrics.1, llm_metrics.2, llm_metrics.3, llm_metrics.4, llm_metrics.5
         );
 
         // 打印LLM搜索的前5个结果及其相关性
-        print_results_with_llm_judgments("LLM增强搜索", &llm_results, &llm_relevance, 5);
+        print_results_with_llm_judgments("LLM辅助搜索", &llm_results, &llm_relevance, 5);
 
-        // 传统搜索
-        println!("\n  📚 传统搜索:");
-        let trad_start = Instant::now();
-        let trad_results = match traditional_search
-            .search(&test_case.query, SearchSortCriteria::Comprehensive)
-            .await
-        {
-            Ok(res) => res,
-            Err(e) => {
-                eprintln!("传统搜索错误: {}", e);
-                continue;
-            }
-        };
-        let trad_duration = trad_start.elapsed();
+        // crates.io搜索
+        println!("\n  🌐 crates.io搜索:");
+        let crates_io_start = Instant::now();
+        let crates_io_results = fetch_crates_io_results(&http_client, &test_case.query).await?;
+        let crates_io_duration = crates_io_start.elapsed();
 
-        // 使用LLM评估传统搜索结果相关性
-        let trad_eval_start = Instant::now();
-        println!("  🔍 使用LLM评估传统搜索结果相关性...");
-        let trad_relevance = evaluate_with_llm(
+        // 将crates.io结果转换为RecommendCrate格式以便一致处理
+        let crates_io_recommend = convert_to_recommend_crates(crates_io_results);
+
+        // 使用LLM评估crates.io搜索结果相关性
+        println!("  🔍 使用LLM评估crates.io搜索结果相关性...");
+        let crates_io_relevance = evaluate_with_llm(
             &http_client,
             &test_case.query,
-            &trad_results[..20.min(trad_results.len())],
+            &crates_io_recommend[..20.min(crates_io_recommend.len())],
             &api_key,
             &mut relevance_cache,
         )
         .await?;
-        let trad_eval_duration = trad_eval_start.elapsed();
 
         // 使用LLM相关性判断计算指标
-        let trad_metrics = calculate_metrics_from_llm_judgments(&trad_results, &trad_relevance);
+        let crates_io_metrics =
+            calculate_metrics_from_llm_judgments(&crates_io_recommend, &crates_io_relevance);
 
+        println!("    ⏱️ 搜索耗时: {:.2?}", crates_io_duration);
         println!(
-            "    ⏱️ 搜索耗时: {:.2?}, 相关性评估耗时: {:.2?}",
-            trad_duration, trad_eval_duration
-        );
-        println!(
-            "    P@1: {:.2}, P@3: {:.2}, P@5: {:.2}, P@10: {:.2}, 相关结果: {}",
-            trad_metrics.0, trad_metrics.1, trad_metrics.2, trad_metrics.3, trad_metrics.4
+            "    P@1: {:.2}, P@3: {:.2}, P@5: {:.2}, P@10: {:.2}, P@20: {:.2}, 相关结果: {}",
+            crates_io_metrics.0,
+            crates_io_metrics.1,
+            crates_io_metrics.2,
+            crates_io_metrics.3,
+            crates_io_metrics.4,
+            crates_io_metrics.5
         );
 
-        // 打印传统搜索的前5个结果及其相关性
-        print_results_with_llm_judgments("传统搜索", &trad_results, &trad_relevance, 5);
+        // 打印crates.io搜索的前5个结果及其相关性
+        print_results_with_llm_judgments(
+            "crates.io搜索",
+            &crates_io_recommend,
+            &crates_io_relevance,
+            5,
+        );
 
         // 记录结果
         results.push(ComparisonResult {
             query: test_case.query.clone(),
             description: test_case.description.clone(),
-            method: "LLM增强搜索".to_string(),
+            method: "LLM辅助搜索".to_string(),
             precision_at_1: llm_metrics.0,
             precision_at_3: llm_metrics.1,
             precision_at_5: llm_metrics.2,
             precision_at_10: llm_metrics.3,
-            recall: llm_metrics.4 as f64, // 使用相关结果数量作为召回指标
+            precision_at_20: llm_metrics.4,
+            relevant_count: llm_metrics.5 as i32,
             latency_ms: llm_duration.as_millis() as f64,
         });
 
         results.push(ComparisonResult {
             query: test_case.query.clone(),
             description: test_case.description.clone(),
-            method: "传统搜索".to_string(),
-            precision_at_1: trad_metrics.0,
-            precision_at_3: trad_metrics.1,
-            precision_at_5: trad_metrics.2,
-            precision_at_10: trad_metrics.3,
-            recall: trad_metrics.4 as f64, // 使用相关结果数量作为召回指标
-            latency_ms: trad_duration.as_millis() as f64,
+            method: "crates.io搜索".to_string(),
+            precision_at_1: crates_io_metrics.0,
+            precision_at_3: crates_io_metrics.1,
+            precision_at_5: crates_io_metrics.2,
+            precision_at_10: crates_io_metrics.3,
+            precision_at_20: crates_io_metrics.4,
+            relevant_count: crates_io_metrics.5 as i32,
+            latency_ms: crates_io_duration.as_millis() as f64,
         });
     }
 
@@ -231,16 +279,67 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     generate_report(&results);
 
     // 保存结果到文件
-    if let Ok(mut file) = File::create("search_comparison_llm_judged.json") {
+    if let Ok(mut file) = File::create("llm_vs_cratesio_comparison.json") {
         let json = serde_json::to_string_pretty(&results)?;
         file.write_all(json.as_bytes())?;
-        println!("\n💾 结果已保存到 search_comparison_llm_judged.json");
+        println!("\n💾 结果已保存到 llm_vs_cratesio_comparison.json");
     }
 
     println!("\n✅ 对比实验完成");
     Ok(())
 }
 
+// 从crates.io API获取搜索结果
+async fn fetch_crates_io_results(
+    client: &Client,
+    query: &str,
+) -> Result<Vec<CratesIoCrate>, Box<dyn std::error::Error>> {
+    // 构建crates.io API URL
+    let url = format!(
+        "https://crates.io/api/v1/crates?page=1&per_page=20&q={}",
+        urlencoding::encode(query)
+    );
+
+    // 发送请求 - 添加必需的User-Agent头
+    let response = client
+        .get(&url)
+        .header("User-Agent", "cratespro-search-experiment (github.com/cratespro-search)")
+        .send()
+        .await?;
+
+    if !response.status().is_success() {
+        let error_text = response.text().await?;
+        return Err(format!("crates.io API错误: {}", error_text).into());
+    }
+
+    // 解析响应
+    let data: CratesIoResponse = response.json().await?;
+
+    println!(
+        "    📊 crates.io返回了 {} 个结果 (总计: {})",
+        data.crates.len(),
+        data.meta.total
+    );
+
+    Ok(data.crates)
+}
+
+// 将crates.io API响应转换为我们的RecommendCrate格式
+fn convert_to_recommend_crates(crates_io_crates: Vec<CratesIoCrate>) -> Vec<RecommendCrate> {
+    crates_io_crates
+        .into_iter()
+        .map(|c| RecommendCrate {
+            id: c.id,
+            name: c.name,
+            description: c.description.unwrap_or_default(),
+            rank: 0.0,                       // 我们没有直接的排名信息
+            vector_score: 0.0,               // 没有向量得分
+            final_score: c.downloads as f32, // 使用下载量作为最终得分
+        })
+        .collect()
+}
+
+// 使用LLM判断搜索结果的相关性
 async fn evaluate_with_llm(
     client: &Client,
     query: &str,
@@ -248,8 +347,10 @@ async fn evaluate_with_llm(
     api_key: &str,
     cache: &mut HashMap<String, HashMap<String, bool>>,
 ) -> Result<HashMap<String, bool>, Box<dyn std::error::Error>> {
+    // 检查缓存，避免重复评估
     let cache_key = query.to_lowercase();
     if let Some(cached_judgments) = cache.get(&cache_key) {
+        // 如果缓存中有所有需要的结果，直接返回
         let all_cached = results
             .iter()
             .all(|r| cached_judgments.contains_key(&r.name.to_lowercase()));
@@ -264,31 +365,35 @@ async fn evaluate_with_llm(
         }
     }
 
+    // 为避免LLM上下文长度限制，每批处理5个crate
     let batch_size = 5;
     let mut all_judgments = HashMap::new();
 
     for chunk in results.chunks(batch_size) {
+        // 构建提示，描述每个crate及其功能
         let mut crates_description = String::new();
         for (i, crate_item) in chunk.iter().enumerate() {
             crates_description.push_str(&format!(
                 "Crate {}: {} - {}\n",
                 i + 1,
                 crate_item.name,
-                crate_item.description
+                crate_item.description.replace('\n', " ")
             ));
         }
 
+        // 构建完整的LLM提示
         let system_prompt = "你是一个专业的Rust编程助手，负责评估搜索结果与查询的相关性。请根据查询和每个crate的描述，判断它们是否相关。";
         let user_prompt = format!(
             "查询: \"{}\"\n\n以下是搜索结果:\n{}\n请对每个crate进行相关性判断，返回JSON格式:\n{{\"judgments\": [{{\n  \"crate_name\": \"crate名称\",\n  \"is_relevant\": true/false,\n  \"confidence\": 0.0-1.0,\n  \"reasoning\": \"判断理由\"\n}}, ...]}}\n只返回JSON，不要有其他文字。",
             query, crates_description
         );
 
+        // 构建API请求
         let openai_url = env::var("OPEN_AI_CHAT_URL")
             .unwrap_or_else(|_| "https://api.openai.com/v1/chat/completions".to_string());
 
         let request = LLMRequest {
-            model: "gpt-4-turbo".to_string(),
+            model: "gpt-4-turbo".to_string(), // 使用GPT-4以获得更好的判断
             messages: vec![
                 LLMMessage {
                     role: "system".to_string(),
@@ -299,9 +404,10 @@ async fn evaluate_with_llm(
                     content: user_prompt,
                 },
             ],
-            temperature: 0.2,
+            temperature: 0.2, // 低温度以确保判断一致性
         };
 
+        // 发送请求
         let response = client
             .post(&openai_url)
             .header("Content-Type", "application/json")
@@ -316,23 +422,29 @@ async fn evaluate_with_llm(
             return Err(format!("OpenAI API返回错误: {}", error_text).into());
         }
 
+        // 解析响应
         let response_data: LLMResponse = response.json().await?;
         if response_data.choices.is_empty() {
             return Err("LLM没有返回选择结果".into());
         }
 
+        // 提取JSON响应
         let content = &response_data.choices[0].message.content;
 
+        // 解析判断结果
         let json_start = content.find('{');
         let json_end = content.rfind('}');
 
         if let (Some(start), Some(end)) = (json_start, json_end) {
             let json_content = &content[start..=end];
+            // 解析JSON
             match serde_json::from_str::<LLMJudgmentResponse>(json_content) {
                 Ok(judgment_data) => {
+                    // 添加判断结果到总结果中
                     for judgment in judgment_data.judgments {
                         all_judgments.insert(judgment.crate_name.clone(), judgment.is_relevant);
 
+                        // 同时更新缓存
                         if !cache.contains_key(&cache_key) {
                             cache.insert(cache_key.clone(), HashMap::new());
                         }
@@ -344,6 +456,7 @@ async fn evaluate_with_llm(
                 }
                 Err(e) => {
                     eprintln!("JSON解析错误: {}. 原始内容: {}", e, json_content);
+                    // 尝试使用格式更宽松的方式解析
                     if let Ok(json_value) = serde_json::from_str::<serde_json::Value>(json_content)
                     {
                         if let Some(judgments) =
@@ -356,6 +469,7 @@ async fn evaluate_with_llm(
                                 ) {
                                     all_judgments.insert(name.to_string(), relevant);
 
+                                    // 更新缓存
                                     if !cache.contains_key(&cache_key) {
                                         cache.insert(cache_key.clone(), HashMap::new());
                                     }
@@ -376,28 +490,50 @@ async fn evaluate_with_llm(
     Ok(all_judgments)
 }
 
+// 根据LLM判断计算指标
 fn calculate_metrics_from_llm_judgments(
     results: &[RecommendCrate],
     judgments: &HashMap<String, bool>,
-) -> (f64, f64, f64, f64, usize) {
+) -> (f64, f64, f64, f64, f64, usize) {
+    // 提取相关性标志
     let relevant_flags: Vec<bool> = results
         .iter()
         .map(|r| judgments.get(&r.name).copied().unwrap_or(false))
         .collect();
 
+    // 计算P@K
     let p1 = calculate_precision_at_k(&relevant_flags, 1);
     let p3 = calculate_precision_at_k(&relevant_flags, 3);
     let p5 = calculate_precision_at_k(&relevant_flags, 5);
     let p10 = calculate_precision_at_k(&relevant_flags, 10);
+    let p20 = calculate_precision_at_k(&relevant_flags, 20);
 
+    // 计算相关结果数量
     let relevant_count = relevant_flags
         .iter()
         .filter(|&&is_relevant| is_relevant)
         .count();
 
-    (p1, p3, p5, p10, relevant_count)
+    (p1, p3, p5, p10, p20, relevant_count)
 }
 
+// 计算Precision@K
+fn calculate_precision_at_k(relevant_flags: &[bool], k: usize) -> f64 {
+    if relevant_flags.is_empty() || k == 0 {
+        return 0.0;
+    }
+
+    let k_actual = std::cmp::min(k, relevant_flags.len());
+    let relevant_count = relevant_flags
+        .iter()
+        .take(k_actual)
+        .filter(|&&is_relevant| is_relevant)
+        .count();
+
+    relevant_count as f64 / k_actual as f64
+}
+
+// 打印结果并显示LLM判断的相关性
 fn print_results_with_llm_judgments(
     method: &str,
     results: &[RecommendCrate],
@@ -411,196 +547,147 @@ fn print_results_with_llm_judgments(
         let mark = if is_relevant { "✓" } else { "✗" };
 
         println!(
-            "      {}. {} {} - {} (得分: {:.4})",
+            "      {}. {} {} - {}",
             i + 1,
             mark,
             result.name,
             truncate_text(&result.description, 40),
-            result.final_score
         );
     }
 }
 
-// 其余函数保持不变
-fn load_test_cases() -> Vec<TestCase> {
-    // 尝试从文件加载测试用例
-    if let Ok(file) = File::open(Path::new("data/test_cases.json")) {
-        let reader = BufReader::new(file);
-        if let Ok(cases) = serde_json::from_reader::<_, Vec<TestCase>>(reader) {
-            return cases;
-        }
-    }
-
-    // 默认测试用例
-    vec![
-        TestCase {
-            query: "http client".to_string(),
-            description: "HTTP客户端库".to_string(),
-            relevant_packages: vec![
-                "reqwest".to_string(),
-                "hyper".to_string(),
-                "surf".to_string(),
-                "ureq".to_string(),
-                "isahc".to_string(),
-            ],
-        },
-        TestCase {
-            query: "json serde".to_string(),
-            description: "JSON序列化库".to_string(),
-            relevant_packages: vec![
-                "serde_json".to_string(),
-                "serde".to_string(),
-                "json".to_string(),
-            ],
-        },
-        TestCase {
-            query: "如何解析JSON数据".to_string(),
-            description: "中文自然语言查询".to_string(),
-            relevant_packages: vec![
-                "serde_json".to_string(),
-                "serde".to_string(),
-                "json".to_string(),
-            ],
-        },
-        TestCase {
-            query: "database orm".to_string(),
-            description: "数据库ORM".to_string(),
-            relevant_packages: vec![
-                "diesel".to_string(),
-                "sqlx".to_string(),
-                "sea-orm".to_string(),
-                "rusqlite".to_string(),
-            ],
-        },
-        TestCase {
-            query: "command line arguments parser".to_string(),
-            description: "命令行参数解析".to_string(),
-            relevant_packages: vec![
-                "clap".to_string(),
-                "structopt".to_string(),
-                "argh".to_string(),
-                "pico-args".to_string(),
-            ],
-        },
-        TestCase {
-            query: "need a web server framework".to_string(),
-            description: "Web框架自然语言".to_string(),
-            relevant_packages: vec![
-                "actix-web".to_string(),
-                "rocket".to_string(),
-                "warp".to_string(),
-                "axum".to_string(),
-                "tide".to_string(),
-            ],
-        },
-        TestCase {
-            query: "我需要一个好用的日志库".to_string(),
-            description: "中文日志库查询".to_string(),
-            relevant_packages: vec![
-                "log".to_string(),
-                "tracing".to_string(),
-                "env_logger".to_string(),
-                "slog".to_string(),
-            ],
-        },
-    ]
-}
-
-fn calculate_precision_at_k(relevant_flags: &[bool], k: usize) -> f64 {
-    if relevant_flags.is_empty() || k == 0 {
-        return 0.0;
-    }
-
-    let k_actual = k.min(relevant_flags.len());
-    let relevant_count = relevant_flags
-        .iter()
-        .take(k_actual)
-        .filter(|&&is_relevant| is_relevant)
-        .count();
-
-    relevant_count as f64 / k_actual as f64
-}
-
+// 生成对比报告
 fn generate_report(results: &[ComparisonResult]) {
+    // 创建表格
     let mut table = Table::new();
     table.set_format(*format::consts::FORMAT_BOX_CHARS);
 
+    // 添加表头
     table.add_row(Row::new(vec![
         Cell::new("查询"),
         Cell::new("方法"),
         Cell::new("P@1"),
         Cell::new("P@5"),
         Cell::new("P@10"),
-        Cell::new("召回率"),
+        Cell::new("P@20"),
+        Cell::new("相关数量"),
         Cell::new("延迟(ms)"),
     ]));
 
+    // 添加数据行
     for result in results {
         table.add_row(Row::new(vec![
             Cell::new(&truncate_text(
                 &format!("{}({})", &result.query, &result.description),
-                30,
+                25,
             )),
             Cell::new(&result.method),
             Cell::new(&format!("{:.2}", result.precision_at_1)),
             Cell::new(&format!("{:.2}", result.precision_at_5)),
             Cell::new(&format!("{:.2}", result.precision_at_10)),
-            Cell::new(&format!("{:.2}", result.recall)),
+            Cell::new(&format!("{:.2}", result.precision_at_20)),
+            Cell::new(&result.relevant_count.to_string()),
             Cell::new(&format!("{:.1}", result.latency_ms)),
         ]));
     }
 
+    // 打印表格
     println!("\n📊 搜索方法对比结果:");
     table.printstd();
 
+    // 计算平均值
     let llm_results: Vec<_> = results
         .iter()
-        .filter(|r| r.method == "LLM增强搜索")
+        .filter(|r| r.method == "LLM辅助搜索")
         .collect();
-    let trad_results: Vec<_> = results.iter().filter(|r| r.method == "传统搜索").collect();
 
-    if !llm_results.is_empty() && !trad_results.is_empty() {
+    let cratesio_results: Vec<_> = results
+        .iter()
+        .filter(|r| r.method == "crates.io搜索")
+        .collect();
+
+    if !llm_results.is_empty() && !cratesio_results.is_empty() {
+        // 计算平均值
         let avg_llm_p1 =
             llm_results.iter().map(|r| r.precision_at_1).sum::<f64>() / llm_results.len() as f64;
         let avg_llm_p5 =
             llm_results.iter().map(|r| r.precision_at_5).sum::<f64>() / llm_results.len() as f64;
-        let avg_llm_recall =
-            llm_results.iter().map(|r| r.recall).sum::<f64>() / llm_results.len() as f64;
+        let avg_llm_p10 =
+            llm_results.iter().map(|r| r.precision_at_10).sum::<f64>() / llm_results.len() as f64;
+        let avg_llm_p20 =
+            llm_results.iter().map(|r| r.precision_at_20).sum::<f64>() / llm_results.len() as f64;
+        let avg_llm_relevant = llm_results.iter().map(|r| r.relevant_count).sum::<i32>() as f64
+            / llm_results.len() as f64;
         let avg_llm_latency =
             llm_results.iter().map(|r| r.latency_ms).sum::<f64>() / llm_results.len() as f64;
 
-        let avg_trad_p1 =
-            trad_results.iter().map(|r| r.precision_at_1).sum::<f64>() / trad_results.len() as f64;
-        let avg_trad_p5 =
-            trad_results.iter().map(|r| r.precision_at_5).sum::<f64>() / trad_results.len() as f64;
-        let avg_trad_recall =
-            trad_results.iter().map(|r| r.recall).sum::<f64>() / trad_results.len() as f64;
-        let avg_trad_latency =
-            trad_results.iter().map(|r| r.latency_ms).sum::<f64>() / trad_results.len() as f64;
+        let avg_cratesio_p1 = cratesio_results
+            .iter()
+            .map(|r| r.precision_at_1)
+            .sum::<f64>()
+            / cratesio_results.len() as f64;
+        let avg_cratesio_p5 = cratesio_results
+            .iter()
+            .map(|r| r.precision_at_5)
+            .sum::<f64>()
+            / cratesio_results.len() as f64;
+        let avg_cratesio_p10 = cratesio_results
+            .iter()
+            .map(|r| r.precision_at_10)
+            .sum::<f64>()
+            / cratesio_results.len() as f64;
+        let avg_cratesio_p20 = cratesio_results
+            .iter()
+            .map(|r| r.precision_at_20)
+            .sum::<f64>()
+            / cratesio_results.len() as f64;
+        let avg_cratesio_relevant = cratesio_results
+            .iter()
+            .map(|r| r.relevant_count)
+            .sum::<i32>() as f64
+            / cratesio_results.len() as f64;
+        let avg_cratesio_latency = cratesio_results.iter().map(|r| r.latency_ms).sum::<f64>()
+            / cratesio_results.len() as f64;
 
         println!("\n📈 平均性能:");
         println!(
-            "  LLM增强搜索: P@1={:.4}, P@5={:.4}, 召回率={:.4}, 延迟={:.1}ms",
-            avg_llm_p1, avg_llm_p5, avg_llm_recall, avg_llm_latency
+            "  LLM辅助搜索: P@1={:.4}, P@5={:.4}, P@10={:.4}, P@20={:.4}, 相关={:.1}, 延迟={:.1}ms",
+            avg_llm_p1, avg_llm_p5, avg_llm_p10, avg_llm_p20, avg_llm_relevant, avg_llm_latency
         );
         println!(
-            "  传统搜索:    P@1={:.4}, P@5={:.4}, 召回率={:.4}, 延迟={:.1}ms",
-            avg_trad_p1, avg_trad_p5, avg_trad_recall, avg_trad_latency
+            "  crates.io:   P@1={:.4}, P@5={:.4}, P@10={:.4}, P@20={:.4}, 相关={:.1}, 延迟={:.1}ms",
+            avg_cratesio_p1,
+            avg_cratesio_p5,
+            avg_cratesio_p10,
+            avg_cratesio_p20,
+            avg_cratesio_relevant,
+            avg_cratesio_latency
         );
 
-        let p1_improve = (avg_llm_p1 / avg_trad_p1 - 1.0) * 100.0;
-        let p5_improve = (avg_llm_p5 / avg_trad_p5 - 1.0) * 100.0;
-        let recall_improve = (avg_llm_recall / avg_trad_recall - 1.0) * 100.0;
-        let latency_increase = (avg_llm_latency / avg_trad_latency - 1.0) * 100.0;
+        // 计算提升百分比
+        if avg_cratesio_p1 > 0.0
+            && avg_cratesio_p5 > 0.0
+            && avg_cratesio_p10 > 0.0
+            && avg_cratesio_p20 > 0.0
+            && avg_cratesio_relevant > 0.0
+        {
+            let p1_improve = (avg_llm_p1 / avg_cratesio_p1 - 1.0) * 100.0;
+            let p5_improve = (avg_llm_p5 / avg_cratesio_p5 - 1.0) * 100.0;
+            let p10_improve = (avg_llm_p10 / avg_cratesio_p10 - 1.0) * 100.0;
+            let p20_improve = (avg_llm_p20 / avg_cratesio_p20 - 1.0) * 100.0;
+            let relevant_improve = (avg_llm_relevant / avg_cratesio_relevant - 1.0) * 100.0;
 
-        println!("\n📊 LLM搜索相比传统搜索的提升:");
-        println!("  P@1: {:+.1}%", p1_improve);
-        println!("  P@5: {:+.1}%", p5_improve);
-        println!("  召回率: {:+.1}%", recall_improve);
-        println!("  延迟开销: {:+.1}%", latency_increase);
+            println!("\n🚀 LLM辅助搜索相比crates.io的提升:");
+            println!("  P@1: {:+.1}%", p1_improve);
+            println!("  P@5: {:+.1}%", p5_improve);
+            println!("  P@10: {:+.1}%", p10_improve);
+            println!("  P@20: {:+.1}%", p20_improve);
+            println!("  相关结果数量: {:+.1}%", relevant_improve);
+        }
     }
 }
 
+// 辅助函数：截断文本
 fn truncate_text(s: &str, max_chars: usize) -> String {
     let chars: Vec<char> = s.chars().collect();
 
