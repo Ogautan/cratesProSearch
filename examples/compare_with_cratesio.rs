@@ -6,7 +6,8 @@ use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 use std::env;
 use std::fs::File;
-use std::io::Write;
+use std::io::{BufReader, Write};
+use std::path::Path;
 use std::sync::Arc;
 use std::time::Instant;
 use tokio_postgres::NoTls;
@@ -92,6 +93,102 @@ struct ComparisonResult {
     latency_ms: f64,
 }
 
+// 修改用于收集原始数据的结构体，移除不需要的字段
+#[derive(Debug, Serialize)]
+struct RawSearchData {
+    query: String,
+    description: String,
+    search_results: Vec<RawResultsData>,     // 两种搜索的结果
+    relevance_judgments: Vec<RelevanceData>, // LLM的相关性判断
+}
+
+#[derive(Debug, Serialize)]
+struct RawResultsData {
+    method: String,            // 搜索方法
+    crates: Vec<RawCrateData>, // 返回的crate列表
+    latency_ms: f64,           // 搜索延迟
+}
+
+#[derive(Debug, Serialize)]
+struct RawCrateData {
+    name: String,
+    description: String,
+    rank: f32,
+}
+
+// 修改结构体，添加更详细的相关性判断数据
+#[derive(Debug, Serialize)]
+struct RelevanceData {
+    method: String,                              // 搜索方法
+    query: String,                               // 原始查询
+    judgments: HashMap<String, JudgmentDetails>, // 详细的相关性判断
+    latency_ms: f64,                             // 评估延迟
+}
+
+#[derive(Debug, Serialize)]
+struct JudgmentDetails {
+    is_relevant: bool,         // 是否相关
+    confidence: Option<f32>,   // 置信度
+    reasoning: Option<String>, // 判断理由
+}
+
+fn load_test_cases() -> Vec<TestCase> {
+    // 尝试从JSON文件加载测试用例
+    let dataset_path = Path::new("data/query_dataset.json");
+    if dataset_path.exists() {
+        match File::open(dataset_path) {
+            Ok(file) => {
+                let reader = BufReader::new(file);
+                match serde_json::from_reader::<_, Vec<TestCase>>(reader) {
+                    Ok(cases) => {
+                        println!("📚 从文件加载了 {} 条查询", cases.len());
+                        return cases;
+                    }
+                    Err(e) => {
+                        eprintln!("解析数据集文件失败: {}", e);
+                    }
+                }
+            }
+            Err(e) => {
+                eprintln!("无法打开数据集文件: {}", e);
+            }
+        }
+    }
+
+    // 如果无法从文件加载，返回默认的测试用例
+    println!("⚠️ 未找到数据集文件，使用默认测试用例");
+    vec![
+        TestCase {
+            query: "http client".to_string(),
+            description: "HTTP客户端库".to_string(),
+        },
+        TestCase {
+            query: "json".to_string(),
+            description: "JSON处理库".to_string(),
+        },
+        TestCase {
+            query: "async runtime".to_string(),
+            description: "异步运行时".to_string(),
+        },
+        TestCase {
+            query: "cli".to_string(),
+            description: "命令行工具".to_string(),
+        },
+        TestCase {
+            query: "orm".to_string(),
+            description: "对象关系映射".to_string(),
+        },
+        TestCase {
+            query: "web framework".to_string(),
+            description: "Web框架".to_string(),
+        },
+        TestCase {
+            query: "logging".to_string(),
+            description: "日志库".to_string(),
+        },
+    ]
+}
+
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
     // 加载环境变量
@@ -122,49 +219,47 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     // 缓存以避免重复LLM调用
     let mut relevance_cache = HashMap::new();
 
-    // 定义测试用例
-    let test_cases = vec![
-        TestCase {
-            query: "http client".to_string(),
-            description: "HTTP客户端库".to_string(),
-        },
-        TestCase {
-            query: "json".to_string(),
-            description: "JSON处理库".to_string(),
-        },
-        TestCase {
-            query: "async runtime".to_string(),
-            description: "异步运行时".to_string(),
-        },
-        TestCase {
-            query: "cli".to_string(),
-            description: "命令行工具".to_string(),
-        },
-        TestCase {
-            query: "orm".to_string(),
-            description: "对象关系映射".to_string(),
-        },
-        TestCase {
-            query: "web framework".to_string(),
-            description: "Web框架".to_string(),
-        },
-        TestCase {
-            query: "logging".to_string(),
-            description: "日志库".to_string(),
-        },
-    ];
-
+    // 加载测试用例
+    let test_cases = load_test_cases();
     println!("📋 准备了 {} 个测试用例", test_cases.len());
+
+    // 询问用户是否要限制测试用例数量
+    let max_cases = match env::var("MAX_TEST_CASES") {
+        Ok(val) => val.parse::<usize>().unwrap_or(test_cases.len()),
+        Err(_) => test_cases.len(),
+    };
+
+    // 限制测试用例数量，避免过长的运行时间
+    let test_cases = if max_cases < test_cases.len() {
+        println!("⚙️ 限制测试用例数量为前 {} 个", max_cases);
+        test_cases.into_iter().take(max_cases).collect()
+    } else {
+        test_cases
+    };
 
     // 存储比较结果
     let mut results = Vec::new();
 
+    // 存储原始数据
+    let mut raw_data = Vec::new();
+
     // 对每个用例进行测试
-    for test_case in &test_cases {
+    for (i, test_case) in test_cases.iter().enumerate() {
         println!(
-            "\n📝 测试用例: {} - \"{}\"",
-            test_case.description, test_case.query
+            "\n📝 测试用例 {}/{}: {} - \"{}\"",
+            i + 1,
+            test_cases.len(),
+            test_case.description,
+            test_case.query
         );
+
+        // 每个测试用例的原始数据收集器
+        let mut test_raw_data = RawSearchData {
+            query: test_case.query.clone(),
+            description: test_case.description.clone(),
+            search_results: Vec::new(),
+            relevance_judgments: Vec::new(),
+        };
 
         // LLM辅助搜索
         println!("\n  🧠 LLM辅助搜索:");
@@ -181,9 +276,24 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         };
         let llm_duration = llm_start.elapsed();
 
+        // 收集LLM辅助搜索的结果数据
+        test_raw_data.search_results.push(RawResultsData {
+            method: "LLM辅助搜索".to_string(),
+            crates: llm_results
+                .iter()
+                .map(|c| RawCrateData {
+                    name: c.name.clone(),
+                    description: c.description.clone(),
+                    rank: c.final_score,
+                })
+                .collect(),
+            latency_ms: llm_duration.as_millis() as f64,
+        });
+
         // 使用LLM评估相关性
         println!("  🔍 使用LLM评估搜索结果相关性...");
-        let llm_relevance = evaluate_with_llm(
+        let eval_start = Instant::now();
+        let (llm_relevance, llm_detailed_judgments) = evaluate_with_llm_detailed(
             &http_client,
             &test_case.query,
             &llm_results[..20.min(llm_results.len())],
@@ -191,6 +301,15 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
             &mut relevance_cache,
         )
         .await?;
+        let eval_duration = eval_start.elapsed();
+
+        // 收集相关性判断数据
+        test_raw_data.relevance_judgments.push(RelevanceData {
+            method: "LLM辅助搜索".to_string(),
+            query: test_case.query.clone(),
+            judgments: llm_detailed_judgments,
+            latency_ms: eval_duration.as_millis() as f64,
+        });
 
         // 使用LLM相关性判断计算指标
         let llm_metrics = calculate_metrics_from_llm_judgments(&llm_results, &llm_relevance);
@@ -198,7 +317,12 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         println!("    ⏱️ 搜索耗时: {:.2?}", llm_duration);
         println!(
             "    P@1: {:.2}, P@3: {:.2}, P@5: {:.2}, P@10: {:.2}, P@20: {:.2}, 相关结果: {}",
-            llm_metrics.0, llm_metrics.1, llm_metrics.2, llm_metrics.3, llm_metrics.4, llm_metrics.5
+            llm_metrics.0,
+            llm_metrics.1,
+            llm_metrics.2,
+            llm_metrics.3,
+            llm_metrics.4,
+            llm_metrics.5
         );
 
         // 打印LLM搜索的前5个结果及其相关性
@@ -213,9 +337,24 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         // 将crates.io结果转换为RecommendCrate格式以便一致处理
         let crates_io_recommend = convert_to_recommend_crates(crates_io_results);
 
+        // 收集crates.io搜索的结果数据
+        test_raw_data.search_results.push(RawResultsData {
+            method: "crates.io搜索".to_string(),
+            crates: crates_io_recommend
+                .iter()
+                .map(|c| RawCrateData {
+                    name: c.name.clone(),
+                    description: c.description.clone(),
+                    rank: c.final_score,
+                })
+                .collect(),
+            latency_ms: crates_io_duration.as_millis() as f64,
+        });
+
         // 使用LLM评估crates.io搜索结果相关性
         println!("  🔍 使用LLM评估crates.io搜索结果相关性...");
-        let crates_io_relevance = evaluate_with_llm(
+        let io_eval_start = Instant::now();
+        let (crates_io_relevance, crates_io_detailed_judgments) = evaluate_with_llm_detailed(
             &http_client,
             &test_case.query,
             &crates_io_recommend[..20.min(crates_io_recommend.len())],
@@ -223,6 +362,15 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
             &mut relevance_cache,
         )
         .await?;
+        let io_eval_duration = io_eval_start.elapsed();
+
+        // 收集相关性判断数据
+        test_raw_data.relevance_judgments.push(RelevanceData {
+            method: "crates.io搜索".to_string(),
+            query: test_case.query.clone(),
+            judgments: crates_io_detailed_judgments,
+            latency_ms: io_eval_duration.as_millis() as f64,
+        });
 
         // 使用LLM相关性判断计算指标
         let crates_io_metrics =
@@ -246,6 +394,9 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
             &crates_io_relevance,
             5,
         );
+
+        // 将原始数据添加到集合中
+        raw_data.push(test_raw_data);
 
         // 记录结果
         results.push(ComparisonResult {
@@ -285,6 +436,13 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         println!("\n💾 结果已保存到 llm_vs_cratesio_comparison.json");
     }
 
+    // 保存原始数据到文件
+    if let Ok(mut file) = File::create("search_raw_data.json") {
+        let json = serde_json::to_string_pretty(&raw_data)?;
+        file.write_all(json.as_bytes())?;
+        println!("💾 原始数据已保存到 search_raw_data.json");
+    }
+
     println!("\n✅ 对比实验完成");
     Ok(())
 }
@@ -303,7 +461,10 @@ async fn fetch_crates_io_results(
     // 发送请求 - 添加必需的User-Agent头
     let response = client
         .get(&url)
-        .header("User-Agent", "cratespro-search-experiment (github.com/cratespro-search)")
+        .header(
+            "User-Agent",
+            "cratespro-search-experiment (github.com/cratespro-search)",
+        )
         .send()
         .await?;
 
@@ -339,35 +500,44 @@ fn convert_to_recommend_crates(crates_io_crates: Vec<CratesIoCrate>) -> Vec<Reco
         .collect()
 }
 
-// 使用LLM判断搜索结果的相关性
-async fn evaluate_with_llm(
+// 修改函数以返回更详细的相关性判断
+async fn evaluate_with_llm_detailed(
     client: &Client,
     query: &str,
     results: &[RecommendCrate],
     api_key: &str,
     cache: &mut HashMap<String, HashMap<String, bool>>,
-) -> Result<HashMap<String, bool>, Box<dyn std::error::Error>> {
-    // 检查缓存，避免重复评估
+) -> Result<(HashMap<String, bool>, HashMap<String, JudgmentDetails>), Box<dyn std::error::Error>> {
+    // 简单相关性判断缓存
     let cache_key = query.to_lowercase();
     if let Some(cached_judgments) = cache.get(&cache_key) {
-        // 如果缓存中有所有需要的结果，直接返回
         let all_cached = results
             .iter()
             .all(|r| cached_judgments.contains_key(&r.name.to_lowercase()));
         if all_cached {
             let mut filtered_judgments = HashMap::new();
+            let mut detailed_judgments = HashMap::new();
             for result in results {
                 if let Some(&is_relevant) = cached_judgments.get(&result.name.to_lowercase()) {
                     filtered_judgments.insert(result.name.clone(), is_relevant);
+                    detailed_judgments.insert(
+                        result.name.clone(),
+                        JudgmentDetails {
+                            is_relevant,
+                            confidence: None, // 缓存中没有这些信息
+                            reasoning: None,
+                        },
+                    );
                 }
             }
-            return Ok(filtered_judgments);
+            return Ok((filtered_judgments, detailed_judgments));
         }
     }
 
     // 为避免LLM上下文长度限制，每批处理5个crate
     let batch_size = 5;
     let mut all_judgments = HashMap::new();
+    let mut detailed_judgments = HashMap::new();
 
     for chunk in results.chunks(batch_size) {
         // 构建提示，描述每个crate及其功能
@@ -443,6 +613,14 @@ async fn evaluate_with_llm(
                     // 添加判断结果到总结果中
                     for judgment in judgment_data.judgments {
                         all_judgments.insert(judgment.crate_name.clone(), judgment.is_relevant);
+                        detailed_judgments.insert(
+                            judgment.crate_name.clone(),
+                            JudgmentDetails {
+                                is_relevant: judgment.is_relevant,
+                                confidence: Some(judgment.confidence),
+                                reasoning: Some(judgment.reasoning),
+                            },
+                        );
 
                         // 同时更新缓存
                         if !cache.contains_key(&cache_key) {
@@ -468,6 +646,20 @@ async fn evaluate_with_llm(
                                     judgment.get("is_relevant").and_then(|r| r.as_bool()),
                                 ) {
                                     all_judgments.insert(name.to_string(), relevant);
+                                    detailed_judgments.insert(
+                                        name.to_string(),
+                                        JudgmentDetails {
+                                            is_relevant: relevant,
+                                            confidence: judgment
+                                                .get("confidence")
+                                                .and_then(|c| c.as_f64())
+                                                .map(|c| c as f32),
+                                            reasoning: judgment
+                                                .get("reasoning")
+                                                .and_then(|r| r.as_str())
+                                                .map(|r| r.to_string()),
+                                        },
+                                    );
 
                                     // 更新缓存
                                     if !cache.contains_key(&cache_key) {
@@ -487,7 +679,19 @@ async fn evaluate_with_llm(
         }
     }
 
-    Ok(all_judgments)
+    Ok((all_judgments, detailed_judgments))
+}
+
+// 保留原有的evaluate_with_llm函数调用新的详细版本
+async fn evaluate_with_llm(
+    client: &Client,
+    query: &str,
+    results: &[RecommendCrate],
+    api_key: &str,
+    cache: &mut HashMap<String, HashMap<String, bool>>,
+) -> Result<HashMap<String, bool>, Box<dyn std::error::Error>> {
+    let (judgments, _) = evaluate_with_llm_detailed(client, query, results, api_key, cache).await?;
+    Ok(judgments)
 }
 
 // 根据LLM判断计算指标

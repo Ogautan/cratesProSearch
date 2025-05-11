@@ -1,0 +1,1206 @@
+ 
+ 
+  🔍 使用LLM评估crates.io搜索结果相关性...
+    ⏱️ 搜索耗时: 577.47ms
+    P@1: 0.00, P@3: 0.67, P@5: 0.80, P@10: 0.80, P@20: 0.85, 相关结果: 17
+    📋 crates.io搜索的前5个结果及相关性:
+      1. ✗ awesome-rust - A curated list of awesome Rust framework...
+      2. ✓ gotham - A flexible web framework that promotes s...
+      3. ✓ rust_web_framework - Quickly crate API:s using this simple an...
+      4. ✓ endless-web - Actix web is a simple, pragmatic and ext...
+      5. ✓ requiem-web - Actix web is a simple, pragmatic and ext...
+
+📝 测试用例 8/50: 序列化库 - "serialization"
+
+  🧠 LLM辅助搜索:
+改写后的查询: serialization, serde, serialization framework, data serialization, deserialization, Rust serialization, JSON serialization, binary serialization, message pack, protocol buffers, BSON, YAML serialization, custom serialization, Rust data format
+执行PostgreSQL查询: serialization:* | serde:* | serialization & framework:* | data & serialization:* | deserialization:* | rust & serialization:*
+批量获取 45 个crate的嵌入
+  🔍 使用LLM评估搜索结果相关性...
+    ⏱️ 搜索耗时: 7.66s
+    P@1: 1.00, P@3: 1.00, P@5: 1.00, P@10: 1.00, P@20: 1.00, 相关结果: 20
+    📋 LLM辅助搜索的前5个结果及相关性:
+      1. ✓ serde-deserialize-duplicates - A rust crate with helper macros providin...
+      2. ✓ serde-serialize-seed - The `SerializeSeed` trait for convinienc...
+      3. ✓ serde-example - An example Serializer and Deserializer d...
+      4. ✓ serde-helpers - Wrappers for serializing/deserializing R...
+      5. ✓ serde-xml-rust - Maintained fork of xml-rs based deserial...
+
+  🌐 crates.io搜索:
+    📊 crates.io返回了 20 个结果 (总计: 8624)
+  🔍 使用LLM评估crates.io搜索结果相关性...
+    ⏱️ 搜索耗时: 776.53ms
+    P@1: 1.00, P@3: 1.00, P@5: 0.80, P@10: 0.70, P@20: 0.60, 相关结果: 12
+    📋 crates.io搜索的前5个结果及相关性:
+      1. ✓ serialization - encode and decode your struct
+      2. ✓ serde_yml - A robust Rust library that simplifies th...
+      3. ✓ alkahest - Fantastic serialization library with zer...
+      4. ✓ holochain_serialized_bytes - serialized bytes for holochain
+      5. ✗ alkahest-proc - Procedural macros for 'alkahest-proc' cr...
+
+📝 测试用例 9/50: WebSocket客户端 - "websocket"
+
+  🧠 LLM辅助搜索:
+改写后的查询: websocket, WebSocket, TCP, client, server, async, real-time, communication, networking, Rust, protocol, bidirectional, stream, websocket-client, websocket-server, ws, websockets
+执行PostgreSQL查询: websocket:* | websocket:* | tcp:* | client:* | server:* | async:*
+批量获取 110 个crate的嵌入
+  🔍 使用LLM评估搜索结果相关性...
+    ⏱️ 搜索耗时: 9.81s
+    P@1: 1.00, P@3: 1.00, P@5: 0.60, P@10: 0.50, P@20: 0.45, 相关结果: 9
+    📋 LLM辅助搜索的前5个结果及相关性:
+      1. ✓ websocket-client-async - Asynchronous websocket client.
+      2. ✓ websocket-server-async - rust websocket server tokio frame.
+      3. ✓ websocket-server - Boilerplate to effortlessly setup an asy...
+      4. ✗ tcp-server - Convenient server-side TCP service. Base...
+      5. ✗ tcp-client - Convenient client-side TCP service. Base...
+
+  🌐 crates.io搜索:
+    📊 crates.io返回了 20 个结果 (总计: 1358)
+  🔍 使用LLM评估crates.io搜索结果相关性...
+    ⏱️ 搜索耗时: 903.51ms
+    P@1: 1.00, P@3: 1.00, P@5: 1.00, P@10: 1.00, P@20: 1.00, 相关结果: 20
+    📋 crates.io搜索的前5个结果及相关性:
+      1. ✓ websocket - [deprecated] A WebSocket (RFC6455) libra...
+      2. ✓ gnostr-cat - Command-line client for web sockets, lik...
+      3. ✓ tokio-websocket-client - A tokio based websocket client. It aims ...
+      4. ✓ embedded-websocket - A lightweight websocket library for embe...
+      5. ✓ embedded-websocket-embedded-io - A fork of the embedded-websockets crate ...
+
+📝 测试用例 10/50: 图形界面框架 - "gui framework"
+
+  🧠 LLM辅助搜索:
+改写后的查询: gui framework, graphical user interface, rust gui, rust framework, user interface, desktop application, rust desktop, cross-platform gui, rust ui, gui library
+执行PostgreSQL查询: gui & framework:* | graphical & user & interface:* | rust & gui:* | rust & framework:* | user & interface:* | desktop & application:*
+批量获取向量嵌入失败: error sending request for url (https://api.xty.app/v1/embeddings): error trying to connect: connection closed via error
+获取查询向量失败: 无法获取向量嵌入
+  🔍 使用LLM评估搜索结果相关性...
+    ⏱️ 搜索耗时: 6.67s
+    P@1: 1.00, P@3: 1.00, P@5: 1.00, P@10: 0.90, P@20: 0.60, 相关结果: 12
+    📋 LLM辅助搜索的前5个结果及相关性:
+      1. ✓ install-framework-gui - [Install Framework] GUI interface powere...
+      2. ✓ slint - GUI toolkit to efficiently develop fluid...
+      3. ✓ native-windows-gui - A rust library to develop native GUI app...
+      4. ✓ dip_desktop - Write cross-platform application with Re...
+      5. ✓ bevy_dioxus_desktop - Write cross-platform application with Re...
+
+  🌐 crates.io搜索:
+    📊 crates.io返回了 20 个结果 (总计: 413)
+  🔍 使用LLM评估crates.io搜索结果相关性...
+    ⏱️ 搜索耗时: 925.29ms
+    P@1: 1.00, P@3: 1.00, P@5: 1.00, P@10: 1.00, P@20: 1.00, 相关结果: 20
+    📋 crates.io搜索的前5个结果及相关性:
+      1. ✓ install-framework-gui - [Install Framework] GUI interface powere...
+      2. ✓ unone - A GUI framework
+      3. ✓ aloe-ex-app - Aloe-ex-app is a Rust crate providing a ...
+      4. ✓ kolibri-embedded-gui - embedded-graphics based GUI framework ma...
+      5. ✓ laststraw-core - Core library for the lightweight GUI Rus...
+
+📝 测试用例 11/50: 加密库 - "cryptography"
+
+  🧠 LLM辅助搜索:
+改写后的查询: cryptography, encryption, decryption, security, hashing, cryptographic algorithms, cryptographic primitives, asymmetric encryption, symmetric encryption, digital signatures, cryptographic protocols, public key infrastructure, cryptographic library
+执行PostgreSQL查询: cryptography:* | encryption:* | decryption:* | security:* | hashing:* | cryptographic & algorithms:*
+批量获取 198 个crate的嵌入
+  🔍 使用LLM评估搜索结果相关性...
+    ⏱️ 搜索耗时: 11.33s
+    P@1: 1.00, P@3: 1.00, P@5: 1.00, P@10: 1.00, P@20: 1.00, 相关结果: 20
+    📋 LLM辅助搜索的前5个结果及相关性:
+      1. ✓ cryptocol - A cryptographic library that includes bi...
+      2. ✓ rufendec - Rufendec (The Rust File Encryptor-Decryp...
+      3. ✓ secured-cipher-key - An helper to generate generic encryption...
+      4. ✓ encryption-macros-encryption - This crate belongs to the encryption-mac...
+      5. ✓ secured-enclave - Ergonomic library for secure encryption ...
+
+  🌐 crates.io搜索:
+    📊 crates.io返回了 20 个结果 (总计: 1913)
+  🔍 使用LLM评估crates.io搜索结果相关性...
+    ⏱️ 搜索耗时: 1.02s
+    P@1: 1.00, P@3: 1.00, P@5: 1.00, P@10: 1.00, P@20: 0.95, 相关结果: 19
+    📋 crates.io搜索的前5个结果及相关性:
+      1. ✓ cryptography - Facade crate for the RustCrypto project'...
+      2. ✓ bitcoin-secp256k1 - secp256k1 subsystem
+      3. ✓ spark-cryptography - Cryptography module for Spark Rust SDK
+
+      4. ✓ bitcoinsecp256k1-group - abstracts a group element of the secp256...
+      5. ✓ bitcoinsecp256k1-scalar - scalars modulo the group order of the se...
+
+📝 测试用例 12/50: 测试框架 - "testing library"
+
+  🧠 LLM辅助搜索:
+改写后的查询: testing, library, test, unit tests, integration tests, testing framework, Rust testing, Rust test, test suite, test automation, test runner, mock, assertion, test utilities
+执行PostgreSQL查询: testing:* | library:* | test:* | unit & tests:* | integration & tests:* | testing & framework:*
+批量获取 196 个crate的嵌入
+  🔍 使用LLM评估搜索结果相关性...
+    ⏱️ 搜索耗时: 10.47s
+    P@1: 1.00, P@3: 1.00, P@5: 1.00, P@10: 1.00, P@20: 0.95, 相关结果: 19
+    📋 LLM辅助搜索的前5个结果及相关性:
+      1. ✓ testing_unit - A unit testing library
+      2. ✓ dom_testing_library - dom_testing_library is a lightweight fro...
+      3. ✓ unit-testing - A unit testing library
+      4. ✓ test-tube - library for building integration testing...
+      5. ✓ test-toolbox - This library provides useful macros for ...
+
+  🌐 crates.io搜索:
+    📊 crates.io返回了 20 个结果 (总计: 12698)
+  🔍 使用LLM评估crates.io搜索结果相关性...
+    ⏱️ 搜索耗时: 906.65ms
+    P@1: 1.00, P@3: 0.67, P@5: 0.60, P@10: 0.80, P@20: 0.90, 相关结果: 18
+    📋 crates.io搜索的前5个结果及相关性:
+      1. ✓ dom_testing_library - dom_testing_library is a lightweight fro...
+      2. ✓ testing-library-dom - Rust port of DOM Testing Library.
+      3. ✗ emilbrat_test_library - Ignore this library, it is just for test...
+      4. ✓ leptos_test - leptos_test is a lightweight testing cra...
+      5. ✗ test_library - test
+
+📝 测试用例 13/50: Markdown解析 - "markdown parser"
+
+  🧠 LLM辅助搜索:
+改写后的查询: markdown parser, markdown, parser, rust markdown, markdown renderer, markdown to html, markdown processing, markdown syntax, markdown conversion, rust parser
+执行PostgreSQL查询: markdown & parser:* | markdown:* | parser:* | rust & markdown:* | markdown & renderer:* | markdown & to & html:*
+批量获取 151 个crate的嵌入
+  🔍 使用LLM评估搜索结果相关性...
+    ⏱️ 搜索耗时: 10.46s
+    P@1: 1.00, P@3: 0.67, P@5: 0.80, P@10: 0.60, P@20: 0.50, 相关结果: 10
+    📋 LLM辅助搜索的前5个结果及相关性:
+      1. ✓ markdown_to_html_parser - The library parses Markdown syntax into ...
+      2. ✗ html-parser-rs - A Rust crate for parsing HTML documents....
+      3. ✓ markdown-meta-parser - parse markdown metadata
+      4. ✓ markdown-parser - 😎 This a crate that can parse a markdown...
+      5. ✓ markdowny - Markdown parser with support for hairy t...
+
+  🌐 crates.io搜索:
+    📊 crates.io返回了 20 个结果 (总计: 252)
+  🔍 使用LLM评估crates.io搜索结果相关性...
+    ⏱️ 搜索耗时: 968.65ms
+    P@1: 1.00, P@3: 1.00, P@5: 1.00, P@10: 1.00, P@20: 0.90, 相关结果: 18
+    📋 crates.io搜索的前5个结果及相关性:
+      1. ✓ rins_markdown_parser - Simple markdown parser written on Rust
+      2. ✓ markdown-parser - 😎 This a crate that can parse a markdown...
+      3. ✓ terraphim-markdown-parser - Terraphim Markdown Parser
+      4. ✓ markdown-ppp - Feature-rich Markdown Parsing and Pretty...
+      5. ✓ roxy_markdown_parser - Roxy plugin for parsing Markdown
+
+📝 测试用例 14/50: 模板引擎 - "templating engine"
+
+  🧠 LLM辅助搜索:
+改写后的查询: templating engine, template, templating, rust template, rust templating, rendering, template engine, web templating, HTML templating, dynamic templates, view rendering, template parser, templating library
+执行PostgreSQL查询: templating & engine:* | template:* | templating:* | rust & template:* | rust & templating:* | rendering:*
+批量获取 196 个crate的嵌入
+  🔍 使用LLM评估搜索结果相关性...
+    ⏱️ 搜索耗时: 11.96s
+    P@1: 1.00, P@3: 1.00, P@5: 0.80, P@10: 0.80, P@20: 0.75, 相关结果: 15
+    📋 LLM辅助搜索的前5个结果及相关性:
+      1. ✓ template-nest - TemplateNest is a template engine for Ru...
+      2. ✓ template-fragments - template-fragments for jinja-like engine...
+      3. ✓ template-quote-impl - A new-fasioned quote! macro implementati...
+      4. ✓ template-quote - A new-fasioned quote! macro implementati...
+      5. ✗ template-rust-panoramix - A template for building Rust projects
+
+  🌐 crates.io搜索:
+    📊 crates.io返回了 20 个结果 (总计: 576)
+  🔍 使用LLM评估crates.io搜索结果相关性...
+    ⏱️ 搜索耗时: 927.10ms
+    P@1: 1.00, P@3: 1.00, P@5: 1.00, P@10: 0.80, P@20: 0.90, 相关结果: 18
+    📋 crates.io搜索的前5个结果及相关性:
+      1. ✓ neutralts - Neutral TS template engine is a web temp...
+      2. ✓ templo_engine - This crate is a template engine for Temp...
+      3. ✓ upon - A simple, powerful template engine with ...
+      4. ✓ mail-template - [mail] provides a way to create bind str...
+      5. ✓ mint-template-engine - Mint template engine
+
+📝 测试用例 15/50: 命令行参数解析 - "command line args"
+
+  🧠 LLM辅助搜索:
+改写后的查询: command line arguments, CLI, command line, args, argument parsing, command-line interface, argument handling, rust args, rust CLI, CLI parsing, argument parser, rust command line
+执行PostgreSQL查询: command & line & arguments:* | cli:* | command & line:* | args:* | argument & parsing:* | command-line & interface:*
+批量获取 56 个crate的嵌入
+  🔍 使用LLM评估搜索结果相关性...
+    ⏱️ 搜索耗时: 6.56s
+    P@1: 1.00, P@3: 1.00, P@5: 1.00, P@10: 1.00, P@20: 1.00, 相关结果: 20
+    📋 LLM辅助搜索的前5个结果及相关性:
+      1. ✓ cmd-args - Command line argument parser with nested...
+      2. ✓ arguments - The package provides a parser for comman...
+      3. ✓ argster-macros - A simple parser for command line argumen...
+      4. ✓ bind-args - A parser for an alternative (non-GNU/ no...
+      5. ✓ parse_arg - Traits and implementations for parsing c...
+
+  🌐 crates.io搜索:
+    📊 crates.io返回了 20 个结果 (总计: 1305)
+  🔍 使用LLM评估crates.io搜索结果相关性...
+    ⏱️ 搜索耗时: 568.29ms
+    P@1: 1.00, P@3: 0.67, P@5: 0.80, P@10: 0.60, P@20: 0.60, 相关结果: 12
+    📋 crates.io搜索的前5个结果及相关性:
+      1. ✓ easy-args - A small and lightweight library that hel...
+      2. ✓ cmd-args - Command line argument parser with nested...
+      3. ✗ xf - File-aware dynamic command runner
+      4. ✓ arg-soup - A super simple command line parsing tool
+      5. ✓ gumdrop - Option parser with custom derive support
+
+📝 测试用例 16/50: 图像处理 - "image processing"
+
+  🧠 LLM辅助搜索:
+改写后的查询: image processing, image manipulation, image editing, computer vision, image analysis, image filter, image transformation, image recognition, image enhancement, pixel manipulation, image conversion, graphics processing
+执行PostgreSQL查询: image & processing:* | image & manipulation:* | image & editing:* | computer & vision:* | image & analysis:* | image & filter:*
+批量获取 169 个crate的嵌入
+  🔍 使用LLM评估搜索结果相关性...
+    ⏱️ 搜索耗时: 10.20s
+    P@1: 0.00, P@3: 0.67, P@5: 0.80, P@10: 0.90, P@20: 0.90, 相关结果: 18
+    📋 LLM辅助搜索的前5个结果及相关性:
+      1. ✗ process-image - Zero-cost abstraction for convenient acc...
+      2. ✓ imageproc - Image processing operations
+      3. ✓ ipcv - Image Processing and Computer Vision
+      4. ✓ image-utils - Image processing utilities
+      5. ✓ image - Imaging library. Provides basic image pr...
+
+  🌐 crates.io搜索:
+    📊 crates.io返回了 20 个结果 (总计: 1684)
+  🔍 使用LLM评估crates.io搜索结果相关性...
+    ⏱️ 搜索耗时: 959.18ms
+    P@1: 0.00, P@3: 0.67, P@5: 0.60, P@10: 0.70, P@20: 0.65, 相关结果: 13
+    📋 crates.io搜索的前5个结果及相关性:
+      1. ✗ process-image - Zero-cost abstraction for convenient acc...
+      2. ✓ mars_raw_utils - Utilities for working with publicly avai...
+      3. ✓ imx - A library for image processing and manip...
+      4. ✓ image_processing - This package provides tools for image pr...
+      5. ✗ caffe2op-slice - xxx
+
+📝 测试用例 17/50: 音频处理 - "audio library"
+
+  🧠 LLM辅助搜索:
+改写后的查询: audio library, audio processing, sound, audio playback, audio manipulation, audio encoding, audio decoding, audio signal, music, sound effects, audio toolkit, audio utilities, waveform, audio processing library, digital audio
+执行PostgreSQL查询: audio & library:* | audio & processing:* | sound:* | audio & playback:* | audio & manipulation:* | audio & encoding:*
+批量获取 199 个crate的嵌入
+  🔍 使用LLM评估搜索结果相关性...
+    ⏱️ 搜索耗时: 10.66s
+    P@1: 1.00, P@3: 1.00, P@5: 0.80, P@10: 0.80, P@20: 0.70, 相关结果: 14
+    📋 LLM辅助搜索的前5个结果及相关性:
+      1. ✓ audio-engine - A audio playback library
+      2. ✓ portable-audio-library - A portable audio library file format.
+      3. ✓ ez_audio - 🔊 A easy to use audio playback library
+      4. ✗ audio-processor-iced-storybook - Storybook for Iced GUI • augmented-audio...
+      5. ✓ audio-processor-file - `AudioProcessor` implementations for aud...
+
+  🌐 crates.io搜索:
+    📊 crates.io返回了 20 个结果 (总计: 1118)
+  🔍 使用LLM评估crates.io搜索结果相关性...
+    ⏱️ 搜索耗时: 989.66ms
+    P@1: 1.00, P@3: 1.00, P@5: 0.80, P@10: 0.70, P@20: 0.75, 相关结果: 15
+    📋 crates.io搜索的前5个结果及相关性:
+      1. ✓ portable-audio-library - A portable audio library file format.
+      2. ✓ replit_audio - Rust library for playing audio in repl.i...
+      3. ✓ soundtouch - A utility wrapper around the SoundTouch ...
+      4. ✓ soundtouch-ffi - Rust bindings to the SoundTouch C++ audi...
+      5. ✗ moosicbox_library - MoosicBox Library Music API package
+
+📝 测试用例 18/50: XML解析 - "xml parser"
+
+  🧠 LLM辅助搜索:
+改写后的查询: xml parser, XML, parsing, XML reader, XML writer, XML document, XML processing, XML parsing, Rust XML, XML serializer, XML deserializer, SAX, DOM, XML handler
+执行PostgreSQL查询: xml & parser:* | xml:* | parsing:* | xml & reader:* | xml & writer:* | xml & document:*
+批量获取 88 个crate的嵌入
+  🔍 使用LLM评估搜索结果相关性...
+    ⏱️ 搜索耗时: 8.35s
+    P@1: 1.00, P@3: 0.33, P@5: 0.40, P@10: 0.60, P@20: 0.50, 相关结果: 10
+    📋 LLM辅助搜索的前5个结果及相关性:
+      1. ✓ swc_xml_parser - XML parser
+      2. ✗ parser-c-macro - Helper macros for parser-c
+      3. ✗ parser-test - Declarative tester for parsers
+      4. ✓ my_xml_parser - XML parser, which can be used to parse X...
+      5. ✗ xml-xls-parser - Parse XLS files as XML
+
+  🌐 crates.io搜索:
+    📊 crates.io返回了 20 个结果 (总计: 344)
+  🔍 使用LLM评估crates.io搜索结果相关性...
+    ⏱️ 搜索耗时: 888.80ms
+    P@1: 1.00, P@3: 1.00, P@5: 0.80, P@10: 0.90, P@20: 0.85, 相关结果: 17
+    📋 crates.io搜索的前5个结果及相关性:
+      1. ✓ rbatis_xml_parser - Push based streaming parser for xml
+      2. ✓ my_xml_parser - XML parser, which can be used to parse X...
+      3. ✓ uniparc_xml_parser - Scripts for parsing UniParc XML files do...
+      4. ✓ swc_xml_parser - XML parser
+      5. ✗ betfair-xml-parser - Utilities for interacting with Betfair f...
+
+📝 测试用例 19/50: 数据库迁移 - "database migration"
+
+  🧠 LLM辅助搜索:
+改写后的查询: database migration, schema migration, database versioning, migration tool, database updater, database management, database schema, database version control, Rust migration, database migration Rust
+执行PostgreSQL查询: database & migration:* | schema & migration:* | database & versioning:* | migration & tool:* | database & updater:* | database & management:*
+批量获取 138 个crate的嵌入
+  🔍 使用LLM评估搜索结果相关性...
+    ⏱️ 搜索耗时: 9.87s
+    P@1: 1.00, P@3: 1.00, P@5: 1.00, P@10: 1.00, P@20: 1.00, 相关结果: 20
+    📋 LLM辅助搜索的前5个结果及相关性:
+      1. ✓ migratour - A very simple database migration tool
+      2. ✓ schemato - Database migration management tool
+      3. ✓ migrate-state-dynamodb -     Migrations state storage implementat...
+      4. ✓ mongodb-migrator - MongoDB migrations management tool
+      5. ✓ pg_migrate - Database migration tool for PostgreSQL
+
+  🌐 crates.io搜索:
+    📊 crates.io返回了 20 个结果 (总计: 566)
+  🔍 使用LLM评估crates.io搜索结果相关性...
+    ⏱️ 搜索耗时: 919.44ms
+    P@1: 1.00, P@3: 1.00, P@5: 1.00, P@10: 1.00, P@20: 1.00, 相关结果: 20
+    📋 crates.io搜索的前5个结果及相关性:
+      1. ✓ database-migration - Database agnostic functions and data str...
+      2. ✓ surrealdb-migrate - Evolve a SurrealDB database over time by...
+      3. ✓ database-migration-files - Database agnostic handling of migration ...
+      4. ✓ geni - A standalone database CLI migration tool
+      5. ✓ surrealdb-migrate-cli - Command line application to evolve a Sur...
+
+📝 测试用例 20/50: 文件系统操作 - "filesystem"
+
+  🧠 LLM辅助搜索:
+改写后的查询: filesystem, file system, storage, file I/O, file management, disk, directory, path, file handling, fs, file access, file operations, filesystem interface
+执行PostgreSQL查询: filesystem:* | file & system:* | storage:* | file & i/o:* | file & management:* | disk:*
+批量获取 192 个crate的嵌入
+  🔍 使用LLM评估搜索结果相关性...
+    ⏱️ 搜索耗时: 9.79s
+    P@1: 1.00, P@3: 1.00, P@5: 1.00, P@10: 0.80, P@20: 0.85, 相关结果: 17
+    📋 LLM辅助搜索的前5个结果及相关性:
+      1. ✓ diskplan-filesystem - A library component of Diskplan for appl...
+      2. ✓ filesystem-kind - Query the filesystem that a file resides...
+      3. ✓ file_systems - A Small Set of Components That can be pu...
+      4. ✓ cargolifter-storage-filesystem - CargoLifter file system storage
+      5. ✓ disk-types - Common traits and types for handling blo...
+
+  🌐 crates.io搜索:
+    📊 crates.io返回了 20 个结果 (总计: 1806)
+  🔍 使用LLM评估crates.io搜索结果相关性...
+    ⏱️ 搜索耗时: 654.94ms
+    P@1: 1.00, P@3: 0.67, P@5: 0.80, P@10: 0.70, P@20: 0.80, 相关结果: 16
+    📋 crates.io搜索的前5个结果及相关性:
+      1. ✓ filesystem - Real, fake, and mock implementations of ...
+      2. ✓ virtual-filesystem - A virtual filesystem implemented in Rust...
+      3. ✗ rustop-rs - Linux system information parser
+      4. ✓ drakey-fuse - Rust library for filesystems in userspac...
+      5. ✓ fuse - Rust library for filesystems in userspac...
+
+📝 测试用例 21/50: 解析器组合子 - "parser combinators"
+
+  🧠 LLM辅助搜索:
+改写后的查询: parser combinators, parsing, combinators, Rust parser, parser library, parsing combinators, PEG, LL parser, functional programming, parser combinator library
+执行PostgreSQL查询: parser & combinators:* | parsing:* | combinators:* | rust & parser:* | parser & library:* | parsing & combinators:*
+批量获取 42 个crate的嵌入
+  🔍 使用LLM评估搜索结果相关性...
+    ⏱️ 搜索耗时: 6.00s
+    P@1: 1.00, P@3: 1.00, P@5: 1.00, P@10: 0.90, P@20: 0.70, 相关结果: 14
+    📋 LLM辅助搜索的前5个结果及相关性:
+      1. ✓ parser-combinators - **DEPRECEATED** Parser combinators based...
+      2. ✓ parsers - Parser combinators library
+      3. ✓ parslers-macro - A Staged Selective Parser Combinator Lib...
+      4. ✓ combine-language - Extra parser combinators, useful for par...
+      5. ✓ parsed - Parser combinators library.
+
+  🌐 crates.io搜索:
+    📊 crates.io返回了 20 个结果 (总计: 593)
+  🔍 使用LLM评估crates.io搜索结果相关性...
+    ⏱️ 搜索耗时: 618.96ms
+    P@1: 1.00, P@3: 1.00, P@5: 1.00, P@10: 1.00, P@20: 0.90, 相关结果: 18
+    📋 crates.io搜索的前5个结果及相关性:
+      1. ✓ parser-combinators - **DEPRECEATED** Parser combinators based...
+      2. ✓ pom - PEG parser combinators using operator ov...
+      3. ✓ pom-preview - PEG parser combinators using operator ov...
+      4. ✓ pom-trace - PEG parser combinators using operator ov...
+      5. ✓ combine - Fast parser combinators on arbitrary str...
+
+📝 测试用例 22/50: HTML解析 - "html parser"
+
+  🧠 LLM辅助搜索:
+改写后的查询: html parser, HTML, parsing, DOM, web scraping, HTML lexer, HTML parser crate, markup, document object model, HTML syntax
+执行PostgreSQL查询: html & parser:* | html:* | parsing:* | dom:* | web & scraping:* | html & lexer:*
+批量获取 21 个crate的嵌入
+  🔍 使用LLM评估搜索结果相关性...
+    ⏱️ 搜索耗时: 6.39s
+    P@1: 1.00, P@3: 0.67, P@5: 0.80, P@10: 0.60, P@20: 0.55, 相关结果: 11
+    📋 LLM辅助搜索的前5个结果及相关性:
+      1. ✓ html_parser - A simple and general purpose html/xhtml ...
+      2. ✓ html_parser_rscx - A simple and general purpose html/xhtml ...
+      3. ✗ parser-c-macro - Helper macros for parser-c
+      4. ✓ html_query_parser - Pure, simple and elegant HTML parser and...
+      5. ✓ swc_html_parser - HTML parser
+
+  🌐 crates.io搜索:
+    📊 crates.io返回了 20 个结果 (总计: 393)
+  🔍 使用LLM评估crates.io搜索结果相关性...
+    ⏱️ 搜索耗时: 549.25ms
+    P@1: 1.00, P@3: 1.00, P@5: 0.80, P@10: 0.90, P@20: 0.95, 相关结果: 19
+    📋 crates.io搜索的前5个结果及相关性:
+      1. ✓ bobo_html_parser - A simple parser of html markdown
+      2. ✓ html_parser_rscx - A simple and general purpose html/xhtml ...
+      3. ✓ html_parser - A simple and general purpose html/xhtml ...
+      4. ✓ nom_html_parser - A parser to convert HTML string to HTML ...
+      5. ✗ markdown_to_html_parser - The library parses Markdown syntax into ...
+
+📝 测试用例 23/50: 正则表达式 - "regex"
+
+  🧠 LLM辅助搜索:
+改写后的查询: regex, regular expressions, pattern matching, text parsing, string search, regex engine, regex syntax, regex crate, matching patterns, Rust regex, pattern matching Rust, regex library, regex performance
+执行PostgreSQL查询: regex:* | regular & expressions:* | pattern & matching:* | text & parsing:* | string & search:* | regex & engine:*
+批量获取 181 个crate的嵌入
+  🔍 使用LLM评估搜索结果相关性...
+    ⏱️ 搜索耗时: 11.05s
+    P@1: 1.00, P@3: 1.00, P@5: 1.00, P@10: 1.00, P@20: 1.00, 相关结果: 20
+    📋 LLM辅助搜索的前5个结果及相关性:
+      1. ✓ regex-literal - delimited regular expression literals
+      2. ✓ regex-syntax - A regular expression parser.
+      3. ✓ regexp - Regular Expression
+      4. ✓ parse-regex - A recursive descent parser for regular e...
+      5. ✓ regex-cache - Lazy and cached regular expressions.
+
+  🌐 crates.io搜索:
+    📊 crates.io返回了 20 个结果 (总计: 1810)
+  🔍 使用LLM评估crates.io搜索结果相关性...
+    ⏱️ 搜索耗时: 917.81ms
+    P@1: 1.00, P@3: 1.00, P@5: 1.00, P@10: 0.90, P@20: 0.85, 相关结果: 17
+    📋 crates.io搜索的前5个结果及相关性:
+      1. ✓ regex - An implementation of regular expressions...
+      2. ✓ lazy-regex - lazy static regular expressions checked ...
+      3. ✓ supply-chain-trust-crate-000023 - An implementation of regular expressions...
+      4. ✓ supply-chain-trust-example-crate-000023 - An implementation of regular expressions...
+      5. ✓ simple-regex - 😎 Simple and readable way of writing reg...
+
+📝 测试用例 24/50: 日期时间处理 - "date time"
+
+  🧠 LLM辅助搜索:
+改写后的查询: date, time, datetime, timestamp, chrono, date parsing, time parsing, date formatting, time formatting, time zone, timezone, time manipulation, time library
+执行PostgreSQL查询: date:* | time:* | datetime:* | timestamp:* | chrono:* | date & parsing:*
+批量获取 190 个crate的嵌入
+  🔍 使用LLM评估搜索结果相关性...
+    ⏱️ 搜索耗时: 9.56s
+    P@1: 1.00, P@3: 0.67, P@5: 0.80, P@10: 0.90, P@20: 0.90, 相关结果: 18
+    📋 LLM辅助搜索的前5个结果及相关性:
+      1. ✓ datetime-rs - Date and time
+      2. ✗ timestamp-stretcher - Stretch integer time stamps by a fractio...
+      3. ✓ datetime-string - Datetime string types
+      4. ✓ date-time-matrix - Date Time Matrix
+      5. ✓ datetime-default - Provide NewType of Datetime that overrid...
+
+  🌐 crates.io搜索:
+    📊 crates.io返回了 20 个结果 (总计: 2383)
+  🔍 使用LLM评估crates.io搜索结果相关性...
+    ⏱️ 搜索耗时: 638.67ms
+    P@1: 1.00, P@3: 0.67, P@5: 0.80, P@10: 0.90, P@20: 0.90, 相关结果: 18
+    📋 crates.io搜索的前5个结果及相关性:
+      1. ✓ chronounit - A date-time formatter and time-unit libr...
+      2. ✗ amberdata_api - Rust API bindings - samberdata_api
+      3. ✓ neat-date-time - (native) Types & operations to allow spa...
+      4. ✓ date_time - Date_Time is a high-level rust library f...
+      5. ✓ damians_custom_datetime_parser - Custom library for date and time parsing...
+
+📝 测试用例 25/50: 压缩库 - "compression"
+
+  🧠 LLM辅助搜索:
+改写后的查询: compression,压缩,数据压缩,文件压缩,压缩算法,压缩库,解压,解压缩,数据存储,二进制压缩
+执行PostgreSQL查询: compression:* | 压缩:* | 数据压缩:* | 文件压缩:* | 压缩算法:* | 压缩库:*
+批量获取 190 个crate的嵌入
+  🔍 使用LLM评估搜索结果相关性...
+    ⏱️ 搜索耗时: 9.72s
+    P@1: 1.00, P@3: 1.00, P@5: 0.60, P@10: 0.80, P@20: 0.85, 相关结果: 17
+    📋 LLM辅助搜索的前5个结果及相关性:
+      1. ✓ compress-manager - Rust compression manager
+      2. ✓ compression-module - A helper module to configure Pingora's b...
+      3. ✓ compress-tools - Utility functions for compressed and arc...
+      4. ✗ compressible-map - A hash map that allows compressing the l...
+      5. ✗ compressor - A high performance digital signal compre...
+
+  🌐 crates.io搜索:
+    📊 crates.io返回了 20 个结果 (总计: 2908)
+  🔍 使用LLM评估crates.io搜索结果相关性...
+    ⏱️ 搜索耗时: 1.04s
+    P@1: 1.00, P@3: 1.00, P@5: 1.00, P@10: 1.00, P@20: 0.90, 相关结果: 18
+    📋 crates.io搜索的前5个结果及相关性:
+      1. ✓ compression - Compression libraries implemented by pur...
+      2. ✓ rmw-utf8 - Short text compression algorithm for utf...
+      3. ✓ static-compress - Create a compressed copy of files matchi...
+      4. ✓ compresto - A command-line tool to benchmark various...
+      5. ✓ base_sequence_compression - Library for compressing and decompressin...
+
+📝 测试用例 26/50: YAML解析 - "yaml parser"
+
+  🧠 LLM辅助搜索:
+改写后的查询: yaml parser, YAML, parser, YAML parser, Rust YAML, YAML parsing, serde_yaml, config parsing, data serialization, deserialization
+执行PostgreSQL查询: yaml & parser:* | yaml:* | parser:* | yaml & parser:* | rust & yaml:* | yaml & parsing:*
+批量获取 4 个crate的嵌入
+  🔍 使用LLM评估搜索结果相关性...
+    ⏱️ 搜索耗时: 4.45s
+    P@1: 0.00, P@3: 0.00, P@5: 0.00, P@10: 0.10, P@20: 0.15, 相关结果: 3
+    📋 LLM辅助搜索的前5个结果及相关性:
+      1. ✗ parser-on-rust - url parser on rust
+      2. ✗ parser-c-macro - Helper macros for parser-c
+      3. ✗ parser-test - Declarative tester for parsers
+      4. ✗ parser-c - Macros for parser-c.
+      5. ✗ parser-haskell - Parses Haskell into an AST.
+
+  🌐 crates.io搜索:
+    📊 crates.io返回了 20 个结果 (总计: 252)
+  🔍 使用LLM评估crates.io搜索结果相关性...
+    ⏱️ 搜索耗时: 890.07ms
+    P@1: 1.00, P@3: 1.00, P@5: 1.00, P@10: 1.00, P@20: 0.90, 相关结果: 18
+    📋 crates.io搜索的前5个结果及相关性:
+      1. ✓ yaml_parser - Semi-tolerant YAML concrete syntax tree ...
+      2. ✓ simple-yaml-parser - No allocation YAML key value parser with...
+      3. ✓ arcs-ctf_yaml-parser - A tool to parse and verify the format of...
+      4. ✓ simple_yaml_parser_kma - Simple YAML parser for educational proje...
+      5. ✓ materynskyis_yaml_schema_parser - A YAML parser for database schema files
+
+📝 测试用例 27/50: CSV文件处理 - "csv reader"
+
+  🧠 LLM辅助搜索:
+改写后的查询: csv reader, CSV, read csv, csv parser, CSV parser, CSV reader, file parsing, data parsing, Rust csv, CSV processing, text parsing, Rust file reader
+执行PostgreSQL查询: csv & reader:* | csv:* | read & csv:* | csv & parser:* | csv & parser:* | csv & reader:*
+批量获取 193 个crate的嵌入
+  🔍 使用LLM评估搜索结果相关性...
+    ⏱️ 搜索耗时: 13.04s
+    P@1: 1.00, P@3: 0.67, P@5: 0.80, P@10: 0.80, P@20: 0.75, 相关结果: 15
+    📋 LLM辅助搜索的前5个结果及相关性:
+      1. ✓ csv-parser - CSV reader/parser, allowing for commas a...
+      2. ✓ readervzrd - A generic reader for csv and json data
+      3. ✗ telegram_csv_parser - Telegram-csv-parser
+      4. ✓ pro_csv - Easy to use CSV Reader/Writer
+      5. ✓ quick-csv - quick csv reader and decoder
+
+  🌐 crates.io搜索:
+    📊 crates.io返回了 20 个结果 (总计: 90)
+  🔍 使用LLM评估crates.io搜索结果相关性...
+    ⏱️ 搜索耗时: 929.24ms
+    P@1: 1.00, P@3: 0.67, P@5: 0.80, P@10: 0.60, P@20: 0.45, 相关结果: 9
+    📋 crates.io搜索的前5个结果及相关性:
+      1. ✓ simple_csv - A simple CSV parsing implementation
+      2. ✓ csv_reader - Language management through CSV tables
+      3. ✗ tv_lib - A library port of tv cli
+      4. ✓ sqlite-xsv - A SQLite extension for reading large CSV...
+      5. ✓ csv - Fast CSV parsing with support for serde.
+
+📝 测试用例 28/50: 随机数生成 - "random number generator"
+
+  🧠 LLM辅助搜索:
+改写后的查询: random number generator, RNG, random, randomization, randomness, pseudo-random, cryptographic randomness, random values, random generator, random number, random sequence
+执行PostgreSQL查询: random & number & generator:* | rng:* | random:* | randomization:* | randomness:* | pseudo-random:*
+批量获取 198 个crate的嵌入
+  🔍 使用LLM评估搜索结果相关性...
+    ⏱️ 搜索耗时: 9.82s
+    P@1: 1.00, P@3: 1.00, P@5: 1.00, P@10: 1.00, P@20: 0.85, 相关结果: 17
+    📋 LLM辅助搜索的前5个结果及相关性:
+      1. ✓ random-number - Generate random numbers quickly.
+      2. ✓ random-numbers - A random numbers generator
+      3. ✓ generate-random - Generate random data
+      4. ✓ small-rngs - Small, simple pseudo-random number gener...
+      5. ✓ random_number_generators - A command line tool to compare a range o...
+
+  🌐 crates.io搜索:
+    📊 crates.io返回了 20 个结果 (总计: 1590)
+  🔍 使用LLM评估crates.io搜索结果相关性...
+    ⏱️ 搜索耗时: 1.02s
+    P@1: 1.00, P@3: 0.67, P@5: 0.60, P@10: 0.80, P@20: 0.80, 相关结果: 16
+    📋 crates.io搜索的前5个结果及相关性:
+      1. ✓ bitcoin-random - random numbers in bitcoin
+      2. ✗ surge-math - surge synthesizer -- dsp math used in sy...
+      3. ✓ random_number_generators - A command line tool to compare a range o...
+      4. ✗ caffe2-random - xxx
+      5. ✓ data-racer - Is a true random number generator that u...
+
+📝 测试用例 29/50: 网页抓取 - "web scraping"
+
+  🧠 LLM辅助搜索:
+改写后的查询: web scraping, web scraping rust, html parsing, web crawler, data extraction, web scraping framework, rust web scraper, web scraping library, rust html parser, web crawler rust, scraping, scraping tools, rust scraping
+执行PostgreSQL查询: web & scraping:* | web & scraping & rust:* | html & parsing:* | web & crawler:* | data & extraction:* | web & scraping & framework:*
+批量获取 157 个crate的嵌入
+  🔍 使用LLM评估搜索结果相关性...
+    ⏱️ 搜索耗时: 9.84s
+    P@1: 1.00, P@3: 1.00, P@5: 1.00, P@10: 1.00, P@20: 1.00, 相关结果: 20
+    📋 LLM辅助搜索的前5个结果及相关性:
+      1. ✓ aniscraper - Rust library designed for efficient web ...
+      2. ✓ web-scraper - A rust crate, that is used to get html f...
+      3. ✓ sws-crawler - Web crawler with plugable scraping logic
+      4. ✓ select - A library to extract useful data from HT...
+      5. ✓ scrapman - A high-level declarative web scraping fr...
+
+  🌐 crates.io搜索:
+    📊 crates.io返回了 20 个结果 (总计: 147)
+  🔍 使用LLM评估crates.io搜索结果相关性...
+    ⏱️ 搜索耗时: 614.44ms
+    P@1: 1.00, P@3: 1.00, P@5: 1.00, P@10: 0.80, P@20: 0.80, 相关结果: 16
+    📋 crates.io搜索的前5个结果及相关性:
+      1. ✓ web-scrape - This library aids in scraping data from ...
+      2. ✓ scoutlang - A web crawling programming language
+      3. ✓ scout-interpreter - A web crawling programming language
+      4. ✓ scout-lexer - A web crawling programming language
+      5. ✓ scout-parser - A web crawling programming language
+
+📝 测试用例 30/50: JWT令牌处理 - "jwt token"
+
+  🧠 LLM辅助搜索:
+改写后的查询: jwt, token, json web token, authentication, authorization, security, rust jwt, jwt encoding, jwt decoding, rust token, api security, cryptography, oauth, token validation
+执行PostgreSQL查询: jwt:* | token:* | json & web & token:* | authentication:* | authorization:* | security:*
+批量获取 147 个crate的嵌入
+  🔍 使用LLM评估搜索结果相关性...
+    ⏱️ 搜索耗时: 10.97s
+    P@1: 1.00, P@3: 1.00, P@5: 1.00, P@10: 1.00, P@20: 0.90, 相关结果: 18
+    📋 LLM辅助搜索的前5个结果及相关性:
+      1. ✓ jwt-tui - A terminal UI for JWTs (JSON Web Tokens)...
+      2. ✓ json-web-token - JWT
+      3. ✓ jwt-next - JSON Web Token library
+      4. ✓ jwt-ui - A Terminal UI for decoding/encoding JSON...
+      5. ✓ jwt-simple - Easy to use, secure, non opinionated JWT...
+
+  🌐 crates.io搜索:
+    📊 crates.io返回了 20 个结果 (总计: 341)
+  🔍 使用LLM评估crates.io搜索结果相关性...
+    ⏱️ 搜索耗时: 534.01ms
+    P@1: 1.00, P@3: 0.67, P@5: 0.80, P@10: 0.90, P@20: 0.80, 相关结果: 16
+    📋 crates.io搜索的前5个结果及相关性:
+      1. ✓ azure_jwt - A simple JWT validator for Microsoft Azu...
+      2. ✗ spiffe - Rust client library implementation for S...
+      3. ✓ attenuable-jwt - Create and verify JWTs that support secu...
+      4. ✓ min_jwt - Minimal JSON Web Token library
+      5. ✓ jwt - JSON Web Token library
+
+📝 测试用例 31/50: HTTP客户端(自然语言) - "I need an HTTP client library"
+
+  🧠 LLM辅助搜索:
+检测到自然语言查询: I need an HTTP client library
+从自然语言中提取的关键词: HTTP, client, library
+改写后的查询: http, client, library, rust, HTTP client, networking, request, HTTP request, web client, HTTP library, web request, API client
+执行PostgreSQL查询: http:* | client:* | library:* | rust:* | http & client:* | networking:*
+批量获取 51 个crate的嵌入
+  🔍 使用LLM评估搜索结果相关性...
+    ⏱️ 搜索耗时: 8.45s
+    P@1: 1.00, P@3: 1.00, P@5: 1.00, P@10: 0.90, P@20: 0.80, 相关结果: 16
+    📋 LLM辅助搜索的前5个结果及相关性:
+      1. ✓ http-api-client - HTTP API Client
+      2. ✓ fibers_http_client - A tiny asynchronous HTTP/1.1 client libr...
+      3. ✓ http-client - Types and traits for http clients.
+      4. ✓ rusty-http - A small http library focused on SSE and ...
+      5. ✓ http-api-isahc-client - HTTP API Isahc Client
+
+  🌐 crates.io搜索:
+    📊 crates.io返回了 20 个结果 (总计: 807)
+  🔍 使用LLM评估crates.io搜索结果相关性...
+    ⏱️ 搜索耗时: 605.11ms
+    P@1: 0.00, P@3: 0.33, P@5: 0.60, P@10: 0.50, P@20: 0.35, 相关结果: 7
+    📋 crates.io搜索的前5个结果及相关性:
+      1. ✗ getit - An easy to use file getter for local and...
+      2. ✗ arri_client - Client library needed to use rust code g...
+      3. ✓ hreq - hreq is a user first async http client
+      4. ✓ areq - Async runtime-independent HTTP requests
+      5. ✓ alhc - Async Lightweight HTTP Client: A async h...
+
+📝 测试用例 32/50: JSON解析(自然语言) - "How to parse JSON in Rust?"
+
+  🧠 LLM辅助搜索:
+检测到自然语言查询: How to parse JSON in Rust?
+从自然语言中提取的关键词: parse, JSON, Rust
+改写后的查询: parse, JSON, Rust, JSON parsing, Rust JSON, deserialize, serialize, JSON handling, JSON library, Rust JSON parsing
+执行PostgreSQL查询: parse:* | json:* | rust:* | json & parsing:* | rust & json:* | deserialize:*
+批量获取 47 个crate的嵌入
+  🔍 使用LLM评估搜索结果相关性...
+    ⏱️ 搜索耗时: 8.11s
+    P@1: 1.00, P@3: 1.00, P@5: 0.80, P@10: 0.50, P@20: 0.40, 相关结果: 8
+    📋 LLM辅助搜索的前5个结果及相关性:
+      1. ✓ json-parse - A low-level JSON parser for Rust with a ...
+      2. ✓ json-rust - JSONObject for Rust
+      3. ✓ rust-json-parse - An optimized JSON parser using SIMD and ...
+      4. ✓ json-pp-rust - Reads a string from `stdin` parses it as...
+      5. ✗ jsonrpc-parse - parse JSON-RPC (2.0) from TCP Bytes or d...
+
+  🌐 crates.io搜索:
+    📊 crates.io返回了 20 个结果 (总计: 2059)
+  🔍 使用LLM评估crates.io搜索结果相关性...
+    ⏱️ 搜索耗时: 651.99ms
+    P@1: 1.00, P@3: 0.67, P@5: 0.80, P@10: 0.90, P@20: 0.80, 相关结果: 16
+    📋 crates.io搜索的前5个结果及相关性:
+      1. ✓ rust-json-parse - An optimized JSON parser using SIMD and ...
+      2. ✗ pgnparse - Parse PGN to Rust struct ( headers as ha...
+      3. ✓ parson - A crate for parsing JSON into Rust types
+      4. ✓ jsonparser - A Rust crate for efficient parsing and v...
+      5. ✓ sonic-rs - Sonic-rs is a fast Rust JSON library bas...
+
+📝 测试用例 33/50: 数据库ORM(自然语言) - "What's the best database ORM?"
+
+  🧠 LLM辅助搜索:
+检测到自然语言查询: What's the best database ORM?
+从自然语言中提取的关键词: database, ORM
+改写后的查询: database, ORM, object-relational mapping, SQL, database abstraction, data persistence, Rust database, Rust ORM, database framework, database integration, Rust SQL
+执行PostgreSQL查询: database:* | orm:* | object-relational & mapping:* | sql:* | database & abstraction:* | data & persistence:*
+批量获取 1 个crate的嵌入
+  🔍 使用LLM评估搜索结果相关性...
+    ⏱️ 搜索耗时: 5.82s
+    P@1: 1.00, P@3: 0.67, P@5: 0.80, P@10: 0.90, P@20: 0.70, 相关结果: 14
+    📋 LLM辅助搜索的前5个结果及相关性:
+      1. ✓ sorm - Simple ORM (Object-Relational Mapping) b...
+      2. ✓ ormlite-core - An ORM for people who love SQL. Use the ...
+      3. ✗ sql-table - Makes no-ORM querying of SQL databases m...
+      4. ✓ sqlx-models-orm - ActiveRecord based on SQLx for Postgres
+      5. ✓ ormlite-cli - An ORM for people who love SQL. Use the ...
+
+  🌐 crates.io搜索:
+    📊 crates.io返回了 20 个结果 (总计: 29)
+  🔍 使用LLM评估crates.io搜索结果相关性...
+    ⏱️ 搜索耗时: 570.83ms
+    P@1: 0.00, P@3: 0.00, P@5: 0.00, P@10: 0.10, P@20: 0.35, 相关结果: 7
+    📋 crates.io搜索的前5个结果及相关性:
+      1. ✗ world-tables-base - Base types for world tables
+      2. ✗ world-tables-data - Fixtures loader for world-tables
+      3. ✗ world-tables-gui - GUI for world-tables
+      4. ✗ world-tables-server - Server for world-tables
+      5. ✗ rasterizeddb_core - A schemaless, high-performance database ...
+
+📝 测试用例 34/50: Web框架(自然语言) - "Looking for a web framework"
+
+  🧠 LLM辅助搜索:
+检测到自然语言查询: Looking for a web framework
+从自然语言中提取的关键词: web framework
+改写后的查询: web framework, rust web framework, web server, HTTP server, web application, rust server framework, rust web, backend framework, web API, web development, HTTP handling, async web framework, rust web server
+执行PostgreSQL查询: web & framework:* | rust & web & framework:* | web & server:* | http & server:* | web & application:* | rust & server & framework:*
+批量获取 41 个crate的嵌入
+  🔍 使用LLM评估搜索结果相关性...
+    ⏱️ 搜索耗时: 8.05s
+    P@1: 1.00, P@3: 0.67, P@5: 0.60, P@10: 0.80, P@20: 0.85, 相关结果: 17
+    📋 LLM辅助搜索的前5个结果及相关性:
+      1. ✓ rust-web - A rust asynchronous web framework like J...
+      2. ✗ rust-web-server - Collection of utility functions used to ...
+      3. ✓ rust-fast-framework - A  rust  web  framework
+      4. ✓ rust_web_framework - Quickly crate API:s using this simple an...
+      5. ✗ ope-rust-web-server - A library for creating a static web serv...
+
+  🌐 crates.io搜索:
+    📊 crates.io返回了 20 个结果 (总计: 418)
+  🔍 使用LLM评估crates.io搜索结果相关性...
+    ⏱️ 搜索耗时: 932.17ms
+    P@1: 0.00, P@3: 0.67, P@5: 0.80, P@10: 0.50, P@20: 0.30, 相关结果: 6
+    📋 crates.io搜索的前5个结果及相关性:
+      1. ✗ nanoservices-utils - A collection of utilities for nanoservic...
+      2. ✓ ctchi - Home made web framework.
+      3. ✓ more-di-axum - Provides support dependency injection (D...
+      4. ✓ quokka - A new framework for building old-school ...
+      5. ✓ quokka-macros - A new framework for building old-school ...
+
+📝 测试用例 35/50: HTTP客户端(中文) - "我需要一个HTTP客户端"
+
+  🧠 LLM辅助搜索:
+改写后的查询: http client, reqwest, http request, web client, rust http, rust web client, http, networking, web request
+执行PostgreSQL查询: http & client:* | reqwest:* | http & request:* | web & client:* | rust & http:* | rust & web & client:*
+批量获取 7 个crate的嵌入
+  🔍 使用LLM评估搜索结果相关性...
+    ⏱️ 搜索耗时: 5.05s
+    P@1: 1.00, P@3: 0.67, P@5: 0.60, P@10: 0.80, P@20: 0.90, 相关结果: 18
+    📋 LLM辅助搜索的前5个结果及相关性:
+      1. ✓ http-api-reqwest-client - HTTP API reqwest Client
+      2. ✓ request-http - Send http or https request.
+      3. ✗ aliyun_rust_http_client - aliyun rust http client
+      4. ✗ streaming-http-range-client - A client for ergonomically streaming HTT...
+      5. ✓ http-api-client - HTTP API Client
+
+  🌐 crates.io搜索:
+    📊 crates.io返回了 0 个结果 (总计: 0)
+  🔍 使用LLM评估crates.io搜索结果相关性...
+    ⏱️ 搜索耗时: 310.92ms
+    P@1: 0.00, P@3: 0.00, P@5: 0.00, P@10: 0.00, P@20: 0.00, 相关结果: 0
+    📋 crates.io搜索的前5个结果及相关性:
+
+📝 测试用例 36/50: JSON解析(中文) - "如何解析JSON数据"
+
+  🧠 LLM辅助搜索:
+检测到自然语言查询: 如何解析JSON数据
+从自然语言中提取的关键词: JSON parsing, Rust, JSON, deserialize, serde, serde_json
+改写后的查询: json parsing, Rust, JSON, deserialize, serde, serde_json, deserialization, Rust JSON, JSON parsing Rust, serde crate, serde deserialization, JSON serialization, Rust serde, serde_json crate
+执行PostgreSQL查询: json & parsing:* | rust:* | json:* | deserialize:* | serde:* | serde_json:*
+批量获取 3 个crate的嵌入
+  🔍 使用LLM评估搜索结果相关性...
+    ⏱️ 搜索耗时: 6.89s
+    P@1: 1.00, P@3: 0.67, P@5: 0.40, P@10: 0.60, P@20: 0.50, 相关结果: 10
+    📋 LLM辅助搜索的前5个结果及相关性:
+      1. ✓ rust-json-parse - An optimized JSON parser using SIMD and ...
+      2. ✓ parse-json - 一个处理json的cli程序
+      3. ✗ rust_json_parser - JSON parser for Node js based frameworks
+      4. ✗ serde-json-python-formatter - A serde-json formatter to mimic Python o...
+      5. ✗ dfraw_json_parser-cli - CLI for parsing Dwarf Fortress raw files...
+
+  🌐 crates.io搜索:
+    📊 crates.io返回了 0 个结果 (总计: 0)
+  🔍 使用LLM评估crates.io搜索结果相关性...
+    ⏱️ 搜索耗时: 299.65ms
+    P@1: 0.00, P@3: 0.00, P@5: 0.00, P@10: 0.00, P@20: 0.00, 相关结果: 0
+    📋 crates.io搜索的前5个结果及相关性:
+
+📝 测试用例 37/50: 数据库ORM(中文) - "最好的数据库ORM是什么"
+
+  🧠 LLM辅助搜索:
+检测到自然语言查询: 最好的数据库ORM是什么
+从自然语言中提取的关键词: best, database, ORM
+改写后的查询: best, database, ORM, Rust, database ORM, Rust ORM, best ORM, database management, Rust database, object-relational mapping, Rust database tools, database framework
+执行PostgreSQL查询: best:* | database:* | orm:* | rust:* | database & orm:* | rust & orm:*
+批量获取 15 个crate的嵌入
+  🔍 使用LLM评估搜索结果相关性...
+    ⏱️ 搜索耗时: 7.69s
+    P@1: 1.00, P@3: 1.00, P@5: 1.00, P@10: 0.70, P@20: 0.35, 相关结果: 7
+    📋 LLM辅助搜索的前5个结果及相关性:
+      1. ✓ ormlite-core - An ORM for people who love SQL. Use the ...
+      2. ✓ ormlitex-core - An ORM for people who love SQL. Use the ...
+      3. ✓ ormlite-cli - An ORM for people who love SQL. Use the ...
+      4. ✓ ormlitex-cli - An ORM for people who love SQL. Use the ...
+      5. ✓ ormx-macros - lightweight procedural macros bringing o...
+
+  🌐 crates.io搜索:
+    📊 crates.io返回了 0 个结果 (总计: 0)
+  🔍 使用LLM评估crates.io搜索结果相关性...
+    ⏱️ 搜索耗时: 750.76ms
+    P@1: 0.00, P@3: 0.00, P@5: 0.00, P@10: 0.00, P@20: 0.00, 相关结果: 0
+    📋 crates.io搜索的前5个结果及相关性:
+
+📝 测试用例 38/50: Web框架(中文) - "寻找Web框架"
+
+  🧠 LLM辅助搜索:
+改写后的查询: web framework, rust web framework, actix, rocket, warp, tide, axum, hyper, iron, gotham, server framework, web server, routing, HTTP server
+执行PostgreSQL查询: web & framework:* | rust & web & framework:* | actix:* | rocket:* | warp:* | tide:*
+批量获取 30 个crate的嵌入
+  🔍 使用LLM评估搜索结果相关性...
+    ⏱️ 搜索耗时: 6.63s
+    P@1: 1.00, P@3: 0.67, P@5: 0.40, P@10: 0.70, P@20: 0.60, 相关结果: 12
+    📋 LLM辅助搜索的前5个结果及相关性:
+      1. ✓ actix-web - Actix Web is a powerful, pragmatic, and ...
+      2. ✓ actix-web-test - Actix Web is a powerful, pragmatic, and ...
+      3. ✗ actix-web-rust-embed-responder - An actix-web responder for rust-embed th...
+      4. ✗ actix-web-pagination - Pagination extractor for actix-web
+      5. ✗ actix-web-validator - Validation mechanism for actix-web
+
+  🌐 crates.io搜索:
+    📊 crates.io返回了 0 个结果 (总计: 0)
+  🔍 使用LLM评估crates.io搜索结果相关性...
+    ⏱️ 搜索耗时: 805.93ms
+    P@1: 0.00, P@3: 0.00, P@5: 0.00, P@10: 0.00, P@20: 0.00, 相关结果: 0
+    📋 crates.io搜索的前5个结果及相关性:
+
+📝 测试用例 39/50: 命令行界面构建 - "command line interface builder"
+
+  🧠 LLM辅助搜索:
+检测到自然语言查询: command line interface builder
+从自然语言中提取的关键词: command line interface, builder, Rust
+改写后的查询: command line interface, CLI, builder, Rust, command line, argument parsing, Rust CLI, Rust command line, builder pattern, command parsing
+执行PostgreSQL查询: command & line & interface:* | cli:* | builder:* | rust:* | command & line:* | argument & parsing:*
+批量获取 16 个crate的嵌入
+  🔍 使用LLM评估搜索结果相关性...
+    ⏱️ 搜索耗时: 15.15s
+    P@1: 0.00, P@3: 0.33, P@5: 0.60, P@10: 0.60, P@20: 0.55, 相关结果: 11
+    📋 LLM辅助搜索的前5个结果及相关性:
+      1. ✗ interface-builder - A tool for build simple TUI's
+      2. ✗ ckb-cli-light-client - ckb light client command line interface
+      3. ✓ cli-batteries - Batteries included opinionated command l...
+      4. ✓ cli-parser - Lightweight API for parsing CLI argument...
+      5. ✓ cli-rs-command-gen - internal helper for cli-rs
+
+  🌐 crates.io搜索:
+    📊 crates.io返回了 20 个结果 (总计: 119)
+  🔍 使用LLM评估crates.io搜索结果相关性...
+    ⏱️ 搜索耗时: 554.34ms
+    P@1: 1.00, P@3: 0.33, P@5: 0.20, P@10: 0.20, P@20: 0.20, 相关结果: 4
+    📋 crates.io搜索的前5个结果及相关性:
+      1. ✓ oclis - CLI builder based on a simple, obvious s...
+      2. ✗ rusty_prompt - Rusty library for creating interactive r...
+      3. ✗ bubblers - Crustacean CLI that expels bubbles
+      4. ✗ material3_optimzer - It also allows you to inline the colors ...
+      5. ✗ claui - A GUI generator for clap using egui.
+
+📝 测试用例 40/50: GraphQL客户端 - "graphql client"
+
+  🧠 LLM辅助搜索:
+改写后的查询: graphql, client, GraphQL, Rust, API, HTTP, request, query, mutation, server, request-response, graphql-client, network, rust-graphql
+执行PostgreSQL查询: graphql:* | client:* | graphql:* | rust:* | api:* | http:*
+批量获取 28 个crate的嵌入
+  🔍 使用LLM评估搜索结果相关性...
+    ⏱️ 搜索耗时: 6.23s
+    P@1: 0.00, P@3: 0.67, P@5: 0.40, P@10: 0.40, P@20: 0.30, 相关结果: 6
+    📋 LLM辅助搜索的前5个结果及相关性:
+      1. ✗ http-api-client - HTTP API Client
+      2. ✓ graphql-toolkit-http - An implementation of the GraphQL-over-HT...
+      3. ✓ graphql-ws-client - A graphql over websockets client
+      4. ✗ rusty-junctions-client-api-macro - A convenient set of declarative macros u...
+      5. ✗ http-api-reqwest-client - HTTP API reqwest Client
+
+  🌐 crates.io搜索:
+    📊 crates.io返回了 20 个结果 (总计: 202)
+  🔍 使用LLM评估crates.io搜索结果相关性...
+    ⏱️ 搜索耗时: 946.24ms
+    P@1: 1.00, P@3: 1.00, P@5: 1.00, P@10: 1.00, P@20: 0.85, 相关结果: 17
+    📋 crates.io搜索的前5个结果及相关性:
+      1. ✓ sui-graphql-client - Sui GraphQL RPC Client for the Sui Block...
+      2. ✓ graphql_client - Typed GraphQL requests and responses
+      3. ✓ sui-graphql-client-build - Sui GraphQL RPC Client for the Sui Block...
+      4. ✓ graphql_client_cli - The CLI for graphql-client
+      5. ✓ spark-graphql-client - A generic and native GraphQL client impl...
+
+📝 测试用例 41/50: 密码哈希 - "password hashing"
+
+  🧠 LLM辅助搜索:
+改写后的查询: password hashing, password security, bcrypt, scrypt, Argon2, cryptography, hashing, password storage, password encryption, password protection, secure password, cryptographic hashing
+执行PostgreSQL查询: password & hashing:* | password & security:* | bcrypt:* | scrypt:* | argon2:* | cryptography:*
+批量获取 184 个crate的嵌入
+  🔍 使用LLM评估搜索结果相关性...
+    ⏱️ 搜索耗时: 10.24s
+    P@1: 1.00, P@3: 1.00, P@5: 1.00, P@10: 1.00, P@20: 0.85, 相关结果: 17
+    📋 LLM辅助搜索的前5个结果及相关性:
+      1. ✓ secure-password - Safe password hashing
+      2. ✓ hashed_password - Password hasher
+      3. ✓ bcrypt-wasm - Easily hash and verify passwords using b...
+      4. ✓ bcrypt-pbkdf - bcrypt-pbkdf password-based key derivati...
+      5. ✓ easy_password - Easy password hashing (includes bcrypt)
+
+  🌐 crates.io搜索:
+    📊 crates.io返回了 20 个结果 (总计: 415)
+  🔍 使用LLM评估crates.io搜索结果相关性...
+    ⏱️ 搜索耗时: 542.01ms
+    P@1: 1.00, P@3: 1.00, P@5: 1.00, P@10: 0.90, P@20: 0.90, 相关结果: 18
+    📋 crates.io搜索的前5个结果及相关性:
+      1. ✓ hashed_password - Password hasher
+      2. ✓ password-auth - Password authentication library with a f...
+      3. ✓ argonautica - Idiomatic Argon2 password hashing for Ru...
+      4. ✓ hsh -     Quantum-Resistant Cryptographic Hash...
+      5. ✓ easy_password - Easy password hashing (includes bcrypt)
+
+📝 测试用例 42/50: UUID生成器 - "uuid generator"
+
+  🧠 LLM辅助搜索:
+改写后的查询: uuid, generator, uuid generation, uuid crate, unique identifier, uuid creation, uuid library, random uuid, v4 uuid, v1 uuid, rust uuid
+执行PostgreSQL查询: uuid:* | generator:* | uuid & generation:* | uuid & crate:* | unique & identifier:* | uuid & creation:*
+批量获取 181 个crate的嵌入
+  🔍 使用LLM评估搜索结果相关性...
+
+    🌐 crates.io搜索:
+    📊 crates.io返回了 20 个结果 (总计: 560)
+  🔍 使用LLM评估crates.io搜索结果相关性...
+    ⏱️ 搜索耗时: 888.78ms
+    P@1: 1.00, P@3: 0.67, P@5: 0.80, P@10: 0.70, P@20: 0.70, 相关结果: 14
+    📋 crates.io搜索的前5个结果及相关性:
+      1. ✓ uuid-generate - UUID generator
+      2. ✗ uuid-by-string - Generating uuid-hash from string
+      3. ✓ kodumaro-uuid-cli - Command line tool to generate UUID.
+      4. ✓ rs-uuid - Universally unique identifier generator
+      5. ✓ alfred-the-obese-and-friendly-turbo-uuid-generator - generates the best ids, which are fun to...
+
+📝 测试用例 43/50: 二进制序列化 - "binary serialization"
+
+  🧠 LLM辅助搜索:
+改写后的查询: binary serialization, binary encoding, serialization, deserialization, data encoding, data decoding, Rust serialization, binary format, Rust deserialization, data format, binary data, serde, binary serialization crate
+执行PostgreSQL查询: binary & serialization:* | binary & encoding:* | serialization:* | deserialization:* | data & encoding:* | data & decoding:*
+批量获取 159 个crate的嵌入
+
+
+
+ 搜索方法对比结果:
+┌────────────────────────────────────────┬───────────────┬──────┬──────┬──────┬──────┬──────────┬──────────┐
+│ 查询                                   │ 方法          │ P@1  │ P@5  │ P@10 │ P@20 │ 相关数量 │ 延迟(ms) │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ http client(HTTP客户端库)              │ LLM辅助搜索   │ 1.00 │ 1.00 │ 1.00 │ 1.00 │ 20       │ 6172.0   │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ http client(HTTP客户端库)              │ crates.io搜索 │ 1.00 │ 0.80 │ 0.80 │ 0.90 │ 18       │ 1455.0   │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ json parser(JSON解析库)                │ LLM辅助搜索   │ 1.00 │ 0.80 │ 0.90 │ 0.70 │ 14       │ 4951.0   │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ json parser(JSON解析库)                │ crates.io搜索 │ 0.00 │ 0.60 │ 0.80 │ 0.80 │ 16       │ 923.0    │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ async runtime(异步运行时)              │ LLM辅助搜索   │ 1.00 │ 1.00 │ 0.80 │ 0.60 │ 12       │ 5666.0   │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ async runtime(异步运行时)              │ crates.io搜索 │ 1.00 │ 0.80 │ 0.90 │ 0.80 │ 16       │ 995.0    │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ cli tool(命令行工具)                   │ LLM辅助搜索   │ 1.00 │ 0.80 │ 0.90 │ 0.95 │ 19       │ 7174.0   │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ cli tool(命令行工具)                   │ crates.io搜索 │ 1.00 │ 1.00 │ 1.00 │ 1.00 │ 20       │ 822.0    │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ database orm(数据库ORM)                │ LLM辅助搜索   │ 1.00 │ 0.60 │ 0.60 │ 0.55 │ 11       │ 5047.0   │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ database orm(数据库ORM)                │ crates.io搜索 │ 1.00 │ 1.00 │ 0.80 │ 0.75 │ 15       │ 562.0    │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ logging(日志库)                        │ LLM辅助搜索   │ 0.00 │ 0.80 │ 0.90 │ 0.85 │ 17       │ 4984.0   │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ logging(日志库)                        │ crates.io搜索 │ 1.00 │ 0.80 │ 0.90 │ 0.80 │ 16       │ 777.0    │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ web framework(Web框架)                 │ LLM辅助搜索   │ 0.00 │ 0.20 │ 0.20 │ 0.20 │ 4        │ 6824.0   │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ web framework(Web框架)                 │ crates.io搜索 │ 0.00 │ 0.80 │ 0.80 │ 0.85 │ 17       │ 577.0    │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ serialization(序列化库)                │ LLM辅助搜索   │ 1.00 │ 1.00 │ 1.00 │ 1.00 │ 20       │ 7655.0   │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ serialization(序列化库)                │ crates.io搜索 │ 1.00 │ 0.80 │ 0.70 │ 0.60 │ 12       │ 776.0    │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ websocket(WebSocket客户端)             │ LLM辅助搜索   │ 1.00 │ 0.60 │ 0.50 │ 0.45 │ 9        │ 9808.0   │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ websocket(WebSocket客户端)             │ crates.io搜索 │ 1.00 │ 1.00 │ 1.00 │ 1.00 │ 20       │ 903.0    │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ gui framework(图形界面框架)            │ LLM辅助搜索   │ 1.00 │ 1.00 │ 0.90 │ 0.60 │ 12       │ 6673.0   │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ gui framework(图形界面框架)            │ crates.io搜索 │ 1.00 │ 1.00 │ 1.00 │ 1.00 │ 20       │ 925.0    │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ cryptography(加密库)                   │ LLM辅助搜索   │ 1.00 │ 1.00 │ 1.00 │ 1.00 │ 20       │ 11325.0  │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ cryptography(加密库)                   │ crates.io搜索 │ 1.00 │ 1.00 │ 1.00 │ 0.95 │ 19       │ 1022.0   │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ testing library(测试框架)              │ LLM辅助搜索   │ 1.00 │ 1.00 │ 1.00 │ 0.95 │ 19       │ 10474.0  │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ testing library(测试框架)              │ crates.io搜索 │ 1.00 │ 0.60 │ 0.80 │ 0.90 │ 18       │ 906.0    │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ markdown parser(Markdown解...          │ LLM辅助搜索   │ 1.00 │ 0.80 │ 0.60 │ 0.50 │ 10       │ 10455.0  │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ markdown parser(Markdown解...          │ crates.io搜索 │ 1.00 │ 1.00 │ 1.00 │ 0.90 │ 18       │ 968.0    │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ templating engine(模板引擎)            │ LLM辅助搜索   │ 1.00 │ 0.80 │ 0.80 │ 0.75 │ 15       │ 11959.0  │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ templating engine(模板引擎)            │ crates.io搜索 │ 1.00 │ 1.00 │ 0.80 │ 0.90 │ 18       │ 927.0    │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ command line args(命令行参数解析...    │ LLM辅助搜索   │ 1.00 │ 1.00 │ 1.00 │ 1.00 │ 20       │ 6564.0   │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ command line args(命令行参数解析...    │ crates.io搜索 │ 1.00 │ 0.80 │ 0.60 │ 0.60 │ 12       │ 568.0    │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ image processing(图像处理)             │ LLM辅助搜索   │ 0.00 │ 0.80 │ 0.90 │ 0.90 │ 18       │ 10202.0  │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ image processing(图像处理)             │ crates.io搜索 │ 0.00 │ 0.60 │ 0.70 │ 0.65 │ 13       │ 959.0    │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ audio library(音频处理)                │ LLM辅助搜索   │ 1.00 │ 0.80 │ 0.80 │ 0.70 │ 14       │ 10661.0  │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ audio library(音频处理)                │ crates.io搜索 │ 1.00 │ 0.80 │ 0.70 │ 0.75 │ 15       │ 989.0    │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ xml parser(XML解析)                    │ LLM辅助搜索   │ 1.00 │ 0.40 │ 0.60 │ 0.50 │ 10       │ 8353.0   │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ xml parser(XML解析)                    │ crates.io搜索 │ 1.00 │ 0.80 │ 0.90 │ 0.85 │ 17       │ 888.0    │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ database migration(数据库迁移)         │ LLM辅助搜索   │ 1.00 │ 1.00 │ 1.00 │ 1.00 │ 20       │ 9867.0   │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ database migration(数据库迁移)         │ crates.io搜索 │ 1.00 │ 1.00 │ 1.00 │ 1.00 │ 20       │ 919.0    │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ filesystem(文件系统操作)               │ LLM辅助搜索   │ 1.00 │ 1.00 │ 0.80 │ 0.85 │ 17       │ 9794.0   │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ filesystem(文件系统操作)               │ crates.io搜索 │ 1.00 │ 0.80 │ 0.70 │ 0.80 │ 16       │ 654.0    │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ parser combinators(解析器组合子...     │ LLM辅助搜索   │ 1.00 │ 1.00 │ 0.90 │ 0.70 │ 14       │ 6004.0   │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ parser combinators(解析器组合子...     │ crates.io搜索 │ 1.00 │ 1.00 │ 1.00 │ 0.90 │ 18       │ 618.0    │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ html parser(HTML解析)                  │ LLM辅助搜索   │ 1.00 │ 0.80 │ 0.60 │ 0.55 │ 11       │ 6394.0   │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ html parser(HTML解析)                  │ crates.io搜索 │ 1.00 │ 0.80 │ 0.90 │ 0.95 │ 19       │ 549.0    │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ regex(正则表达式)                      │ LLM辅助搜索   │ 1.00 │ 1.00 │ 1.00 │ 1.00 │ 20       │ 11050.0  │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ regex(正则表达式)                      │ crates.io搜索 │ 1.00 │ 1.00 │ 0.90 │ 0.85 │ 17       │ 917.0    │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ date time(日期时间处理)                │ LLM辅助搜索   │ 1.00 │ 0.80 │ 0.90 │ 0.90 │ 18       │ 9564.0   │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ date time(日期时间处理)                │ crates.io搜索 │ 1.00 │ 0.80 │ 0.90 │ 0.90 │ 18       │ 638.0    │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ compression(压缩库)                    │ LLM辅助搜索   │ 1.00 │ 0.60 │ 0.80 │ 0.85 │ 17       │ 9724.0   │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ compression(压缩库)                    │ crates.io搜索 │ 1.00 │ 1.00 │ 1.00 │ 0.90 │ 18       │ 1039.0   │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ yaml parser(YAML解析)                  │ LLM辅助搜索   │ 0.00 │ 0.00 │ 0.10 │ 0.15 │ 3        │ 4446.0   │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ yaml parser(YAML解析)                  │ crates.io搜索 │ 1.00 │ 1.00 │ 1.00 │ 0.90 │ 18       │ 890.0    │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ csv reader(CSV文件处理)                │ LLM辅助搜索   │ 1.00 │ 0.80 │ 0.80 │ 0.75 │ 15       │ 13043.0  │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ csv reader(CSV文件处理)                │ crates.io搜索 │ 1.00 │ 0.80 │ 0.60 │ 0.45 │ 9        │ 929.0    │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ random number generator(随...          │ LLM辅助搜索   │ 1.00 │ 1.00 │ 1.00 │ 0.85 │ 17       │ 9815.0   │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ random number generator(随...          │ crates.io搜索 │ 1.00 │ 0.60 │ 0.80 │ 0.80 │ 16       │ 1022.0   │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ web scraping(网页抓取)                 │ LLM辅助搜索   │ 1.00 │ 1.00 │ 1.00 │ 1.00 │ 20       │ 9843.0   │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ web scraping(网页抓取)                 │ crates.io搜索 │ 1.00 │ 1.00 │ 0.80 │ 0.80 │ 16       │ 614.0    │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ jwt token(JWT令牌处理)                 │ LLM辅助搜索   │ 1.00 │ 1.00 │ 1.00 │ 0.90 │ 18       │ 10966.0  │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ jwt token(JWT令牌处理)                 │ crates.io搜索 │ 1.00 │ 0.80 │ 0.90 │ 0.80 │ 16       │ 534.0    │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ I need an HTTP client lib...           │ LLM辅助搜索   │ 1.00 │ 1.00 │ 0.90 │ 0.80 │ 16       │ 8447.0   │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ I need an HTTP client lib...           │ crates.io搜索 │ 0.00 │ 0.60 │ 0.50 │ 0.35 │ 7        │ 605.0    │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ How to parse JSON in Rust...           │ LLM辅助搜索   │ 1.00 │ 0.80 │ 0.50 │ 0.40 │ 8        │ 8108.0   │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ How to parse JSON in Rust...           │ crates.io搜索 │ 1.00 │ 0.80 │ 0.90 │ 0.80 │ 16       │ 651.0    │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ What's the best database ...           │ LLM辅助搜索   │ 1.00 │ 0.80 │ 0.90 │ 0.70 │ 14       │ 5822.0   │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ What's the best database ...           │ crates.io搜索 │ 0.00 │ 0.00 │ 0.10 │ 0.35 │ 7        │ 570.0    │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ Looking for a web framewo...           │ LLM辅助搜索   │ 1.00 │ 0.60 │ 0.80 │ 0.85 │ 17       │ 8050.0   │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ Looking for a web framewo...           │ crates.io搜索 │ 0.00 │ 0.80 │ 0.50 │ 0.30 │ 6        │ 932.0    │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ 我需要一个HTTP客户端(HTTP客户端(中文)) │ LLM辅助搜索   │ 1.00 │ 0.60 │ 0.80 │ 0.90 │ 18       │ 5054.0   │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ 我需要一个HTTP客户端(HTTP客户端(中文)) │ crates.io搜索 │ 0.00 │ 0.00 │ 0.00 │ 0.00 │ 0        │ 310.0    │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ 如何解析JSON数据(JSON解析(中文))       │ LLM辅助搜索   │ 1.00 │ 0.40 │ 0.60 │ 0.50 │ 10       │ 6890.0   │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ 如何解析JSON数据(JSON解析(中文))       │ crates.io搜索 │ 0.00 │ 0.00 │ 0.00 │ 0.00 │ 0        │ 299.0    │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ 最好的数据库ORM是什么(数据库ORM(中文)) │ LLM辅助搜索   │ 1.00 │ 1.00 │ 0.70 │ 0.35 │ 7        │ 7693.0   │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ 最好的数据库ORM是什么(数据库ORM(中文)) │ crates.io搜索 │ 0.00 │ 0.00 │ 0.00 │ 0.00 │ 0        │ 750.0    │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ 寻找Web框架(Web框架(中文))             │ LLM辅助搜索   │ 1.00 │ 0.40 │ 0.70 │ 0.60 │ 12       │ 6627.0   │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ 寻找Web框架(Web框架(中文))             │ crates.io搜索 │ 0.00 │ 0.00 │ 0.00 │ 0.00 │ 0        │ 805.0    │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ command line interface bu...           │ LLM辅助搜索   │ 0.00 │ 0.60 │ 0.60 │ 0.55 │ 11       │ 15147.0  │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ command line interface bu...           │ crates.io搜索 │ 1.00 │ 0.20 │ 0.20 │ 0.20 │ 4        │ 554.0    │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ graphql client(GraphQL客户端...        │ LLM辅助搜索   │ 0.00 │ 0.40 │ 0.40 │ 0.30 │ 6        │ 6227.0   │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ graphql client(GraphQL客户端...        │ crates.io搜索 │ 1.00 │ 1.00 │ 1.00 │ 0.85 │ 17       │ 946.0    │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ password hashing(密码哈希)             │ LLM辅助搜索   │ 1.00 │ 1.00 │ 1.00 │ 0.85 │ 17       │ 10243.0  │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ password hashing(密码哈希)             │ crates.io搜索 │ 1.00 │ 1.00 │ 0.90 │ 0.90 │ 18       │ 542.0    │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ uuid generator(UUID生成器)             │ LLM辅助搜索   │ 1.00 │ 1.00 │ 0.90 │ 0.75 │ 15       │ 10664.0  │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ uuid generator(UUID生成器)             │ crates.io搜索 │ 1.00 │ 0.80 │ 0.70 │ 0.70 │ 14       │ 888.0    │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ binary serialization(二进制序...       │ LLM辅助搜索   │ 1.00 │ 0.80 │ 0.60 │ 0.60 │ 12       │ 9263.0   │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ binary serialization(二进制序...       │ crates.io搜索 │ 1.00 │ 1.00 │ 1.00 │ 1.00 │ 20       │ 1023.0   │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ error handling(错误处理)               │ LLM辅助搜索   │ 1.00 │ 1.00 │ 0.90 │ 0.90 │ 18       │ 10513.0  │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ error handling(错误处理)               │ crates.io搜索 │ 1.00 │ 0.60 │ 0.60 │ 0.65 │ 13       │ 766.0    │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ progress bar(进度条显示)               │ LLM辅助搜索   │ 1.00 │ 1.00 │ 0.90 │ 0.95 │ 19       │ 9548.0   │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ progress bar(进度条显示)               │ crates.io搜索 │ 1.00 │ 1.00 │ 0.90 │ 0.90 │ 18       │ 885.0    │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ threadpool(线程池)                     │ LLM辅助搜索   │ 1.00 │ 0.60 │ 0.40 │ 0.30 │ 6        │ 5952.0   │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ threadpool(线程池)                     │ crates.io搜索 │ 1.00 │ 0.80 │ 0.90 │ 0.95 │ 19       │ 562.0    │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ config file parser(配置文件解析...     │ LLM辅助搜索   │ 1.00 │ 1.00 │ 0.80 │ 0.80 │ 16       │ 7160.0   │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ config file parser(配置文件解析...     │ crates.io搜索 │ 1.00 │ 1.00 │ 1.00 │ 0.95 │ 19       │ 587.0    │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ redis client(Redis客户端)              │ LLM辅助搜索   │ 1.00 │ 1.00 │ 1.00 │ 0.75 │ 15       │ 9727.0   │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ redis client(Redis客户端)              │ crates.io搜索 │ 1.00 │ 1.00 │ 0.80 │ 0.70 │ 14       │ 946.0    │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ 环境变量处理(环境变量(中文))           │ LLM辅助搜索   │ 1.00 │ 1.00 │ 1.00 │ 1.00 │ 20       │ 11685.0  │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ 环境变量处理(环境变量(中文))           │ crates.io搜索 │ 0.00 │ 0.00 │ 0.00 │ 0.00 │ 0        │ 1125.0   │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ 异步HTTP客户端(异步HTTP(中文))         │ LLM辅助搜索   │ 1.00 │ 0.80 │ 0.60 │ 0.60 │ 12       │ 5642.0   │
+├────────────────────────────────────────┼───────────────┼──────┼──────┼──────┼──────┼──────────┼──────────┤
+│ 异步HTTP客户端(异步HTTP(中文))         │ crates.io搜索 │ 0.00 │ 0.00 │ 0.00 │ 0.00 │ 0        │ 406.0    │
+└────────────────────────────────────────┴───────────────┴──────┴──────┴──────┴──────┴──────────┴──────────┘
+
+📈 平均性能:
+  LLM辅助搜索: P@1=0.8800, P@5=0.8040, P@10=0.7860, P@20=0.7230, 相关=14.5, 延迟=8478.4ms
+  crates.io:   P@1=0.7600, P@5=0.7280, P@10=0.7140, P@20=0.6930, 相关=13.9, 延迟=788.3ms
+
+🚀 LLM辅助搜索相比crates.io的提升:
+  P@1: +15.8%
+  P@5: +10.4%
+  P@10: +10.1%
+  P@20: +4.3%
+  相关结果数量: +4.3%
+
+💾 结果已保存到 llm_vs_cratesio_comparison.json
