@@ -4,28 +4,10 @@ use tokio_postgres::Client as PgClient;
 pub async fn retrive_crates(
     client: &PgClient,
     table_name: &str,
-    keyword: &str,
+    keywords: &str,
 ) -> Result<Vec<RecommendCrate>, Box<dyn std::error::Error>> {
     // 处理关键词
-    let keywords: Vec<&str> = keyword.split(',').collect();
-
-    // 处理每个关键词以生成有效的tsquery
-    let mut processed_terms = Vec::new();
-
-    for kw in keywords.iter().take(5) {
-        // 限制为前5个关键词以提高性能
-        let term = kw.trim().to_lowercase();
-
-        // 如果关键词包含空格，则将空格替换为&（AND操作符）
-        // 例如："http client" => "http & client"
-        let processed_term = term.replace(" ", " & ");
-
-        // 为每个处理后的术语添加:*以实现前缀匹配
-        processed_terms.push(format!("{}:*", processed_term));
-    }
-
-    // 使用OR操作符连接所有处理后的术语
-    let tsquery = processed_terms.join(" | ");
+    let tsquery = transfer_keywords_to_tsquery(keywords).await?;
 
     println!("执行PostgreSQL查询: {}", tsquery);
 
@@ -57,4 +39,28 @@ pub async fn retrive_crates(
     }
 
     Ok(recommend_crates)
+}
+
+async fn transfer_keywords_to_tsquery(
+    keywords_str: &str,
+) -> Result<String, Box<dyn std::error::Error>> {
+    // 处理关键词
+    let keywords: Vec<&str> = keywords_str.split(',').collect();
+    let mut processed_terms = Vec::new();
+
+    for kw in keywords.iter().take(6) {
+        // 限制为前6个关键词以提高性能
+        let term = kw.trim().to_lowercase();
+
+        // 如果关键词包含空格，则将空格替换为&（AND操作符）
+        // 例如："http client" => "http & client"
+        let processed_term = term.replace(" ", " & ");
+
+        // 为每个处理后的术语添加:*以实现前缀匹配
+        processed_terms.push(format!("{}:*", processed_term));
+    }
+
+    // 使用OR操作符连接所有处理后的术语
+    let tsquery = processed_terms.join(" | ");
+    Ok(tsquery)
 }
