@@ -5,6 +5,8 @@ use crate::search::rewrite::rewrite_query;
 use std::env;
 use tokio_postgres::Client as PgClient;
 
+use super::retrieve::retrive_crates_without_ai;
+
 pub struct SearchModule<'a> {
     pub pg_client: &'a PgClient,
     pub table_name: String,
@@ -69,5 +71,17 @@ impl<'a> SearchModule<'a> {
         .await?;
 
         Ok(ranked_results)
+    }
+
+    pub async fn search_crate_without_ai(
+        &self,
+        query: &str,
+        sort_by: SearchSortCriteria,
+    ) -> Result<Vec<RecommendCrate>, Box<dyn std::error::Error>> {
+        // 获取基于关键词的检索结果
+        let keyword_results =
+            retrive_crates_without_ai(self.pg_client, &self.table_name, query).await?;
+
+        Ok(keyword_results)
     }
 }
