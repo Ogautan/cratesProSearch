@@ -10,6 +10,7 @@ pub struct SearchModule<'a> {
     pub table_name: String,
 }
 
+#[derive(Debug, Clone)]
 pub enum SearchSortCriteria {
     Comprehensive,
     Relavance,

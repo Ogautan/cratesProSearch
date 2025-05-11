@@ -53,7 +53,14 @@ pub async fn rerank_crates(
     // 步骤2: 收集需要生成嵌入的crate
     for (index, crate_item) in crates.iter().enumerate() {
         if !id_to_embedding.contains_key(&crate_item.id) {
-            let crate_text = format!("{}: {}", crate_item.id, crate_item.description);
+            // 使用名称和描述构建更有意义的嵌入文本
+            // 名称是crate的核心标识，应该有更大的权重
+            let crate_text = if crate_item.description.is_empty() {
+                // 如果没有描述，只使用名称
+                crate_item.name.clone()
+            } else {
+                format!("{} : {}", crate_item.name, crate_item.description)
+            };
             crates_needing_embedding.push(crate_text);
             crate_id_to_index.insert(crates_needing_embedding.len() - 1, index);
         }
@@ -274,4 +281,60 @@ pub fn cosine_similarity(vec1: &[f32], vec2: &[f32]) -> f32 {
     }
 
     dot_product / (norm1.sqrt() * norm2.sqrt())
+}
+
+/// 重置数据库中所有crate的embedding列数据
+///
+/// 当需要重新计算所有向量嵌入时非常有用，比如：
+/// - 更新了嵌入模型
+/// - 改变了嵌入文本的构建方式
+/// - 解决了嵌入数据异常问题
+pub async fn reset_all_embeddings(
+    pg_client: &PgClient,
+    table_name: &str,
+) -> Result<u64, Box<dyn std::error::Error>> {
+    println!("正在清除数据库中的所有嵌入向量...");
+
+    // 构建更新SQL语句
+    let update_query = format!(
+        "UPDATE {} SET embedding = NULL WHERE embedding IS NOT NULL",
+        table_name
+    );
+
+    // 执行更新
+    match pg_client.execute(&update_query, &[]).await {
+        Ok(affected_rows) => {
+            println!("成功清除 {} 个crate的嵌入向量", affected_rows);
+            Ok(affected_rows)
+        }
+        Err(e) => {
+            eprintln!("清除嵌入向量失败: {}", e);
+            Err(Box::new(e))
+        }
+    }
+}
+
+// 用于重置特定crate的embedding
+pub async fn reset_crate_embedding(
+    pg_client: &PgClient,
+    table_name: &str,
+    crate_id: &str,
+) -> Result<bool, Box<dyn std::error::Error>> {
+    let update_query = format!("UPDATE {} SET embedding = NULL WHERE id = $1", table_name);
+
+    match pg_client.execute(&update_query, &[&crate_id]).await {
+        Ok(affected_rows) => {
+            let success = affected_rows > 0;
+            if success {
+                println!("成功清除crate '{}'的嵌入向量", crate_id);
+            } else {
+                println!("未找到crate '{}'或其嵌入向量已为空", crate_id);
+            }
+            Ok(success)
+        }
+        Err(e) => {
+            eprintln!("清除crate '{}'的嵌入向量失败: {}", crate_id, e);
+            Err(Box::new(e))
+        }
+    }
 }
