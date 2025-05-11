@@ -94,7 +94,7 @@ pub async fn rerank_crates(
     // 步骤5: 计算相似度并排序结果
     let mut enhanced_crates = Vec::new();
 
-    for (index, mut crate_item) in crates.into_iter().enumerate() {
+    for (_, mut crate_item) in crates.into_iter().enumerate() {
         if let Some(embedding) = id_to_embedding.get(&crate_item.id) {
             // 计算向量相似度
             let similarity = cosine_similarity(&query_embedding, embedding);

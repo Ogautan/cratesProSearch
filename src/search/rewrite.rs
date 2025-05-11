@@ -1,6 +1,5 @@
 use crate::search::utils::{basic_keyword_extraction, Message, RequestBody, ResponseBody};
 use reqwest::Client;
-use serde::{Deserialize, Serialize};
 use std::env;
 
 // 处理查询，判断是否为自然语言并相应地处理

@@ -1,7 +1,6 @@
-use cratespro_search::search::{RecommendCrate, SearchModule, SearchSortCriteria};
+use cratespro_search::search::{SearchModule, SearchSortCriteria};
 use dotenv::dotenv;
-use std::env;
-use tokio_postgres::{Client, NoTls};
+use tokio_postgres::NoTls;
 
 #[tokio::test]
 async fn test_search_crate() -> Result<(), Box<dyn std::error::Error>> {
