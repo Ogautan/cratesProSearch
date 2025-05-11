@@ -1,8 +1,6 @@
 use std::env;
 use tokio_postgres::Client as PgClient;
 
-use crate::embedding;
-
 pub struct SearchPrepare<'a> {
     pg_client: &'a PgClient,
     table_name: String,
@@ -35,7 +33,7 @@ impl<'a> SearchPrepare<'a> {
         }
         self.add_pgvector_extension().await?;
         self.add_embedding_column().await?;
-        self.set_embedding_column().await?;
+        // self.set_embedding_column().await?;
         self.create_embedding_index().await?;
         Ok(())
     }
@@ -94,9 +92,9 @@ impl<'a> SearchPrepare<'a> {
         Ok(())
     }
 
-    pub async fn set_embedding_column(&self) -> Result<(), Box<dyn std::error::Error>> {
-        embedding::update_all_crate_embeddings(self.pg_client).await
-    }
+    // pub async fn set_embedding_column(&self) -> Result<(), Box<dyn std::error::Error>> {
+    //     embedding::update_all_crate_embeddings(self.pg_client).await
+    // }
     // 功能六：为embedding列创建索引
     pub async fn create_embedding_index(&self) -> Result<(), Box<dyn std::error::Error>> {
         let query = format!(
