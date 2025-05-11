@@ -64,38 +64,3 @@ async fn transfer_query_to_tsquery(
     let tsquery = processed_terms.join(" | ");
     Ok(tsquery)
 }
-
-pub async fn retrive_crates_without_ai(
-    client: &PgClient,
-    table_name: &str,
-    query: &str,
-) -> Result<Vec<RecommendCrate>, Box<dyn std::error::Error>> {
-    let statement = format!(
-        "SELECT {0}.id, {0}.name, {0}.description, ts_rank({0}.tsv, to_tsquery($1)) AS rank
-        FROM {0}
-        WHERE {0}.tsv @@ phraseto_tsquery($1)
-        ORDER BY rank DESC
-        LIMIT 10",
-        table_name
-    );
-    let rows = client.query(statement.as_str(), &[&query]).await?;
-    let mut recommend_crates = Vec::<RecommendCrate>::new();
-
-    for row in rows.iter() {
-        let id: Option<String> = row.get("id");
-        let name: Option<String> = row.get("name");
-        let description: Option<String> = row.get("description");
-        let rank: Option<f32> = row.get("rank");
-
-        recommend_crates.push(RecommendCrate {
-            id: id.unwrap_or_default(),
-            name: name.unwrap_or_default(),
-            description: description.unwrap_or_default(),
-            rank: rank.unwrap_or(0.0),
-            vector_score: 0.0,
-            final_score: rank.unwrap_or(0.0),
-        });
-    }
-
-    Ok(recommend_crates)
-}
