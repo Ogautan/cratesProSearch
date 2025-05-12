@@ -1,2 +1,7 @@
 /target
 /data
+.env
+*.json
+*.txt
+# 如果只想忽略特定目录下的 JSON 文件，可以使用更精确的方式：
+# /results/*.json
