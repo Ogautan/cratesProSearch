@@ -23,13 +23,55 @@ pub async fn rerank_crates(
         }
     };
 
+    // 获取或创建crate的嵌入向量
+    let id_to_embedding = fetch_or_create_embeddings(&crates, pg_client, table_name).await;
+
+    // 步骤5: 计算相似度并排序结果
+    let mut enhanced_crates = Vec::new();
+
+    for (_, mut crate_item) in crates.into_iter().enumerate() {
+        if let Some(embedding) = id_to_embedding.get(&crate_item.id) {
+            // 计算向量相似度
+            let similarity = cosine_similarity(&query_embedding, embedding);
+
+            // 保存向量分数
+            crate_item.vector_score = similarity;
+
+            // 计算最终得分
+            crate_item.final_score =
+                calculate_final_score(crate_item.rank, similarity, &sort_criteria);
+        } else {
+            // 如果没有获取到嵌入
+            crate_item.vector_score = 0.0;
+            crate_item.final_score = calculate_final_score(crate_item.rank, 0.0, &sort_criteria);
+        }
+
+        enhanced_crates.push(crate_item);
+    }
+
+    // 根据最终得分排序
+    enhanced_crates.sort_by(|a, b| b.final_score.partial_cmp(&a.final_score).unwrap());
+
+    // 只返回前100个结果
+    Ok(enhanced_crates.into_iter().take(100).collect())
+}
+
+/// 获取或创建crate的嵌入向量
+///
+/// 首先从数据库中检索已有的嵌入向量，对于没有嵌入的crate，
+/// 生成新的嵌入并保存到数据库中。
+async fn fetch_or_create_embeddings(
+    crates: &[RecommendCrate],
+    pg_client: &PgClient,
+    table_name: &str,
+) -> HashMap<String, Vec<f32>> {
     // 收集所有需要获取嵌入的crate
     let mut crates_needing_embedding = Vec::new();
     let mut crate_id_to_index = HashMap::new();
 
     // 步骤1: 检查数据库中哪些crate已有嵌入
     let mut crate_ids = Vec::new();
-    for crate_item in &crates {
+    for crate_item in crates {
         crate_ids.push(crate_item.id.clone());
     }
 
@@ -98,34 +140,7 @@ pub async fn rerank_crates(
         }
     }
 
-    // 步骤5: 计算相似度并排序结果
-    let mut enhanced_crates = Vec::new();
-
-    for (_, mut crate_item) in crates.into_iter().enumerate() {
-        if let Some(embedding) = id_to_embedding.get(&crate_item.id) {
-            // 计算向量相似度
-            let similarity = cosine_similarity(&query_embedding, embedding);
-
-            // 保存向量分数
-            crate_item.vector_score = similarity;
-
-            // 计算最终得分
-            crate_item.final_score =
-                calculate_final_score(crate_item.rank, similarity, &sort_criteria);
-        } else {
-            // 如果没有获取到嵌入
-            crate_item.vector_score = 0.0;
-            crate_item.final_score = calculate_final_score(crate_item.rank, 0.0, &sort_criteria);
-        }
-
-        enhanced_crates.push(crate_item);
-    }
-
-    // 根据最终得分排序
-    enhanced_crates.sort_by(|a, b| b.final_score.partial_cmp(&a.final_score).unwrap());
-
-    // 只返回前100个结果
-    Ok(enhanced_crates.into_iter().take(100).collect())
+    id_to_embedding
 }
 
 // 仅基于关键词的排序（向量检索失败时的后备方案）

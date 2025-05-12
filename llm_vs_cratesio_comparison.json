@@ -6,10 +6,10 @@
     "precision_at_1": 1.0,
     "precision_at_3": 1.0,
     "precision_at_5": 1.0,
-    "precision_at_10": 1.0,
-    "precision_at_20": 1.0,
-    "relevant_count": 20,
-    "latency_ms": 6172.0
+    "precision_at_10": 0.9,
+    "precision_at_20": 0.9,
+    "relevant_count": 18,
+    "latency_ms": 6325.0
   },
   {
     "query": "http client",
@@ -21,19 +21,19 @@
     "precision_at_10": 0.8,
     "precision_at_20": 0.9,
     "relevant_count": 18,
-    "latency_ms": 1455.0
+    "latency_ms": 1537.0
   },
   {
     "query": "json parser",
     "description": "JSON解析库",
     "method": "LLM辅助搜索",
-    "precision_at_1": 1.0,
+    "precision_at_1": 0.0,
     "precision_at_3": 0.6666666666666666,
     "precision_at_5": 0.8,
     "precision_at_10": 0.9,
-    "precision_at_20": 0.7,
-    "relevant_count": 14,
-    "latency_ms": 4951.0
+    "precision_at_20": 0.85,
+    "relevant_count": 17,
+    "latency_ms": 6935.0
   },
   {
     "query": "json parser",
@@ -45,7 +45,7 @@
     "precision_at_10": 0.8,
     "precision_at_20": 0.8,
     "relevant_count": 16,
-    "latency_ms": 923.0
+    "latency_ms": 965.0
   },
   {
     "query": "async runtime",
@@ -53,11 +53,11 @@
     "method": "LLM辅助搜索",
     "precision_at_1": 1.0,
     "precision_at_3": 1.0,
-    "precision_at_5": 1.0,
+    "precision_at_5": 0.8,
     "precision_at_10": 0.8,
-    "precision_at_20": 0.6,
-    "relevant_count": 12,
-    "latency_ms": 5666.0
+    "precision_at_20": 0.65,
+    "relevant_count": 13,
+    "latency_ms": 9874.0
   },
   {
     "query": "async runtime",
@@ -67,21 +67,21 @@
     "precision_at_3": 0.6666666666666666,
     "precision_at_5": 0.8,
     "precision_at_10": 0.9,
-    "precision_at_20": 0.8,
-    "relevant_count": 16,
-    "latency_ms": 995.0
+    "precision_at_20": 0.75,
+    "relevant_count": 15,
+    "latency_ms": 1023.0
   },
   {
     "query": "cli tool",
     "description": "命令行工具",
     "method": "LLM辅助搜索",
     "precision_at_1": 1.0,
-    "precision_at_3": 0.6666666666666666,
-    "precision_at_5": 0.8,
-    "precision_at_10": 0.9,
-    "precision_at_20": 0.95,
-    "relevant_count": 19,
-    "latency_ms": 7174.0
+    "precision_at_3": 1.0,
+    "precision_at_5": 1.0,
+    "precision_at_10": 1.0,
+    "precision_at_20": 0.9,
+    "relevant_count": 18,
+    "latency_ms": 6832.0
   },
   {
     "query": "cli tool",
@@ -93,19 +93,19 @@
     "precision_at_10": 1.0,
     "precision_at_20": 1.0,
     "relevant_count": 20,
-    "latency_ms": 822.0
+    "latency_ms": 1331.0
   },
   {
     "query": "database orm",
     "description": "数据库ORM",
     "method": "LLM辅助搜索",
-    "precision_at_1": 1.0,
+    "precision_at_1": 0.0,
     "precision_at_3": 0.6666666666666666,
-    "precision_at_5": 0.6,
-    "precision_at_10": 0.6,
-    "precision_at_20": 0.55,
-    "relevant_count": 11,
-    "latency_ms": 5047.0
+    "precision_at_5": 0.4,
+    "precision_at_10": 0.4,
+    "precision_at_20": 0.4,
+    "relevant_count": 8,
+    "latency_ms": 4884.0
   },
   {
     "query": "database orm",
@@ -117,19 +117,19 @@
     "precision_at_10": 0.8,
     "precision_at_20": 0.75,
     "relevant_count": 15,
-    "latency_ms": 562.0
+    "latency_ms": 773.0
   },
   {
     "query": "logging",
     "description": "日志库",
     "method": "LLM辅助搜索",
-    "precision_at_1": 0.0,
-    "precision_at_3": 0.6666666666666666,
-    "precision_at_5": 0.8,
-    "precision_at_10": 0.9,
-    "precision_at_20": 0.85,
-    "relevant_count": 17,
-    "latency_ms": 4984.0
+    "precision_at_1": 1.0,
+    "precision_at_3": 1.0,
+    "precision_at_5": 1.0,
+    "precision_at_10": 1.0,
+    "precision_at_20": 0.95,
+    "relevant_count": 19,
+    "latency_ms": 10303.0
   },
   {
     "query": "logging",
@@ -139,21 +139,21 @@
     "precision_at_3": 1.0,
     "precision_at_5": 0.8,
     "precision_at_10": 0.9,
-    "precision_at_20": 0.8,
-    "relevant_count": 16,
-    "latency_ms": 777.0
+    "precision_at_20": 0.85,
+    "relevant_count": 17,
+    "latency_ms": 1455.0
   },
   {
     "query": "web framework",
     "description": "Web框架",
     "method": "LLM辅助搜索",
     "precision_at_1": 0.0,
-    "precision_at_3": 0.0,
-    "precision_at_5": 0.2,
-    "precision_at_10": 0.2,
-    "precision_at_20": 0.2,
-    "relevant_count": 4,
-    "latency_ms": 6824.0
+    "precision_at_3": 0.6666666666666666,
+    "precision_at_5": 0.8,
+    "precision_at_10": 0.6,
+    "precision_at_20": 0.5,
+    "relevant_count": 10,
+    "latency_ms": 3617.0
   },
   {
     "query": "web framework",
@@ -165,19 +165,19 @@
     "precision_at_10": 0.8,
     "precision_at_20": 0.85,
     "relevant_count": 17,
-    "latency_ms": 577.0
+    "latency_ms": 991.0
   },
   {
     "query": "serialization",
     "description": "序列化库",
     "method": "LLM辅助搜索",
     "precision_at_1": 1.0,
-    "precision_at_3": 1.0,
-    "precision_at_5": 1.0,
-    "precision_at_10": 1.0,
-    "precision_at_20": 1.0,
-    "relevant_count": 20,
-    "latency_ms": 7655.0
+    "precision_at_3": 0.6666666666666666,
+    "precision_at_5": 0.8,
+    "precision_at_10": 0.8,
+    "precision_at_20": 0.75,
+    "relevant_count": 15,
+    "latency_ms": 6892.0
   },
   {
     "query": "serialization",
@@ -189,43 +189,43 @@
     "precision_at_10": 0.7,
     "precision_at_20": 0.6,
     "relevant_count": 12,
-    "latency_ms": 776.0
+    "latency_ms": 1178.0
   },
   {
     "query": "websocket",
     "description": "WebSocket客户端",
-    "method": "LLM辅助搜索",
-    "precision_at_1": 1.0,
-    "precision_at_3": 1.0,
-    "precision_at_5": 0.6,
-    "precision_at_10": 0.5,
-    "precision_at_20": 0.45,
-    "relevant_count": 9,
-    "latency_ms": 9808.0
-  },
-  {
-    "query": "websocket",
-    "description": "WebSocket客户端",
-    "method": "crates.io搜索",
-    "precision_at_1": 1.0,
-    "precision_at_3": 1.0,
-    "precision_at_5": 1.0,
-    "precision_at_10": 1.0,
-    "precision_at_20": 1.0,
-    "relevant_count": 20,
-    "latency_ms": 903.0
-  },
-  {
-    "query": "gui framework",
-    "description": "图形界面框架",
     "method": "LLM辅助搜索",
     "precision_at_1": 1.0,
     "precision_at_3": 1.0,
     "precision_at_5": 1.0,
     "precision_at_10": 0.9,
-    "precision_at_20": 0.6,
-    "relevant_count": 12,
-    "latency_ms": 6673.0
+    "precision_at_20": 0.95,
+    "relevant_count": 19,
+    "latency_ms": 9398.0
+  },
+  {
+    "query": "websocket",
+    "description": "WebSocket客户端",
+    "method": "crates.io搜索",
+    "precision_at_1": 1.0,
+    "precision_at_3": 1.0,
+    "precision_at_5": 1.0,
+    "precision_at_10": 1.0,
+    "precision_at_20": 0.95,
+    "relevant_count": 19,
+    "latency_ms": 715.0
+  },
+  {
+    "query": "gui framework",
+    "description": "图形界面框架",
+    "method": "LLM辅助搜索",
+    "precision_at_1": 1.0,
+    "precision_at_3": 1.0,
+    "precision_at_5": 0.8,
+    "precision_at_10": 0.9,
+    "precision_at_20": 0.85,
+    "relevant_count": 17,
+    "latency_ms": 11200.0
   },
   {
     "query": "gui framework",
@@ -237,7 +237,7 @@
     "precision_at_10": 1.0,
     "precision_at_20": 1.0,
     "relevant_count": 20,
-    "latency_ms": 925.0
+    "latency_ms": 970.0
   },
   {
     "query": "cryptography",
@@ -249,7 +249,7 @@
     "precision_at_10": 1.0,
     "precision_at_20": 1.0,
     "relevant_count": 20,
-    "latency_ms": 11325.0
+    "latency_ms": 5782.0
   },
   {
     "query": "cryptography",
@@ -261,7 +261,7 @@
     "precision_at_10": 1.0,
     "precision_at_20": 0.95,
     "relevant_count": 19,
-    "latency_ms": 1022.0
+    "latency_ms": 842.0
   },
   {
     "query": "testing library",
@@ -269,11 +269,11 @@
     "method": "LLM辅助搜索",
     "precision_at_1": 1.0,
     "precision_at_3": 1.0,
-    "precision_at_5": 1.0,
-    "precision_at_10": 1.0,
-    "precision_at_20": 0.95,
-    "relevant_count": 19,
-    "latency_ms": 10474.0
+    "precision_at_5": 0.6,
+    "precision_at_10": 0.7,
+    "precision_at_20": 0.65,
+    "relevant_count": 13,
+    "latency_ms": 10678.0
   },
   {
     "query": "testing library",
@@ -285,19 +285,19 @@
     "precision_at_10": 0.8,
     "precision_at_20": 0.9,
     "relevant_count": 18,
-    "latency_ms": 906.0
+    "latency_ms": 1356.0
   },
   {
     "query": "markdown parser",
     "description": "Markdown解析",
     "method": "LLM辅助搜索",
     "precision_at_1": 1.0,
-    "precision_at_3": 0.6666666666666666,
+    "precision_at_3": 1.0,
     "precision_at_5": 0.8,
-    "precision_at_10": 0.6,
-    "precision_at_20": 0.5,
-    "relevant_count": 10,
-    "latency_ms": 10455.0
+    "precision_at_10": 0.5,
+    "precision_at_20": 0.4,
+    "relevant_count": 8,
+    "latency_ms": 5826.0
   },
   {
     "query": "markdown parser",
@@ -307,9 +307,9 @@
     "precision_at_3": 1.0,
     "precision_at_5": 1.0,
     "precision_at_10": 1.0,
-    "precision_at_20": 0.9,
-    "relevant_count": 18,
-    "latency_ms": 968.0
+    "precision_at_20": 0.85,
+    "relevant_count": 17,
+    "latency_ms": 1172.0
   },
   {
     "query": "templating engine",
@@ -317,11 +317,11 @@
     "method": "LLM辅助搜索",
     "precision_at_1": 1.0,
     "precision_at_3": 1.0,
-    "precision_at_5": 0.8,
-    "precision_at_10": 0.8,
-    "precision_at_20": 0.75,
-    "relevant_count": 15,
-    "latency_ms": 11959.0
+    "precision_at_5": 1.0,
+    "precision_at_10": 0.9,
+    "precision_at_20": 0.7,
+    "relevant_count": 14,
+    "latency_ms": 5538.0
   },
   {
     "query": "templating engine",
@@ -333,7 +333,7 @@
     "precision_at_10": 0.8,
     "precision_at_20": 0.9,
     "relevant_count": 18,
-    "latency_ms": 927.0
+    "latency_ms": 942.0
   },
   {
     "query": "command line args",
@@ -341,11 +341,11 @@
     "method": "LLM辅助搜索",
     "precision_at_1": 1.0,
     "precision_at_3": 1.0,
-    "precision_at_5": 1.0,
-    "precision_at_10": 1.0,
-    "precision_at_20": 1.0,
-    "relevant_count": 20,
-    "latency_ms": 6564.0
+    "precision_at_5": 0.8,
+    "precision_at_10": 0.8,
+    "precision_at_20": 0.8,
+    "relevant_count": 16,
+    "latency_ms": 7640.0
   },
   {
     "query": "command line args",
@@ -355,9 +355,9 @@
     "precision_at_3": 0.6666666666666666,
     "precision_at_5": 0.8,
     "precision_at_10": 0.6,
-    "precision_at_20": 0.6,
-    "relevant_count": 12,
-    "latency_ms": 568.0
+    "precision_at_20": 0.55,
+    "relevant_count": 11,
+    "latency_ms": 1238.0
   },
   {
     "query": "image processing",
@@ -369,7 +369,7 @@
     "precision_at_10": 0.9,
     "precision_at_20": 0.9,
     "relevant_count": 18,
-    "latency_ms": 10202.0
+    "latency_ms": 3539.0
   },
   {
     "query": "image processing",
@@ -381,7 +381,7 @@
     "precision_at_10": 0.7,
     "precision_at_20": 0.65,
     "relevant_count": 13,
-    "latency_ms": 959.0
+    "latency_ms": 1009.0
   },
   {
     "query": "audio library",
@@ -391,9 +391,9 @@
     "precision_at_3": 1.0,
     "precision_at_5": 0.8,
     "precision_at_10": 0.8,
-    "precision_at_20": 0.7,
-    "relevant_count": 14,
-    "latency_ms": 10661.0
+    "precision_at_20": 0.6,
+    "relevant_count": 12,
+    "latency_ms": 8975.0
   },
   {
     "query": "audio library",
@@ -402,22 +402,22 @@
     "precision_at_1": 1.0,
     "precision_at_3": 1.0,
     "precision_at_5": 0.8,
-    "precision_at_10": 0.7,
-    "precision_at_20": 0.75,
-    "relevant_count": 15,
-    "latency_ms": 989.0
+    "precision_at_10": 0.9,
+    "precision_at_20": 0.85,
+    "relevant_count": 17,
+    "latency_ms": 972.0
   },
   {
     "query": "xml parser",
     "description": "XML解析",
     "method": "LLM辅助搜索",
-    "precision_at_1": 1.0,
-    "precision_at_3": 0.3333333333333333,
-    "precision_at_5": 0.4,
-    "precision_at_10": 0.6,
-    "precision_at_20": 0.5,
-    "relevant_count": 10,
-    "latency_ms": 8353.0
+    "precision_at_1": 0.0,
+    "precision_at_3": 0.6666666666666666,
+    "precision_at_5": 0.8,
+    "precision_at_10": 0.7,
+    "precision_at_20": 0.75,
+    "relevant_count": 15,
+    "latency_ms": 8838.0
   },
   {
     "query": "xml parser",
@@ -429,7 +429,7 @@
     "precision_at_10": 0.9,
     "precision_at_20": 0.85,
     "relevant_count": 17,
-    "latency_ms": 888.0
+    "latency_ms": 1124.0
   },
   {
     "query": "database migration",
@@ -441,7 +441,7 @@
     "precision_at_10": 1.0,
     "precision_at_20": 1.0,
     "relevant_count": 20,
-    "latency_ms": 9867.0
+    "latency_ms": 5577.0
   },
   {
     "query": "database migration",
@@ -453,7 +453,7 @@
     "precision_at_10": 1.0,
     "precision_at_20": 1.0,
     "relevant_count": 20,
-    "latency_ms": 919.0
+    "latency_ms": 1097.0
   },
   {
     "query": "filesystem",
@@ -462,10 +462,10 @@
     "precision_at_1": 1.0,
     "precision_at_3": 1.0,
     "precision_at_5": 1.0,
-    "precision_at_10": 0.8,
+    "precision_at_10": 0.9,
     "precision_at_20": 0.85,
     "relevant_count": 17,
-    "latency_ms": 9794.0
+    "latency_ms": 6140.0
   },
   {
     "query": "filesystem",
@@ -477,19 +477,19 @@
     "precision_at_10": 0.7,
     "precision_at_20": 0.8,
     "relevant_count": 16,
-    "latency_ms": 654.0
+    "latency_ms": 564.0
   },
   {
     "query": "parser combinators",
     "description": "解析器组合子",
     "method": "LLM辅助搜索",
     "precision_at_1": 1.0,
-    "precision_at_3": 1.0,
-    "precision_at_5": 1.0,
-    "precision_at_10": 0.9,
-    "precision_at_20": 0.7,
-    "relevant_count": 14,
-    "latency_ms": 6004.0
+    "precision_at_3": 0.6666666666666666,
+    "precision_at_5": 0.6,
+    "precision_at_10": 0.6,
+    "precision_at_20": 0.55,
+    "relevant_count": 11,
+    "latency_ms": 7082.0
   },
   {
     "query": "parser combinators",
@@ -501,19 +501,19 @@
     "precision_at_10": 1.0,
     "precision_at_20": 0.9,
     "relevant_count": 18,
-    "latency_ms": 618.0
+    "latency_ms": 780.0
   },
   {
     "query": "html parser",
     "description": "HTML解析",
     "method": "LLM辅助搜索",
     "precision_at_1": 1.0,
-    "precision_at_3": 0.6666666666666666,
-    "precision_at_5": 0.8,
-    "precision_at_10": 0.6,
-    "precision_at_20": 0.55,
-    "relevant_count": 11,
-    "latency_ms": 6394.0
+    "precision_at_3": 1.0,
+    "precision_at_5": 1.0,
+    "precision_at_10": 0.9,
+    "precision_at_20": 0.9,
+    "relevant_count": 18,
+    "latency_ms": 15227.0
   },
   {
     "query": "html parser",
@@ -525,7 +525,7 @@
     "precision_at_10": 0.9,
     "precision_at_20": 0.95,
     "relevant_count": 19,
-    "latency_ms": 549.0
+    "latency_ms": 1083.0
   },
   {
     "query": "regex",
@@ -533,11 +533,11 @@
     "method": "LLM辅助搜索",
     "precision_at_1": 1.0,
     "precision_at_3": 1.0,
-    "precision_at_5": 1.0,
-    "precision_at_10": 1.0,
-    "precision_at_20": 1.0,
-    "relevant_count": 20,
-    "latency_ms": 11050.0
+    "precision_at_5": 0.8,
+    "precision_at_10": 0.9,
+    "precision_at_20": 0.95,
+    "relevant_count": 19,
+    "latency_ms": 5376.0
   },
   {
     "query": "regex",
@@ -549,7 +549,7 @@
     "precision_at_10": 0.9,
     "precision_at_20": 0.85,
     "relevant_count": 17,
-    "latency_ms": 917.0
+    "latency_ms": 980.0
   },
   {
     "query": "date time",
@@ -559,9 +559,9 @@
     "precision_at_3": 0.6666666666666666,
     "precision_at_5": 0.8,
     "precision_at_10": 0.9,
-    "precision_at_20": 0.9,
-    "relevant_count": 18,
-    "latency_ms": 9564.0
+    "precision_at_20": 0.95,
+    "relevant_count": 19,
+    "latency_ms": 7652.0
   },
   {
     "query": "date time",
@@ -573,19 +573,19 @@
     "precision_at_10": 0.9,
     "precision_at_20": 0.9,
     "relevant_count": 18,
-    "latency_ms": 638.0
+    "latency_ms": 1090.0
   },
   {
     "query": "compression",
     "description": "压缩库",
     "method": "LLM辅助搜索",
     "precision_at_1": 1.0,
-    "precision_at_3": 1.0,
-    "precision_at_5": 0.6,
+    "precision_at_3": 0.6666666666666666,
+    "precision_at_5": 0.8,
     "precision_at_10": 0.8,
-    "precision_at_20": 0.85,
-    "relevant_count": 17,
-    "latency_ms": 9724.0
+    "precision_at_20": 0.9,
+    "relevant_count": 18,
+    "latency_ms": 9286.0
   },
   {
     "query": "compression",
@@ -597,7 +597,7 @@
     "precision_at_10": 1.0,
     "precision_at_20": 0.9,
     "relevant_count": 18,
-    "latency_ms": 1039.0
+    "latency_ms": 1192.0
   },
   {
     "query": "yaml parser",
@@ -609,7 +609,7 @@
     "precision_at_10": 0.1,
     "precision_at_20": 0.15,
     "relevant_count": 3,
-    "latency_ms": 4446.0
+    "latency_ms": 8670.0
   },
   {
     "query": "yaml parser",
@@ -621,7 +621,7 @@
     "precision_at_10": 1.0,
     "precision_at_20": 0.9,
     "relevant_count": 18,
-    "latency_ms": 890.0
+    "latency_ms": 1169.0
   },
   {
     "query": "csv reader",
@@ -629,11 +629,11 @@
     "method": "LLM辅助搜索",
     "precision_at_1": 1.0,
     "precision_at_3": 0.6666666666666666,
-    "precision_at_5": 0.8,
-    "precision_at_10": 0.8,
-    "precision_at_20": 0.75,
-    "relevant_count": 15,
-    "latency_ms": 13043.0
+    "precision_at_5": 0.6,
+    "precision_at_10": 0.7,
+    "precision_at_20": 0.6,
+    "relevant_count": 12,
+    "latency_ms": 8083.0
   },
   {
     "query": "csv reader",
@@ -645,7 +645,7 @@
     "precision_at_10": 0.6,
     "precision_at_20": 0.45,
     "relevant_count": 9,
-    "latency_ms": 929.0
+    "latency_ms": 1142.0
   },
   {
     "query": "random number generator",
@@ -654,10 +654,10 @@
     "precision_at_1": 1.0,
     "precision_at_3": 1.0,
     "precision_at_5": 1.0,
-    "precision_at_10": 1.0,
-    "precision_at_20": 0.85,
-    "relevant_count": 17,
-    "latency_ms": 9815.0
+    "precision_at_10": 0.9,
+    "precision_at_20": 0.65,
+    "relevant_count": 13,
+    "latency_ms": 8022.0
   },
   {
     "query": "random number generator",
@@ -669,7 +669,7 @@
     "precision_at_10": 0.8,
     "precision_at_20": 0.8,
     "relevant_count": 16,
-    "latency_ms": 1022.0
+    "latency_ms": 1124.0
   },
   {
     "query": "web scraping",
@@ -677,11 +677,11 @@
     "method": "LLM辅助搜索",
     "precision_at_1": 1.0,
     "precision_at_3": 1.0,
-    "precision_at_5": 1.0,
-    "precision_at_10": 1.0,
-    "precision_at_20": 1.0,
-    "relevant_count": 20,
-    "latency_ms": 9843.0
+    "precision_at_5": 0.8,
+    "precision_at_10": 0.9,
+    "precision_at_20": 0.95,
+    "relevant_count": 19,
+    "latency_ms": 6474.0
   },
   {
     "query": "web scraping",
@@ -693,7 +693,7 @@
     "precision_at_10": 0.8,
     "precision_at_20": 0.8,
     "relevant_count": 16,
-    "latency_ms": 614.0
+    "latency_ms": 1021.0
   },
   {
     "query": "jwt token",
@@ -705,7 +705,7 @@
     "precision_at_10": 1.0,
     "precision_at_20": 0.9,
     "relevant_count": 18,
-    "latency_ms": 10966.0
+    "latency_ms": 7700.0
   },
   {
     "query": "jwt token",
@@ -717,199 +717,7 @@
     "precision_at_10": 0.9,
     "precision_at_20": 0.8,
     "relevant_count": 16,
-    "latency_ms": 534.0
-  },
-  {
-    "query": "I need an HTTP client library",
-    "description": "HTTP客户端(自然语言)",
-    "method": "LLM辅助搜索",
-    "precision_at_1": 1.0,
-    "precision_at_3": 1.0,
-    "precision_at_5": 1.0,
-    "precision_at_10": 0.9,
-    "precision_at_20": 0.8,
-    "relevant_count": 16,
-    "latency_ms": 8447.0
-  },
-  {
-    "query": "I need an HTTP client library",
-    "description": "HTTP客户端(自然语言)",
-    "method": "crates.io搜索",
-    "precision_at_1": 0.0,
-    "precision_at_3": 0.3333333333333333,
-    "precision_at_5": 0.6,
-    "precision_at_10": 0.5,
-    "precision_at_20": 0.35,
-    "relevant_count": 7,
-    "latency_ms": 605.0
-  },
-  {
-    "query": "How to parse JSON in Rust?",
-    "description": "JSON解析(自然语言)",
-    "method": "LLM辅助搜索",
-    "precision_at_1": 1.0,
-    "precision_at_3": 1.0,
-    "precision_at_5": 0.8,
-    "precision_at_10": 0.5,
-    "precision_at_20": 0.4,
-    "relevant_count": 8,
-    "latency_ms": 8108.0
-  },
-  {
-    "query": "How to parse JSON in Rust?",
-    "description": "JSON解析(自然语言)",
-    "method": "crates.io搜索",
-    "precision_at_1": 1.0,
-    "precision_at_3": 0.6666666666666666,
-    "precision_at_5": 0.8,
-    "precision_at_10": 0.9,
-    "precision_at_20": 0.8,
-    "relevant_count": 16,
-    "latency_ms": 651.0
-  },
-  {
-    "query": "What's the best database ORM?",
-    "description": "数据库ORM(自然语言)",
-    "method": "LLM辅助搜索",
-    "precision_at_1": 1.0,
-    "precision_at_3": 0.6666666666666666,
-    "precision_at_5": 0.8,
-    "precision_at_10": 0.9,
-    "precision_at_20": 0.7,
-    "relevant_count": 14,
-    "latency_ms": 5822.0
-  },
-  {
-    "query": "What's the best database ORM?",
-    "description": "数据库ORM(自然语言)",
-    "method": "crates.io搜索",
-    "precision_at_1": 0.0,
-    "precision_at_3": 0.0,
-    "precision_at_5": 0.0,
-    "precision_at_10": 0.1,
-    "precision_at_20": 0.35,
-    "relevant_count": 7,
-    "latency_ms": 570.0
-  },
-  {
-    "query": "Looking for a web framework",
-    "description": "Web框架(自然语言)",
-    "method": "LLM辅助搜索",
-    "precision_at_1": 1.0,
-    "precision_at_3": 0.6666666666666666,
-    "precision_at_5": 0.6,
-    "precision_at_10": 0.8,
-    "precision_at_20": 0.85,
-    "relevant_count": 17,
-    "latency_ms": 8050.0
-  },
-  {
-    "query": "Looking for a web framework",
-    "description": "Web框架(自然语言)",
-    "method": "crates.io搜索",
-    "precision_at_1": 0.0,
-    "precision_at_3": 0.6666666666666666,
-    "precision_at_5": 0.8,
-    "precision_at_10": 0.5,
-    "precision_at_20": 0.3,
-    "relevant_count": 6,
-    "latency_ms": 932.0
-  },
-  {
-    "query": "我需要一个HTTP客户端",
-    "description": "HTTP客户端(中文)",
-    "method": "LLM辅助搜索",
-    "precision_at_1": 1.0,
-    "precision_at_3": 0.6666666666666666,
-    "precision_at_5": 0.6,
-    "precision_at_10": 0.8,
-    "precision_at_20": 0.9,
-    "relevant_count": 18,
-    "latency_ms": 5054.0
-  },
-  {
-    "query": "我需要一个HTTP客户端",
-    "description": "HTTP客户端(中文)",
-    "method": "crates.io搜索",
-    "precision_at_1": 0.0,
-    "precision_at_3": 0.0,
-    "precision_at_5": 0.0,
-    "precision_at_10": 0.0,
-    "precision_at_20": 0.0,
-    "relevant_count": 0,
-    "latency_ms": 310.0
-  },
-  {
-    "query": "如何解析JSON数据",
-    "description": "JSON解析(中文)",
-    "method": "LLM辅助搜索",
-    "precision_at_1": 1.0,
-    "precision_at_3": 0.6666666666666666,
-    "precision_at_5": 0.4,
-    "precision_at_10": 0.6,
-    "precision_at_20": 0.5,
-    "relevant_count": 10,
-    "latency_ms": 6890.0
-  },
-  {
-    "query": "如何解析JSON数据",
-    "description": "JSON解析(中文)",
-    "method": "crates.io搜索",
-    "precision_at_1": 0.0,
-    "precision_at_3": 0.0,
-    "precision_at_5": 0.0,
-    "precision_at_10": 0.0,
-    "precision_at_20": 0.0,
-    "relevant_count": 0,
-    "latency_ms": 299.0
-  },
-  {
-    "query": "最好的数据库ORM是什么",
-    "description": "数据库ORM(中文)",
-    "method": "LLM辅助搜索",
-    "precision_at_1": 1.0,
-    "precision_at_3": 1.0,
-    "precision_at_5": 1.0,
-    "precision_at_10": 0.7,
-    "precision_at_20": 0.35,
-    "relevant_count": 7,
-    "latency_ms": 7693.0
-  },
-  {
-    "query": "最好的数据库ORM是什么",
-    "description": "数据库ORM(中文)",
-    "method": "crates.io搜索",
-    "precision_at_1": 0.0,
-    "precision_at_3": 0.0,
-    "precision_at_5": 0.0,
-    "precision_at_10": 0.0,
-    "precision_at_20": 0.0,
-    "relevant_count": 0,
-    "latency_ms": 750.0
-  },
-  {
-    "query": "寻找Web框架",
-    "description": "Web框架(中文)",
-    "method": "LLM辅助搜索",
-    "precision_at_1": 1.0,
-    "precision_at_3": 0.6666666666666666,
-    "precision_at_5": 0.4,
-    "precision_at_10": 0.7,
-    "precision_at_20": 0.6,
-    "relevant_count": 12,
-    "latency_ms": 6627.0
-  },
-  {
-    "query": "寻找Web框架",
-    "description": "Web框架(中文)",
-    "method": "crates.io搜索",
-    "precision_at_1": 0.0,
-    "precision_at_3": 0.0,
-    "precision_at_5": 0.0,
-    "precision_at_10": 0.0,
-    "precision_at_20": 0.0,
-    "relevant_count": 0,
-    "latency_ms": 805.0
+    "latency_ms": 983.0
   },
   {
     "query": "command line interface builder",
@@ -917,11 +725,11 @@
     "method": "LLM辅助搜索",
     "precision_at_1": 0.0,
     "precision_at_3": 0.3333333333333333,
-    "precision_at_5": 0.6,
-    "precision_at_10": 0.6,
-    "precision_at_20": 0.55,
-    "relevant_count": 11,
-    "latency_ms": 15147.0
+    "precision_at_5": 0.4,
+    "precision_at_10": 0.3,
+    "precision_at_20": 0.4,
+    "relevant_count": 8,
+    "latency_ms": 8169.0
   },
   {
     "query": "command line interface builder",
@@ -933,19 +741,19 @@
     "precision_at_10": 0.2,
     "precision_at_20": 0.2,
     "relevant_count": 4,
-    "latency_ms": 554.0
+    "latency_ms": 539.0
   },
   {
     "query": "graphql client",
     "description": "GraphQL客户端",
     "method": "LLM辅助搜索",
-    "precision_at_1": 0.0,
-    "precision_at_3": 0.6666666666666666,
-    "precision_at_5": 0.4,
-    "precision_at_10": 0.4,
-    "precision_at_20": 0.3,
-    "relevant_count": 6,
-    "latency_ms": 6227.0
+    "precision_at_1": 1.0,
+    "precision_at_3": 1.0,
+    "precision_at_5": 1.0,
+    "precision_at_10": 0.9,
+    "precision_at_20": 0.55,
+    "relevant_count": 11,
+    "latency_ms": 7215.0
   },
   {
     "query": "graphql client",
@@ -957,7 +765,7 @@
     "precision_at_10": 1.0,
     "precision_at_20": 0.85,
     "relevant_count": 17,
-    "latency_ms": 946.0
+    "latency_ms": 1006.0
   },
   {
     "query": "password hashing",
@@ -969,7 +777,7 @@
     "precision_at_10": 1.0,
     "precision_at_20": 0.85,
     "relevant_count": 17,
-    "latency_ms": 10243.0
+    "latency_ms": 7597.0
   },
   {
     "query": "password hashing",
@@ -981,7 +789,7 @@
     "precision_at_10": 0.9,
     "precision_at_20": 0.9,
     "relevant_count": 18,
-    "latency_ms": 542.0
+    "latency_ms": 1076.0
   },
   {
     "query": "uuid generator",
@@ -989,35 +797,35 @@
     "method": "LLM辅助搜索",
     "precision_at_1": 1.0,
     "precision_at_3": 1.0,
-    "precision_at_5": 1.0,
-    "precision_at_10": 0.9,
-    "precision_at_20": 0.75,
-    "relevant_count": 15,
-    "latency_ms": 10664.0
+    "precision_at_5": 0.8,
+    "precision_at_10": 0.7,
+    "precision_at_20": 0.65,
+    "relevant_count": 13,
+    "latency_ms": 6593.0
   },
   {
     "query": "uuid generator",
     "description": "UUID生成器",
     "method": "crates.io搜索",
     "precision_at_1": 1.0,
-    "precision_at_3": 0.6666666666666666,
-    "precision_at_5": 0.8,
-    "precision_at_10": 0.7,
-    "precision_at_20": 0.7,
-    "relevant_count": 14,
-    "latency_ms": 888.0
+    "precision_at_3": 1.0,
+    "precision_at_5": 1.0,
+    "precision_at_10": 0.8,
+    "precision_at_20": 0.75,
+    "relevant_count": 15,
+    "latency_ms": 876.0
   },
   {
     "query": "binary serialization",
     "description": "二进制序列化",
     "method": "LLM辅助搜索",
     "precision_at_1": 1.0,
-    "precision_at_3": 1.0,
-    "precision_at_5": 0.8,
+    "precision_at_3": 0.6666666666666666,
+    "precision_at_5": 0.6,
     "precision_at_10": 0.6,
-    "precision_at_20": 0.6,
-    "relevant_count": 12,
-    "latency_ms": 9263.0
+    "precision_at_20": 0.7,
+    "relevant_count": 14,
+    "latency_ms": 12565.0
   },
   {
     "query": "binary serialization",
@@ -1029,7 +837,7 @@
     "precision_at_10": 1.0,
     "precision_at_20": 1.0,
     "relevant_count": 20,
-    "latency_ms": 1023.0
+    "latency_ms": 1170.0
   },
   {
     "query": "error handling",
@@ -1038,10 +846,10 @@
     "precision_at_1": 1.0,
     "precision_at_3": 1.0,
     "precision_at_5": 1.0,
-    "precision_at_10": 0.9,
-    "precision_at_20": 0.9,
-    "relevant_count": 18,
-    "latency_ms": 10513.0
+    "precision_at_10": 1.0,
+    "precision_at_20": 1.0,
+    "relevant_count": 20,
+    "latency_ms": 9686.0
   },
   {
     "query": "error handling",
@@ -1053,7 +861,7 @@
     "precision_at_10": 0.6,
     "precision_at_20": 0.65,
     "relevant_count": 13,
-    "latency_ms": 766.0
+    "latency_ms": 1041.0
   },
   {
     "query": "progress bar",
@@ -1065,7 +873,7 @@
     "precision_at_10": 0.9,
     "precision_at_20": 0.95,
     "relevant_count": 19,
-    "latency_ms": 9548.0
+    "latency_ms": 8228.0
   },
   {
     "query": "progress bar",
@@ -1077,19 +885,19 @@
     "precision_at_10": 0.9,
     "precision_at_20": 0.9,
     "relevant_count": 18,
-    "latency_ms": 885.0
+    "latency_ms": 584.0
   },
   {
     "query": "threadpool",
     "description": "线程池",
     "method": "LLM辅助搜索",
     "precision_at_1": 1.0,
-    "precision_at_3": 0.6666666666666666,
-    "precision_at_5": 0.6,
-    "precision_at_10": 0.4,
-    "precision_at_20": 0.3,
-    "relevant_count": 6,
-    "latency_ms": 5952.0
+    "precision_at_3": 1.0,
+    "precision_at_5": 1.0,
+    "precision_at_10": 1.0,
+    "precision_at_20": 1.0,
+    "relevant_count": 20,
+    "latency_ms": 9362.0
   },
   {
     "query": "threadpool",
@@ -1101,7 +909,7 @@
     "precision_at_10": 0.9,
     "precision_at_20": 0.95,
     "relevant_count": 19,
-    "latency_ms": 562.0
+    "latency_ms": 1027.0
   },
   {
     "query": "config file parser",
@@ -1110,10 +918,10 @@
     "precision_at_1": 1.0,
     "precision_at_3": 1.0,
     "precision_at_5": 1.0,
-    "precision_at_10": 0.8,
-    "precision_at_20": 0.8,
-    "relevant_count": 16,
-    "latency_ms": 7160.0
+    "precision_at_10": 1.0,
+    "precision_at_20": 0.9,
+    "relevant_count": 18,
+    "latency_ms": 8931.0
   },
   {
     "query": "config file parser",
@@ -1121,23 +929,23 @@
     "method": "crates.io搜索",
     "precision_at_1": 1.0,
     "precision_at_3": 1.0,
-    "precision_at_5": 1.0,
-    "precision_at_10": 1.0,
-    "precision_at_20": 0.95,
-    "relevant_count": 19,
-    "latency_ms": 587.0
+    "precision_at_5": 0.8,
+    "precision_at_10": 0.9,
+    "precision_at_20": 0.9,
+    "relevant_count": 18,
+    "latency_ms": 640.0
   },
   {
     "query": "redis client",
     "description": "Redis客户端",
     "method": "LLM辅助搜索",
     "precision_at_1": 1.0,
-    "precision_at_3": 1.0,
-    "precision_at_5": 1.0,
-    "precision_at_10": 1.0,
-    "precision_at_20": 0.75,
-    "relevant_count": 15,
-    "latency_ms": 9727.0
+    "precision_at_3": 0.6666666666666666,
+    "precision_at_5": 0.6,
+    "precision_at_10": 0.4,
+    "precision_at_20": 0.45,
+    "relevant_count": 9,
+    "latency_ms": 7487.0
   },
   {
     "query": "redis client",
@@ -1149,7 +957,7 @@
     "precision_at_10": 0.8,
     "precision_at_20": 0.7,
     "relevant_count": 14,
-    "latency_ms": 946.0
+    "latency_ms": 993.0
   },
   {
     "query": "环境变量处理",
@@ -1161,7 +969,7 @@
     "precision_at_10": 1.0,
     "precision_at_20": 1.0,
     "relevant_count": 20,
-    "latency_ms": 11685.0
+    "latency_ms": 7344.0
   },
   {
     "query": "环境变量处理",
@@ -1173,7 +981,7 @@
     "precision_at_10": 0.0,
     "precision_at_20": 0.0,
     "relevant_count": 0,
-    "latency_ms": 1125.0
+    "latency_ms": 1121.0
   },
   {
     "query": "异步HTTP客户端",
@@ -1183,9 +991,9 @@
     "precision_at_3": 0.6666666666666666,
     "precision_at_5": 0.8,
     "precision_at_10": 0.6,
-    "precision_at_20": 0.6,
-    "relevant_count": 12,
-    "latency_ms": 5642.0
+    "precision_at_20": 0.4,
+    "relevant_count": 8,
+    "latency_ms": 9025.0
   },
   {
     "query": "异步HTTP客户端",
@@ -1197,6 +1005,198 @@
     "precision_at_10": 0.0,
     "precision_at_20": 0.0,
     "relevant_count": 0,
-    "latency_ms": 406.0
+    "latency_ms": 715.0
+  },
+  {
+    "query": "I need an HTTP client library",
+    "description": "HTTP客户端(自然语言)",
+    "method": "LLM辅助搜索",
+    "precision_at_1": 1.0,
+    "precision_at_3": 1.0,
+    "precision_at_5": 1.0,
+    "precision_at_10": 0.8,
+    "precision_at_20": 0.65,
+    "relevant_count": 13,
+    "latency_ms": 8781.0
+  },
+  {
+    "query": "I need an HTTP client library",
+    "description": "HTTP客户端(自然语言)",
+    "method": "crates.io搜索",
+    "precision_at_1": 0.0,
+    "precision_at_3": 0.3333333333333333,
+    "precision_at_5": 0.6,
+    "precision_at_10": 0.5,
+    "precision_at_20": 0.3,
+    "relevant_count": 6,
+    "latency_ms": 1016.0
+  },
+  {
+    "query": "How to parse JSON in Rust?",
+    "description": "JSON解析(自然语言)",
+    "method": "LLM辅助搜索",
+    "precision_at_1": 1.0,
+    "precision_at_3": 1.0,
+    "precision_at_5": 0.8,
+    "precision_at_10": 0.6,
+    "precision_at_20": 0.4,
+    "relevant_count": 8,
+    "latency_ms": 5877.0
+  },
+  {
+    "query": "How to parse JSON in Rust?",
+    "description": "JSON解析(自然语言)",
+    "method": "crates.io搜索",
+    "precision_at_1": 1.0,
+    "precision_at_3": 0.6666666666666666,
+    "precision_at_5": 0.8,
+    "precision_at_10": 0.8,
+    "precision_at_20": 0.75,
+    "relevant_count": 15,
+    "latency_ms": 1177.0
+  },
+  {
+    "query": "What's the best database ORM?",
+    "description": "数据库ORM(自然语言)",
+    "method": "LLM辅助搜索",
+    "precision_at_1": 1.0,
+    "precision_at_3": 1.0,
+    "precision_at_5": 0.8,
+    "precision_at_10": 0.9,
+    "precision_at_20": 0.7,
+    "relevant_count": 14,
+    "latency_ms": 7493.0
+  },
+  {
+    "query": "What's the best database ORM?",
+    "description": "数据库ORM(自然语言)",
+    "method": "crates.io搜索",
+    "precision_at_1": 0.0,
+    "precision_at_3": 0.0,
+    "precision_at_5": 0.0,
+    "precision_at_10": 0.1,
+    "precision_at_20": 0.35,
+    "relevant_count": 7,
+    "latency_ms": 963.0
+  },
+  {
+    "query": "Looking for a web framework",
+    "description": "Web框架(自然语言)",
+    "method": "LLM辅助搜索",
+    "precision_at_1": 0.0,
+    "precision_at_3": 0.6666666666666666,
+    "precision_at_5": 0.8,
+    "precision_at_10": 0.7,
+    "precision_at_20": 0.85,
+    "relevant_count": 17,
+    "latency_ms": 8252.0
+  },
+  {
+    "query": "Looking for a web framework",
+    "description": "Web框架(自然语言)",
+    "method": "crates.io搜索",
+    "precision_at_1": 0.0,
+    "precision_at_3": 0.6666666666666666,
+    "precision_at_5": 0.8,
+    "precision_at_10": 0.5,
+    "precision_at_20": 0.3,
+    "relevant_count": 6,
+    "latency_ms": 937.0
+  },
+  {
+    "query": "我需要一个HTTP客户端",
+    "description": "HTTP客户端(中文)",
+    "method": "LLM辅助搜索",
+    "precision_at_1": 1.0,
+    "precision_at_3": 1.0,
+    "precision_at_5": 0.6,
+    "precision_at_10": 0.8,
+    "precision_at_20": 0.8,
+    "relevant_count": 16,
+    "latency_ms": 5904.0
+  },
+  {
+    "query": "我需要一个HTTP客户端",
+    "description": "HTTP客户端(中文)",
+    "method": "crates.io搜索",
+    "precision_at_1": 0.0,
+    "precision_at_3": 0.0,
+    "precision_at_5": 0.0,
+    "precision_at_10": 0.0,
+    "precision_at_20": 0.0,
+    "relevant_count": 0,
+    "latency_ms": 503.0
+  },
+  {
+    "query": "如何解析JSON数据",
+    "description": "JSON解析(中文)",
+    "method": "LLM辅助搜索",
+    "precision_at_1": 1.0,
+    "precision_at_3": 0.6666666666666666,
+    "precision_at_5": 0.4,
+    "precision_at_10": 0.6,
+    "precision_at_20": 0.5,
+    "relevant_count": 10,
+    "latency_ms": 4921.0
+  },
+  {
+    "query": "如何解析JSON数据",
+    "description": "JSON解析(中文)",
+    "method": "crates.io搜索",
+    "precision_at_1": 0.0,
+    "precision_at_3": 0.0,
+    "precision_at_5": 0.0,
+    "precision_at_10": 0.0,
+    "precision_at_20": 0.0,
+    "relevant_count": 0,
+    "latency_ms": 744.0
+  },
+  {
+    "query": "最好的数据库ORM是什么",
+    "description": "数据库ORM(中文)",
+    "method": "LLM辅助搜索",
+    "precision_at_1": 1.0,
+    "precision_at_3": 1.0,
+    "precision_at_5": 1.0,
+    "precision_at_10": 0.7,
+    "precision_at_20": 0.35,
+    "relevant_count": 7,
+    "latency_ms": 8131.0
+  },
+  {
+    "query": "最好的数据库ORM是什么",
+    "description": "数据库ORM(中文)",
+    "method": "crates.io搜索",
+    "precision_at_1": 0.0,
+    "precision_at_3": 0.0,
+    "precision_at_5": 0.0,
+    "precision_at_10": 0.0,
+    "precision_at_20": 0.0,
+    "relevant_count": 0,
+    "latency_ms": 432.0
+  },
+  {
+    "query": "寻找Web框架",
+    "description": "Web框架(中文)",
+    "method": "LLM辅助搜索",
+    "precision_at_1": 0.0,
+    "precision_at_3": 0.3333333333333333,
+    "precision_at_5": 0.4,
+    "precision_at_10": 0.7,
+    "precision_at_20": 0.35,
+    "relevant_count": 7,
+    "latency_ms": 7905.0
+  },
+  {
+    "query": "寻找Web框架",
+    "description": "Web框架(中文)",
+    "method": "crates.io搜索",
+    "precision_at_1": 0.0,
+    "precision_at_3": 0.0,
+    "precision_at_5": 0.0,
+    "precision_at_10": 0.0,
+    "precision_at_20": 0.0,
+    "relevant_count": 0,
+    "latency_ms": 713.0
   }
 ]
