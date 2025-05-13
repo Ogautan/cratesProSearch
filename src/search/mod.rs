@@ -5,6 +5,8 @@ mod rewrite;
 mod traditional_search;
 mod utils; // 添加新模块
 
+pub mod embedding;
+
 // 重新导出公共接口
 pub use core::{RecommendCrate, SearchModule, SearchSortCriteria};
 pub use rerank::rerank_crates;
