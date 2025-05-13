@@ -1,5 +1,5 @@
 use crate::search::core::{RecommendCrate, SearchSortCriteria};
-use crate::search::embedding::{
+use crate::search::embedder::{
     cosine_similarity, fetch_or_create_embeddings, get_query_embedding, EmbeddingMode,
 };
 use tokio_postgres::Client as PgClient;

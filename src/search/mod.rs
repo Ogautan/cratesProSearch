@@ -5,7 +5,7 @@ mod rewrite;
 mod traditional_search;
 mod utils; // 添加新模块
 
-pub mod embedding;
+pub mod embedder; // 将原来的 pub mod embedding; 改为 pub mod embedder;
 
 // 重新导出公共接口
 pub use core::{RecommendCrate, SearchModule, SearchSortCriteria};
